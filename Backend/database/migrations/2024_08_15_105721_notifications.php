@@ -15,7 +15,6 @@ return new class extends Migration
             $table->timestamp('NotificationDate');
             $table->timestamps();
 
-            $table->foreign('UserID')->references('UserID')->on('users')->onDelete('cascade');
         });
     }
 

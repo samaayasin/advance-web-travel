@@ -6,17 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    
     public function up()
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id('ReviewID');
-            $table->unsignedBigInteger('reviewable_id'); 
-            $table->string('reviewable_type'); 
+            $table->unsignedBigInteger('BookingID');
+            $table->string('BookingType');
             $table->integer('Rating');
-            $table->text('ReviewText');
-            $table->timestamp('ReviewDate');
-            $table->timestamps();
-            $table->index(['reviewable_id', 'reviewable_type']); 
+            $table->text('ReviewText')->nullable();
+            $table->timestamp('ReviewDate')->nullable();  // Adjusted to nullable
+            $table->timestamps();  // created_at and updated_at
         });
     }
 
@@ -24,4 +24,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('reviews');
     }
+
 };
