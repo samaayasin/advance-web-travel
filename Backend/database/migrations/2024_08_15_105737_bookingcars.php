@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('booking_cars', function (Blueprint $table) {
             $table->id('CarRentalID');
-            $table->unsignedBigInteger('UserID'); 
+            $table->unsignedBigInteger('UserID');
             $table->string('CarModel');
             $table->integer('SeatNumber');
             $table->string('Location');
@@ -19,7 +19,6 @@ return new class extends Migration
             $table->date('StartDate');
             $table->date('EndDate');
             $table->timestamps();
-
         });
     }
 
