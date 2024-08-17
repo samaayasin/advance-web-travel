@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('booking_hotels', function (Blueprint $table) {
             $table->id('HotelID');
-            $table->unsignedBigInteger('UserID'); 
+            $table->unsignedBigInteger('UserID');
             $table->string('HotelName');
             $table->string('Location');
             $table->string('RoomType');
@@ -19,7 +19,6 @@ return new class extends Migration
             $table->date('StartDate');
             $table->date('EndDate');
             $table->timestamps();
-
         });
     }
 

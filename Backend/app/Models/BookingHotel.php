@@ -5,18 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Booking_cars extends Model
+class BookingHotel extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'CarRentalID';
+
+    protected $primaryKey = 'HotelID';
 
     protected $fillable = [
         'UserID',
-        'CarModel',
-        'SeatNumber',
+        'HotelName',
         'Location',
-        'PricePerDay',
+        'RoomType',
+        'PricePerNight',
         'Availability',
         'StartDate',
         'EndDate',
@@ -29,6 +30,6 @@ class Booking_cars extends Model
 
     public function reviews()
     {
-        return $this->morphMany(Reviews::class, 'booking', 'BookingType', 'BookingID');
+        return $this->morphMany(Review::class, 'booking', 'BookingType', 'BookingID');
     }
 }
