@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class notification extends Model
+class Notifications extends Model
 {
     use HasFactory;
     protected $primaryKey = 'NotificationID';
@@ -18,6 +18,6 @@ class notification extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'UserID', 'UserID');
+        return $this->belongsTo(Users::class, 'UserID', 'UserID');
     }  
 }

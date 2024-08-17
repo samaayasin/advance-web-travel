@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class usermodel extends Model
+class Users extends Model
 {
     use HasFactory;
     protected $primaryKey = 'UserID';
@@ -21,21 +21,21 @@ class usermodel extends Model
 
     public function notifications()
     {
-        return $this->hasMany(Notification::class, 'UserID', 'UserID');
+        return $this->hasMany(Notifications::class, 'UserID', 'UserID');
     }
 
     public function bookingFlights()
     {
-        return $this->hasMany(BookingFlight::class, 'UserID', 'UserID');
+        return $this->hasMany(Booking_flights::class, 'UserID', 'UserID');
     }
 
     public function bookingCars()
     {
-        return $this->hasMany(BookingCar::class, 'UserID', 'UserID');
+        return $this->hasMany(Booking_cars::class, 'UserID', 'UserID');
     }
 
     public function bookingHotels()
     {
-        return $this->hasMany(BookingHotel::class, 'UserID', 'UserID');
+        return $this->hasMany(Booking_hotels::class, 'UserID', 'UserID');
     }
 }

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class bookingflight extends Model
+class Booking_flights extends Model
 {
     use HasFactory;
 
@@ -27,11 +27,11 @@ class bookingflight extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'UserID', 'UserID');
+        return $this->belongsTo(Users::class, 'UserID', 'UserID');
     }
 
     public function reviews()
     {
-        return $this->morphMany(Review::class, 'booking', 'BookingType', 'BookingID');
+        return $this->morphMany(Reviews::class, 'booking', 'BookingType', 'BookingID');
     }
 }
