@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('booking_flights', function (Blueprint $table) {
             $table->id('FlightID');
-            $table->unsignedBigInteger('UserID'); 
+            $table->unsignedBigInteger('UserID');
             $table->string('AirlineName');
             $table->string('DepartureAirport');
             $table->string('ArrivalAirport');
@@ -21,7 +21,6 @@ return new class extends Migration
             $table->date('StartDate');
             $table->date('EndDate');
             $table->timestamps();
-
         });
     }
 

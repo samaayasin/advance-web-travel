@@ -5,19 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class bookinghotel extends Model
+class BookingFlight extends Model
 {
     use HasFactory;
 
 
-    protected $primaryKey = 'HotelID';
+    protected $primaryKey = 'FlightID';
 
     protected $fillable = [
         'UserID',
-        'HotelName',
-        'Location',
-        'RoomType',
-        'PricePerNight',
+        'AirlineName',
+        'DepartureAirport',
+        'ArrivalAirport',
+        'DepartureTime',
+        'ArrivalTime',
+        'Price',
         'Availability',
         'StartDate',
         'EndDate',
