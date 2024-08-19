@@ -346,81 +346,7 @@
                     }
                 }
             }
-        }
-    },
-    "components": {
-        "schemas": {
-            "Booking": {
-                "title": "Booking",
-                "required": [
-                    "id",
-                    "type",
-                    "user_id"
-                ],
-                "properties": {
-                    "id": {
-                        "description": "The unique identifier of the booking",
-                        "type": "integer",
-                        "example": 1
-                    },
-                    "type": {
-                        "description": "The type of the booking, e.g., hotel, flight",
-                        "type": "string",
-                        "example": "hotel"
-                    },
-                    "user_id": {
-                        "description": "The ID of the user who made the booking",
-                        "type": "integer",
-                        "example": 42
-                    }
-                },
-                "type": "object"
-            },
-            "User": {
-                "title": "User",
-                "required": [
-                    "id",
-                    "name",
-                    "email"
-                ],
-                "properties": {
-                    "id": {
-                        "description": "The user ID",
-                        "type": "integer"
-                    },
-                    "name": {
-                        "description": "The name of the user",
-                        "type": "string"
-                    },
-                    "email": {
-                        "description": "The email address of the user",
-                        "type": "string",
-                        "format": "email"
-                    }
-                },
-                "type": "object"
-            }
-        }
-    },
-    "tags": [
-        {
-            "name": "Bookings",
-            "description": "Bookings"
         },
-        {
-            "name": "Users",
-            "description": "Users"
-        }
-    ]
-}
-{
-    "openapi": "3.0.0",
-    "info": {
-        "title": "Booking API",
-        "description": "API documentation",
-        "version": "1.0.0"
-    },
-    "paths": {
         "/api/booking/cars": {
             "get": {
                 "tags": [
@@ -682,7 +608,7 @@
         "/api/booking/hotels": {
             "get": {
                 "tags": [
-                    "Hotels"
+                    "Hotel"
                 ],
                 "summary": "Get all hotels",
                 "operationId": "b190f12b8ba653c82276be8f6ed73962",
@@ -704,7 +630,7 @@
             },
             "post": {
                 "tags": [
-                    "Hotels"
+                    "Hotel"
                 ],
                 "summary": "Add a new hotel booking",
                 "operationId": "e9abd4a3d968e6c41b594dd2b9022129",
@@ -738,7 +664,7 @@
         "/api/booking/hotels/{id}": {
             "put": {
                 "tags": [
-                    "Hotels"
+                    "Hotel"
                 ],
                 "summary": "Update a hotel booking",
                 "operationId": "e6064d80e6fb6a16c67a3af481a9f0bc",
@@ -780,7 +706,7 @@
             },
             "delete": {
                 "tags": [
-                    "Hotels"
+                    "Hotel"
                 ],
                 "summary": "Cancel a hotel booking",
                 "operationId": "edd080b505aab34e47ca1ac008ec66dd",
@@ -814,6 +740,99 @@
     },
     "components": {
         "schemas": {
+            "Booking": {
+                "title": "Booking",
+                "required": [
+                    "id",
+                    "type",
+                    "user_id"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "The unique identifier of the booking",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "type": {
+                        "description": "The type of the booking, e.g., hotel, flight",
+                        "type": "string",
+                        "example": "hotel"
+                    },
+                    "user_id": {
+                        "description": "The ID of the user who made the booking",
+                        "type": "integer",
+                        "example": 42
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "User",
+                "required": [
+                    "id",
+                    "name",
+                    "email"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "The user ID",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "The name of the user",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "The email address of the user",
+                        "type": "string",
+                        "format": "email"
+                    }
+                },
+                "type": "object"
+            },
+            "BookingCar": {
+                "title": "BookingCar",
+                "required": [
+                    "UserID",
+                    "CarModel",
+                    "SeatNumber",
+                    "Location",
+                    "PricePerDay",
+                    "Availability",
+                    "StartDate",
+                    "EndDate"
+                ],
+                "properties": {
+                    "UserID": {
+                        "type": "integer"
+                    },
+                    "CarModel": {
+                        "type": "string"
+                    },
+                    "SeatNumber": {
+                        "type": "integer"
+                    },
+                    "Location": {
+                        "type": "string"
+                    },
+                    "PricePerDay": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "Availability": {
+                        "type": "boolean"
+                    },
+                    "StartDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "EndDate": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "type": "object"
+            },
             "BookingFlight": {
                 "title": "BookingFlight",
                 "required": [
@@ -872,49 +891,6 @@
                 },
                 "type": "object"
             },
-            "BookingCar": {
-                "title": "BookingCar",
-                "required": [
-                    "UserID",
-                    "CarModel",
-                    "SeatNumber",
-                    "Location",
-                    "PricePerDay",
-                    "Availability",
-                    "StartDate",
-                    "EndDate"
-                ],
-                "properties": {
-                    "UserID": {
-                        "type": "integer"
-                    },
-                    "CarModel": {
-                        "type": "string"
-                    },
-                    "SeatNumber": {
-                        "type": "integer"
-                    },
-                    "Location": {
-                        "type": "string"
-                    },
-                    "PricePerDay": {
-                        "type": "number",
-                        "format": "float"
-                    },
-                    "Availability": {
-                        "type": "boolean"
-                    },
-                    "StartDate": {
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "EndDate": {
-                        "type": "string",
-                        "format": "date"
-                    }
-                },
-                "type": "object"
-            },
             "BookingHotel": {
                 "title": "BookingHotel",
                 "required": [
@@ -962,8 +938,24 @@
     },
     "tags": [
         {
+            "name": "Bookings",
+            "description": "Bookings"
+        },
+        {
+            "name": "Users",
+            "description": "Users"
+        },
+        {
+            "name": "Cars",
+            "description": "Cars"
+        },
+        {
             "name": "Flights",
             "description": "Flights"
+        },
+        {
+            "name": "Hotel",
+            "description": "Hotel"
         }
     ]
 }

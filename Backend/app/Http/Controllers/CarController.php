@@ -21,11 +21,13 @@ use Illuminate\Http\Request;
  *     @OA\Property(property="EndDate", type="string", format="date")
  * )
  */
-class CarController extends Controller{
+class CarController extends Controller
+{
     /**
      * @OA\Get(
      *     path="/api/booking/cars",
      *     summary="Get all cars",
+     *     tags={"Cars"},
      *     @OA\Response(
      *         response=200,
      *         description="List of all cars",
@@ -33,12 +35,13 @@ class CarController extends Controller{
      *     )
      * )
      */
-    public function show_all_cars(){}
+    public function show_all_cars() {}
 
     /**
      * @OA\Post(
      *     path="/api/booking/cars",
      *     summary="Add a new car booking",
+     *      tags={"Cars"},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(ref="#/components/schemas/BookingCar")
@@ -54,12 +57,13 @@ class CarController extends Controller{
      *     )
      * )
      */
-    public function booking_car(){}
+    public function booking_car() {}
 
     /**
      * @OA\Put(
      *     path="/api/booking/cars/{id}",
      *     summary="Update a car booking",
+     * tags={"Cars"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -81,12 +85,13 @@ class CarController extends Controller{
      *     )
      * )
      */
-    public function update_booking_car($id){}
+    public function update_booking_car($id) {}
 
     /**
      * @OA\Delete(
      *     path="/api/booking/cars/{id}",
      *     summary="Cancel a car booking",
+     * tags={"Cars"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -104,5 +109,5 @@ class CarController extends Controller{
      *     )
      * )
      */
-    public function cancel_booking_car($id){}
+    public function cancel_booking_car($id) {}
 }

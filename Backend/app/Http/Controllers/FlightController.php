@@ -6,12 +6,6 @@ use App\Models\BookingFlight;
 use Illuminate\Http\Request;
 
 /**
- * @OA\Info(
- *     title="Booking API",
- *     version="1.0.0",
- *     description="API documentation"
- * )
- * @OA\Components(
  *     @OA\Schema(
  *         schema="BookingFlight",
  *         type="object",
@@ -27,7 +21,6 @@ use Illuminate\Http\Request;
  *         @OA\Property(property="StartDate", type="string", format="date", description="Booking start date"),
  *         @OA\Property(property="EndDate", type="string", format="date", description="Booking end date")
  *     )
- * )
  */
 class FlightController extends Controller{
     /**

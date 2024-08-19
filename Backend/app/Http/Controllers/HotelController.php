@@ -28,6 +28,7 @@ class HotelController extends Controller
      * @OA\Get(
      *     path="/api/booking/hotels",
      *     summary="Get all hotels",
+     *     tags={"Hotel"},
      *     @OA\Response(
      *         response=200,
      *         description="List of all hotels",
@@ -42,6 +43,7 @@ class HotelController extends Controller
      * @OA\Post(
      *     path="/api/booking/hotels",
      *     summary="Add a new hotel booking",
+     *     tags={"Hotel"},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(ref="#/components/schemas/BookingHotel")
@@ -64,6 +66,7 @@ class HotelController extends Controller
      * @OA\Put(
      *     path="/api/booking/hotels/{id}",
      *     summary="Update a hotel booking",
+     *     tags={"Hotel"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -92,6 +95,7 @@ class HotelController extends Controller
      * @OA\Delete(
      *     path="/api/booking/hotels/{id}",
      *     summary="Cancel a hotel booking",
+     *     tags={"Hotel"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
