@@ -1,0 +1,148 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Restaurant Management System API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/booking-cars": {
+            "get": {
+                "tags": [
+                    "BookingCar"
+                ],
+                "summary": "Get a list of all car bookings",
+                "operationId": "309f71640167354b5d17c2d6815e2342",
+                "responses": {
+                    "200": {
+                        "description": "A list of car bookings",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BookingCar"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No bookings found"
+                    }
+                }
+            }
+        },
+        "/api/v1/booking-cars/search": {
+            "post": {
+                "tags": [
+                    "BookingCar"
+                ],
+                "summary": "Search for car bookings",
+                "operationId": "eba3e6ca3d1c4e9fa5edd16fe81025e5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BookingCar"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Search results",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BookingCar"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid search input"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BookingCar": {
+                "title": "BookingCar",
+                "required": [
+                    "UserID",
+                    "CarModel",
+                    "SeatNumber",
+                    "Location",
+                    "PricePerDay",
+                    "Availability",
+                    "StartDate",
+                    "EndDate"
+                ],
+                "properties": {
+                    "CarRentalID": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "UserID": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "CarModel": {
+                        "type": "string",
+                        "example": "Toyota Corolla"
+                    },
+                    "SeatNumber": {
+                        "type": "integer",
+                        "example": 5
+                    },
+                    "Location": {
+                        "type": "string",
+                        "example": "New York"
+                    },
+                    "PricePerDay": {
+                        "type": "number",
+                        "format": "float",
+                        "example": "49.99"
+                    },
+                    "Availability": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "StartDate": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2024-08-20"
+                    },
+                    "EndDate": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2024-08-25"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-08-19 10:00:00"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-08-19 10:00:00"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "BookingCar",
+            "description": "BookingCar"
+        }
+    ]
+}
