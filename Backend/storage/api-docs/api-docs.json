@@ -1,0 +1,70 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Booking Management System API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/bookings": {
+            "get": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Get list of all bookings",
+                "description": "Returns a list of all bookings",
+                "operationId": "getAllBookings",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Booking"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Booking": {
+                "title": "Booking",
+                "required": [
+                    "id",
+                    "type",
+                    "user_id"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "The unique identifier of the booking",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "type": {
+                        "description": "The type of the booking, e.g., hotel, flight",
+                        "type": "string",
+                        "example": "hotel"
+                    },
+                    "user_id": {
+                        "description": "The ID of the user who made the booking",
+                        "type": "integer",
+                        "example": 42
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Bookings",
+            "description": "Bookings"
+        }
+    ]
+}
