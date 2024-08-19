@@ -56,7 +56,6 @@ use App\Models\BookingHotel;
  * )
  */
 
-
 class AdminPanelController extends Controller
 {
     /**
