@@ -50,7 +50,7 @@ class BookingCarController extends Controller
      */
     public function getCar()
     {
-        Log::error("error");
+        Log::error("error!");
         $car = BookingCar::all();
         return response($car);
     }
