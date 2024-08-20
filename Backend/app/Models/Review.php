@@ -12,8 +12,8 @@ class Review extends Model
     protected $primaryKey = 'ReviewID';
 
     protected $fillable = [
-        'BookingID',
-        'BookingType',
+        'BookingID',     
+        'BookingType',   
         'Rating',
         'ReviewText',
         'ReviewDate',
