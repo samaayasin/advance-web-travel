@@ -36,7 +36,7 @@ class BookingCarController extends Controller
      * @OA\Get(
      *     path="/api/v1/booking-cars",
      *     summary="Get a list of all car bookings",
-     *     tags={"BookingCar"},
+     *     tags={"Booking Car"},
      *     @OA\Response(
      *         response=200,
      *         description="A list of car bookings",
@@ -54,12 +54,11 @@ class BookingCarController extends Controller
         $car = BookingCar::all();
         return response($car);
     }
-
     /**
-     * @OA\Post(
+     * @OA\Get(
      *     path="/api/v1/booking-cars/search",
      *     summary="Search for car bookings",
-     *     tags={"BookingCar"},
+     *     tags={"Booking Car"},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(ref="#/components/schemas/BookingCar")
