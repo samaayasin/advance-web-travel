@@ -20,6 +20,7 @@ class Flight extends Model
         'DepartureTime',
         'ArrivalTime',
         'Price',
+        'Availability',
         'image_url'
     ];
 

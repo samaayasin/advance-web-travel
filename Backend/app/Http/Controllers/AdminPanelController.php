@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\BookingCar;
-use App\Models\BookingFlight;
-use App\Models\BookingHotel;
+use App\Models\Car;
+use App\Models\Flight;
+use App\Models\Hotel;
 
 /**
  * @OA\Components(

@@ -2,112 +2,80 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 
 /**
  * @OA\Schema(
- *     schema="BookingCar",
+ *     schema="SearchingCar",
  *     type="object",
- *     title="BookingCar",
+ *     title="SearchingCar",
  *     required={"UserID", "CarModel", "SeatNumber", "Location", "PricePerDay", "Availability", "StartDate", "EndDate"},
- *     @OA\Property(property="UserID", type="integer"),
- *     @OA\Property(property="CarModel", type="string"),
- *     @OA\Property(property="SeatNumber", type="integer"),
- *     @OA\Property(property="Location", type="string"),
- *     @OA\Property(property="PricePerDay", type="number", format="float"),
- *     @OA\Property(property="Availability", type="boolean"),
- *     @OA\Property(property="StartDate", type="string", format="date"),
- *     @OA\Property(property="EndDate", type="string", format="date")
+ *     @OA\Property(property="CarRentalID", type="integer", example=1),
+ *     @OA\Property(property="UserID", type="integer", example=1),
+ *     @OA\Property(property="CarModel", type="string", example="Toyota Corolla"),
+ *     @OA\Property(property="SeatNumber", type="integer", example=5),
+ *     @OA\Property(property="Location", type="string", example="New York"),
+ *     @OA\Property(property="PricePerDay", type="number", format="float", example="49.99"),
+ *     @OA\Property(property="Availability", type="boolean", example=true),
+ *     @OA\Property(property="StartDate", type="string", format="date", example="2024-08-20"),
+ *     @OA\Property(property="EndDate", type="string", format="date", example="2024-08-25"),
+ *     @OA\Property(property="created_at", type="string", format="date-time", example="2024-08-19 10:00:00"),
+ *     @OA\Property(property="updated_at", type="string", format="date-time", example="2024-08-19 10:00:00")
  * )
  */
 class CarController extends Controller
 {
+    public function __construct()
+    {
+        // Constructor code
+    }
+
     /**
      * @OA\Get(
-     *     path="/api/booking/cars",
-     *     summary="Get all cars",
-     *     tags={"Cars"},
+     *     path="/api/get/cars",
+     *     summary="Get a list of all car bookings",
+     *     tags={"Searching Car"},
      *     @OA\Response(
      *         response=200,
-     *         description="List of all cars",
-     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/BookingCar"))
-     *     )
-     * )
-     */
-    public function show_all_cars() {}
-
-    /**
-     * @OA\Post(
-     *     path="/api/booking/cars",
-     *     summary="Add a new car booking",
-     *      tags={"Cars"},
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/BookingCar")
-     *     ),
-     *     @OA\Response(
-     *         response=201,
-     *         description="Car booking added",
-     *         @OA\JsonContent(ref="#/components/schemas/BookingCar")
-     *     ),
-     *     @OA\Response(
-     *         response=422,
-     *         description="Validation errors"
-     *     )
-     * )
-     */
-    public function booking_car() {}
-
-    /**
-     * @OA\Put(
-     *     path="/api/booking/cars/{id}",
-     *     summary="Update a car booking",
-     * tags={"Cars"},
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/BookingCar")
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Car booking updated",
-     *         @OA\JsonContent(ref="#/components/schemas/BookingCar")
+     *         description="A list of car bookings",
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/SearchingCar"))
      *     ),
      *     @OA\Response(
      *         response=404,
-     *         description="Car booking not found"
+     *         description="No bookings found"
      *     )
      * )
      */
-    public function update_booking_car($id) {}
-
+    public function getCar()
+    {
+        Log::error("error");
+        $car = Car::all();
+        return response($car);
+    }
     /**
-     * @OA\Delete(
-     *     path="/api/booking/cars/{id}",
-     *     summary="Cancel a car booking",
-     * tags={"Cars"},
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
+     * @OA\Get(
+     *     path="/api/search/cars",
+     *     summary="Search for car bookings",
+     *     tags={"Searching Car"},
+     *     @OA\RequestBody(
      *         required=true,
-     *         @OA\Schema(type="integer")
+     *         @OA\JsonContent(ref="#/components/schemas/SearchingCar")
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Car booking canceled",
-     *         @OA\JsonContent(ref="#/components/schemas/BookingCar")
+     *         description="Search results",
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/SearchingCar"))
      *     ),
      *     @OA\Response(
-     *         response=404,
-     *         description="Car booking not found"
+     *         response=400,
+     *         description="Invalid search input"
      *     )
      * )
      */
-    public function cancel_booking_car($id) {}
+    public function search(Request $request)
+    {
+        // Your search logic here
+    }
 }
