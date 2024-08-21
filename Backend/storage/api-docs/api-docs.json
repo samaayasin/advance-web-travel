@@ -1,0 +1,1637 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Booking Management System API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/bookings": {
+            "get": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "List all bookings",
+                "operationId": "listAllBookings",
+                "responses": {
+                    "200": {
+                        "description": "A list of bookings",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Booking"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bookings/{type}/{id}": {
+            "get": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Show a specific booking",
+                "operationId": "showBooking",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "Type of the booking",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the booking",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of the specified booking",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Booking"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Booking not found"
+                    }
+                }
+            }
+        },
+        "/availables": {
+            "get": {
+                "tags": [
+                    "Availables"
+                ],
+                "summary": "List all available items",
+                "operationId": "listAllAvailables",
+                "responses": {
+                    "200": {
+                        "description": "A list of available items",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AvailableItem"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/availables/{type}/{id}": {
+            "get": {
+                "tags": [
+                    "Availables"
+                ],
+                "summary": "Show a specific available item",
+                "operationId": "showAvailable",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "Type of the available item",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the available item",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of the specified available item",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AvailableItem"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Available item not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Availables"
+                ],
+                "summary": "Update an available item",
+                "operationId": "updateAvailable",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "Type of the available item",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the available item",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AvailableItem"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Item Updated Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AvailableItem"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Availables"
+                ],
+                "summary": "Delete an available item",
+                "operationId": "deleteAvailable",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "Type of the available item",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the available item",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Item Deleted Successfully"
+                    }
+                }
+            }
+        },
+        "/availables/{type}": {
+            "post": {
+                "tags": [
+                    "Availables"
+                ],
+                "summary": "Create a new available item",
+                "operationId": "storeAvailable",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "Type of the available item",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AvailableItem"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Item Created Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AvailableItem"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login a user and get a JWT token",
+                "operationId": "a3b306d14572d1f4bd6c064b3233e7b8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john.doe@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "Passw0rd!"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully logged in",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string"
+                                        },
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register a new user",
+                "operationId": "8a56853624e025573120a09a4c75d468",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password",
+                                    "password_confirmation",
+                                    "phoneNumber",
+                                    "role"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john.doe@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "Passw0rd!"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "Passw0rd!"
+                                    },
+                                    "phoneNumber": {
+                                        "type": "string",
+                                        "example": "+1234567890"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "user"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User successfully registered.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User successfully registered."
+                                        },
+                                        "user": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "Name": {
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                },
+                                                "Email": {
+                                                    "type": "string",
+                                                    "format": "email",
+                                                    "example": "john.doe@example.com"
+                                                },
+                                                "PhoneNumber": {
+                                                    "type": "string",
+                                                    "example": "+1234567890"
+                                                },
+                                                "Role": {
+                                                    "type": "string",
+                                                    "example": "user"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "email": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "password": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "phoneNumber": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "role": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Log out the user (invalidate the current token)",
+                "operationId": "fe8f3429cd6979b3b4517e186505f9f9",
+                "responses": {
+                    "200": {
+                        "description": "Successfully logged out",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully logged out"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/booking/cars": {
+            "get": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Get all cars",
+                "operationId": "8c2b586b65304726cfc8b054ba645e9c",
+                "responses": {
+                    "200": {
+                        "description": "List of all cars",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BookingCar"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Add a new car booking",
+                "operationId": "3a4743a0fc9d18b087ba965b2394c059",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BookingCar"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Car booking added",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingCar"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors"
+                    }
+                }
+            }
+        },
+        "/api/booking/cars/{id}": {
+            "put": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Update a car booking",
+                "operationId": "2d0f65499d8d2a1039b60494fd60e0f1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BookingCar"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Car booking updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingCar"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Car booking not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Cancel a car booking",
+                "operationId": "d1c13234b535033089f270645547d9ef",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Car booking canceled",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingCar"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Car booking not found"
+                    }
+                }
+            }
+        },
+        "/api/booking/flights": {
+            "get": {
+                "tags": [
+                    "Flights"
+                ],
+                "summary": "Get list of all flights",
+                "description": "Returns a list of all flights",
+                "operationId": "getAllFlights",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BookingFlight"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Flights"
+                ],
+                "summary": "Add a new flight booking",
+                "description": "Creates a new flight booking",
+                "operationId": "createFlightBooking",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BookingFlight"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Booking created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingFlight"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors"
+                    }
+                }
+            }
+        },
+        "/api/booking/flights/{id}": {
+            "get": {
+                "tags": [
+                    "Flights"
+                ],
+                "summary": "Get a flight by ID",
+                "description": "Returns a specific flight by its ID",
+                "operationId": "getFlightById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingFlight"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Flight not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Flights"
+                ],
+                "summary": "Cancel a flight booking",
+                "description": "Cancels a flight booking by ID",
+                "operationId": "cancelFlightBooking",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Booking canceled successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingFlight"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Flight not found"
+                    }
+                }
+            }
+        },
+        "/api/booking/hotels": {
+            "get": {
+                "tags": [
+                    "Hotel"
+                ],
+                "summary": "Get all hotels",
+                "operationId": "a999951c7ae55f5d6e23ca7dfeefb51d",
+                "responses": {
+                    "200": {
+                        "description": "List of all hotels",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BookingHotel"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Hotel"
+                ],
+                "summary": "Add a new hotel booking",
+                "operationId": "d5f83e56af3f2194c034c983a674a766",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BookingHotel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Hotel booking added",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingHotel"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors"
+                    }
+                }
+            }
+        },
+        "/api/booking/hotels/{id}": {
+            "put": {
+                "tags": [
+                    "Hotel"
+                ],
+                "summary": "Update a hotel booking",
+                "operationId": "968c2d65f72e1872bca8d6b8b8a39cdb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BookingHotel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Hotel booking updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingHotel"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Hotel booking not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Hotel"
+                ],
+                "summary": "Cancel a hotel booking",
+                "operationId": "a960dfec154bba94536b8bc208a25468",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Hotel booking canceled",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingHotel"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Hotel booking not found"
+                    }
+                }
+            }
+        },
+        "/api/get/cars": {
+            "get": {
+                "tags": [
+                    "Searching Car"
+                ],
+                "summary": "Get a list of all car bookings",
+                "operationId": "b5de341f61cd32ce217b8f155c7e70aa",
+                "responses": {
+                    "200": {
+                        "description": "A list of car bookings",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/SearchingCar"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No bookings found"
+                    }
+                }
+            }
+        },
+        "/api/search/cars": {
+            "get": {
+                "tags": [
+                    "Searching Car"
+                ],
+                "summary": "Search for car bookings",
+                "operationId": "c3ad724addb7798f24fa08e26eeee768",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SearchingCar"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Search results",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/SearchingCar"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid search input"
+                    }
+                }
+            }
+        },
+        "/get/flights": {
+            "get": {
+                "tags": [
+                    "Searching Flight"
+                ],
+                "summary": "Get all flights",
+                "description": "Returns list of all booked flights",
+                "operationId": "cad709716eb35380195ebed6fb84021a",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/SearchingFlight"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/search/flights": {
+            "get": {
+                "tags": [
+                    "Searching Flight"
+                ],
+                "summary": "Search flights",
+                "description": "Search flights based on criteria",
+                "operationId": "416d467550720d4d72f1b805effdfeb3",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "Search criteria",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/get/hotels": {
+            "get": {
+                "tags": [
+                    "Searching Hotel"
+                ],
+                "summary": "Get all hotels",
+                "description": "Returns a list of all booked hotels",
+                "operationId": "0cee052d244bedcfd0770793f7352b40",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/SearchingHotel"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/search/hotels": {
+            "get": {
+                "tags": [
+                    "Searching Hotel"
+                ],
+                "summary": "Search hotels",
+                "description": "Search hotels based on criteria",
+                "operationId": "bb9dc3beab9bdd1395c79be35c4d4e80",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "Search criteria",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/api/user": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get the current authenticated user",
+                "operationId": "fcc1681bb04213cfcdc39a0a0a4caabf",
+                "responses": {
+                    "200": {
+                        "description": "Returns the current user details",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "John Doe"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "format": "email",
+                                            "example": "john.doe@example.com"
+                                        },
+                                        "phoneNumber": {
+                                            "type": "string",
+                                            "example": "+1234567890"
+                                        },
+                                        "role": {
+                                            "type": "string",
+                                            "example": "user"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update user information",
+                "operationId": "fd4f39f7820d3f3cbc259c5b30fed830",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "phoneNumber": {
+                                        "type": "string",
+                                        "example": "+1234567890"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "admin"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User information updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User information updated successfully"
+                                        },
+                                        "user": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "format": "email",
+                                                    "example": "john.doe@example.com"
+                                                },
+                                                "phoneNumber": {
+                                                    "type": "string",
+                                                    "example": "+1234567890"
+                                                },
+                                                "role": {
+                                                    "type": "string",
+                                                    "example": "admin"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user/password": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update user password",
+                "operationId": "57ddbc5bebe0cd30c268a0d8a4640660",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "current_password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "CurrentPassw0rd"
+                                    },
+                                    "new_password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "NewPassw0rd"
+                                    },
+                                    "new_password_confirmation": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "NewPassw0rd"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Password updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Password updated successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Current password is incorrect",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Current password is incorrect"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Booking": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "booking_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-08-21T00:00:00Z"
+                    }
+                },
+                "type": "object"
+            },
+            "AvailableItem": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Sample Item"
+                    }
+                },
+                "type": "object"
+            },
+            "BookingCar": {
+                "title": "BookingCar",
+                "required": [
+                    "UserID",
+                    "CarModel",
+                    "SeatNumber",
+                    "Location",
+                    "PricePerDay",
+                    "Availability",
+                    "StartDate",
+                    "EndDate"
+                ],
+                "properties": {
+                    "UserID": {
+                        "type": "integer"
+                    },
+                    "CarModel": {
+                        "type": "string"
+                    },
+                    "SeatNumber": {
+                        "type": "integer"
+                    },
+                    "Location": {
+                        "type": "string"
+                    },
+                    "PricePerDay": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "Availability": {
+                        "type": "boolean"
+                    },
+                    "StartDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "EndDate": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "type": "object"
+            },
+            "BookingFlight": {
+                "title": "BookingFlight",
+                "required": [
+                    "UserID",
+                    "AirlineName",
+                    "DepartureAirport",
+                    "ArrivalAirport",
+                    "DepartureTime",
+                    "ArrivalTime",
+                    "Price",
+                    "StartDate",
+                    "EndDate"
+                ],
+                "properties": {
+                    "UserID": {
+                        "description": "The ID of the user",
+                        "type": "integer"
+                    },
+                    "AirlineName": {
+                        "description": "Name of the airline",
+                        "type": "string"
+                    },
+                    "DepartureAirport": {
+                        "description": "Departure airport",
+                        "type": "string"
+                    },
+                    "ArrivalAirport": {
+                        "description": "Arrival airport",
+                        "type": "string"
+                    },
+                    "DepartureTime": {
+                        "description": "Departure time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "ArrivalTime": {
+                        "description": "Arrival time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "Price": {
+                        "description": "Price of the flight",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "StartDate": {
+                        "description": "Booking start date",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "EndDate": {
+                        "description": "Booking end date",
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "type": "object"
+            },
+            "BookingHotel": {
+                "title": "BookingHotel",
+                "required": [
+                    "UserID",
+                    "HotelName",
+                    "Location",
+                    "RoomType",
+                    "PricePerNight",
+                    "Availability",
+                    "StartDate",
+                    "EndDate"
+                ],
+                "properties": {
+                    "UserID": {
+                        "type": "integer"
+                    },
+                    "HotelName": {
+                        "type": "string"
+                    },
+                    "Location": {
+                        "type": "string"
+                    },
+                    "RoomType": {
+                        "type": "string"
+                    },
+                    "PricePerNight": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "Availability": {
+                        "type": "boolean"
+                    },
+                    "StartDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "EndDate": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "type": "object"
+            },
+            "SearchingCar": {
+                "title": "SearchingCar",
+                "required": [
+                    "UserID",
+                    "CarModel",
+                    "SeatNumber",
+                    "Location",
+                    "PricePerDay",
+                    "Availability",
+                    "StartDate",
+                    "EndDate"
+                ],
+                "properties": {
+                    "CarRentalID": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "UserID": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "CarModel": {
+                        "type": "string",
+                        "example": "Toyota Corolla"
+                    },
+                    "SeatNumber": {
+                        "type": "integer",
+                        "example": 5
+                    },
+                    "Location": {
+                        "type": "string",
+                        "example": "New York"
+                    },
+                    "PricePerDay": {
+                        "type": "number",
+                        "format": "float",
+                        "example": "49.99"
+                    },
+                    "Availability": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "StartDate": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2024-08-20"
+                    },
+                    "EndDate": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2024-08-25"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-08-19 10:00:00"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-08-19 10:00:00"
+                    }
+                },
+                "type": "object"
+            },
+            "SearchingFlight": {
+                "title": "SearchingFlight",
+                "required": [
+                    "id",
+                    "flight_number"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "flight_number": {
+                        "type": "string"
+                    },
+                    "arrival": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number"
+                    }
+                },
+                "type": "object"
+            },
+            "SearchingHotel": {
+                "title": "SearchingHotel",
+                "required": [
+                    "id",
+                    "hotel_name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "hotel_name": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number"
+                    },
+                    "rating": {
+                        "type": "number",
+                        "format": "float"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "API Endpoints for Authentication"
+        },
+        {
+            "name": "User",
+            "description": "API Endpoints for managing user information"
+        },
+        {
+            "name": "Bookings",
+            "description": "Bookings"
+        },
+        {
+            "name": "Availables",
+            "description": "Availables"
+        },
+        {
+            "name": "Cars",
+            "description": "Cars"
+        },
+        {
+            "name": "Flights",
+            "description": "Flights"
+        },
+        {
+            "name": "Hotel",
+            "description": "Hotel"
+        },
+        {
+            "name": "Searching Car",
+            "description": "Searching Car"
+        },
+        {
+            "name": "Searching Flight",
+            "description": "Searching Flight"
+        },
+        {
+            "name": "Searching Hotel",
+            "description": "Searching Hotel"
+        }
+    ]
+}

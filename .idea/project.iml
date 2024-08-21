@@ -117,10 +117,15 @@
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/bluemmb/faker-picsum-photos-provider" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/darkaonline/l5-swagger" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/doctrine/annotations" />
+      <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/lcobucci/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/lcobucci/jwt" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/stella-maris/clock" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/swagger-api/swagger-ui" />
+      <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/tymon/jwt-auth" />
       <excludeFolder url="file://$MODULE_DIR$/Backend/vendor/zircote/swagger-php" />
     </content>
     <orderEntry type="inheritedJdk" />

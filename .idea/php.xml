@@ -131,6 +131,11 @@
       <path value="$PROJECT_DIR$/Backend/vendor/psr/cache" />
       <path value="$PROJECT_DIR$/Backend/vendor/doctrine/annotations" />
       <path value="$PROJECT_DIR$/Backend/vendor/darkaonline/l5-swagger" />
+      <path value="$PROJECT_DIR$/Backend/vendor/bluemmb/faker-picsum-photos-provider" />
+      <path value="$PROJECT_DIR$/Backend/vendor/tymon/jwt-auth" />
+      <path value="$PROJECT_DIR$/Backend/vendor/stella-maris/clock" />
+      <path value="$PROJECT_DIR$/Backend/vendor/lcobucci/clock" />
+      <path value="$PROJECT_DIR$/Backend/vendor/lcobucci/jwt" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />

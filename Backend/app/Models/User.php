@@ -3,16 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Model
+class User extends Authenticatable implements JWTSubject
 {
     use HasFactory;
     protected $primaryKey = 'UserID';
 
     protected $fillable = [
         'Name',
-        'EmailAddress',
+        'Email',
         'Password',
         'PhoneNumber',
         'ProfilePicture',
@@ -37,5 +38,14 @@ class User extends Model
     public function bookingHotels()
     {
         return $this->hasMany(BookingHotel::class, 'UserID', 'UserID');
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
