@@ -76,6 +76,21 @@ class CarController extends Controller
      */
     public function search(Request $request)
     {
-        // Your search logic here
+        $query = Car::query();
+
+        if ($request->filled('CarModel')) {
+            $query->where('CarModel', 'like', '%' . $request->CarModel . '%');
+        }
+
+        if ($request->filled('Year')) {
+            $query->where('Year', $request->Year);
+        }
+
+        if ($request->filled('PricePerDay')) {
+            $query->where('PricePerDay', '<=', $request->PricePerDay);
+        }
+
+        $cars = $query->get();
+        return response()->json($cars);
     }
 }

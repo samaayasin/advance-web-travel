@@ -82,7 +82,34 @@ class FlightController extends Controller
      */
     public function search(Request $request)
     {
-        
+        $query = Flight::query();
+
+        if ($request->filled('AirlineName')) {
+            $query->where('AirlineName', 'like', '%' . $request->AirlineName . '%');
+        }
+
+        if ($request->filled('DepartureAirport')) {
+            $query->where('DepartureAirport', 'like', '%' . $request->DepartureAirport . '%');
+        }
+
+        if ($request->filled('ArrivalAirport')) {
+            $query->where('ArrivalAirport', 'like', '%' . $request->ArrivalAirport . '%');
+        }
+
+        if ($request->filled('DepartureTime')) {
+            $query->where('DepartureTime', '>=', $request->DepartureTime);
+        }
+
+        if ($request->filled('ArrivalTime')) {
+            $query->where('ArrivalTime', '<=', $request->ArrivalTime);
+        }
+
+        if ($request->filled('Price')) {
+            $query->where('Price', '<=', $request->Price);
+        }
+
+        $flights = $query->get();
+        return response()->json($flights);
     }
 }
 
