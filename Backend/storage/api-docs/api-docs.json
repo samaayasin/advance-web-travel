@@ -1,0 +1,1264 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Booking Management System API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/bookings": {
+            "get": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Get list of all bookings",
+                "description": "Returns a list of all bookings",
+                "operationId": "getAllBookings",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Booking"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bookings/{type}/{id}": {
+            "get": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Show a specific booking",
+                "description": "Return details for specific booking",
+                "operationId": "showBooking",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Booking"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Booking not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Update an existing booking",
+                "description": "Updates a booking by ID",
+                "operationId": "updateBooking",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Booking"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Booking updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Booking"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Delete a booking",
+                "description": "Delete a booking by ID",
+                "operationId": "deleteBooking",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Booking deleted successfully"
+                    }
+                }
+            }
+        },
+        "/bookings/{type}": {
+            "post": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Create a new booking",
+                "description": "Creates a new booking for the given type (car,flight or hotel)",
+                "operationId": "storeBooking",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Booking"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Booking created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Booking"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "List all users",
+                "description": "Returns a list of all users",
+                "operationId": "getAllUsers",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Create a new user",
+                "description": "Creates a new user",
+                "operationId": "createUser",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Show a specific user",
+                "description": "Returns specific user",
+                "operationId": "showUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update an existing user",
+                "description": "Updates a user by ID",
+                "operationId": "updateUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete a user",
+                "description": "Deletes a user by ID",
+                "operationId": "deleteUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "User deleted successfully"
+                    }
+                }
+            }
+        },
+        "/api/get/cars": {
+            "get": {
+                "tags": [
+                    "Searching Car"
+                ],
+                "summary": "Get a list of all car bookings",
+                "operationId": "62e515657e21167042aa53061dbd9a3e",
+                "responses": {
+                    "200": {
+                        "description": "A list of car bookings",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/SearchingCar"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No bookings found"
+                    }
+                }
+            }
+        },
+        "/api/search/cars": {
+            "get": {
+                "tags": [
+                    "Searching Car"
+                ],
+                "summary": "Search for car bookings",
+                "operationId": "8ffe142988462bd854e6b7797b770cbb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SearchingCar"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Search results",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/SearchingCar"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid search input"
+                    }
+                }
+            }
+        },
+        "/get/flights": {
+            "get": {
+                "tags": [
+                    "Searching Flight"
+                ],
+                "summary": "Get all flights",
+                "description": "Returns list of all booked flights",
+                "operationId": "2e3eb2cf25b6cee9eebebe91503c4b08",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/SearchingFlight"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/search/flights": {
+            "get": {
+                "tags": [
+                    "Searching Flight"
+                ],
+                "summary": "Search flights",
+                "description": "Search flights based on criteria",
+                "operationId": "7554339645325bbbf4f0435b5c5f80ad",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "Search criteria",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/get/hotels": {
+            "get": {
+                "tags": [
+                    "Searching Hotel"
+                ],
+                "summary": "Get all hotels",
+                "description": "Returns a list of all booked hotels",
+                "operationId": "c9b75b2ad9ff0f0e535a6061a34a9b9d",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/SearchingHotel"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/search/hotels": {
+            "get": {
+                "tags": [
+                    "Searching Hotel"
+                ],
+                "summary": "Search hotels",
+                "description": "Search hotels based on criteria",
+                "operationId": "9f2773db13201475199f2475b708afae",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "Search criteria",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/api/booking/cars": {
+            "get": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Get all cars",
+                "operationId": "f9280585c6c400fa699246fcd05a275a",
+                "responses": {
+                    "200": {
+                        "description": "List of all cars",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BookingCar"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Add a new car booking",
+                "operationId": "e6ff6922c596d14ad7db64fd48770f10",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BookingCar"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Car booking added",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingCar"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors"
+                    }
+                }
+            }
+        },
+        "/api/booking/cars/{id}": {
+            "put": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Update a car booking",
+                "operationId": "e14280f30238625b22a43b5692e772d3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BookingCar"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Car booking updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingCar"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Car booking not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Cancel a car booking",
+                "operationId": "6f60d96b5e1c73e1446a6bf7ac0506b6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Car booking canceled",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingCar"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Car booking not found"
+                    }
+                }
+            }
+        },
+        "/api/booking/flights": {
+            "get": {
+                "tags": [
+                    "Flights"
+                ],
+                "summary": "Get list of all flights",
+                "description": "Returns a list of all flights",
+                "operationId": "getAllFlights",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BookingFlight"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Flights"
+                ],
+                "summary": "Add a new flight booking",
+                "description": "Creates a new flight booking",
+                "operationId": "createFlightBooking",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BookingFlight"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Booking created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingFlight"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors"
+                    }
+                }
+            }
+        },
+        "/api/booking/flights/{id}": {
+            "get": {
+                "tags": [
+                    "Flights"
+                ],
+                "summary": "Get a flight by ID",
+                "description": "Returns a specific flight by its ID",
+                "operationId": "getFlightById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingFlight"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Flight not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Flights"
+                ],
+                "summary": "Cancel a flight booking",
+                "description": "Cancels a flight booking by ID",
+                "operationId": "cancelFlightBooking",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Booking canceled successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingFlight"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Flight not found"
+                    }
+                }
+            }
+        },
+        "/api/booking/hotels": {
+            "get": {
+                "tags": [
+                    "Hotel"
+                ],
+                "summary": "Get all hotels",
+                "operationId": "b190f12b8ba653c82276be8f6ed73962",
+                "responses": {
+                    "200": {
+                        "description": "List of all hotels",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BookingHotel"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Hotel"
+                ],
+                "summary": "Add a new hotel booking",
+                "operationId": "e9abd4a3d968e6c41b594dd2b9022129",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BookingHotel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Hotel booking added",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingHotel"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors"
+                    }
+                }
+            }
+        },
+        "/api/booking/hotels/{id}": {
+            "put": {
+                "tags": [
+                    "Hotel"
+                ],
+                "summary": "Update a hotel booking",
+                "operationId": "e6064d80e6fb6a16c67a3af481a9f0bc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BookingHotel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Hotel booking updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingHotel"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Hotel booking not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Hotel"
+                ],
+                "summary": "Cancel a hotel booking",
+                "operationId": "edd080b505aab34e47ca1ac008ec66dd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Hotel booking canceled",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingHotel"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Hotel booking not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Booking": {
+                "title": "Booking",
+                "required": [
+                    "id",
+                    "type",
+                    "user_id"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "The unique identifier of the booking",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "type": {
+                        "description": "The type of the booking, e.g., hotel, flight",
+                        "type": "string",
+                        "example": "hotel"
+                    },
+                    "user_id": {
+                        "description": "The ID of the user who made the booking",
+                        "type": "integer",
+                        "example": 42
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "User",
+                "required": [
+                    "id",
+                    "name",
+                    "email"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "The user ID",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "The name of the user",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "The email address of the user",
+                        "type": "string",
+                        "format": "email"
+                    }
+                },
+                "type": "object"
+            },
+            "SearchingCar": {
+                "title": "SearchingCar",
+                "required": [
+                    "UserID",
+                    "CarModel",
+                    "SeatNumber",
+                    "Location",
+                    "PricePerDay",
+                    "Availability",
+                    "StartDate",
+                    "EndDate"
+                ],
+                "properties": {
+                    "CarRentalID": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "UserID": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "CarModel": {
+                        "type": "string",
+                        "example": "Toyota Corolla"
+                    },
+                    "SeatNumber": {
+                        "type": "integer",
+                        "example": 5
+                    },
+                    "Location": {
+                        "type": "string",
+                        "example": "New York"
+                    },
+                    "PricePerDay": {
+                        "type": "number",
+                        "format": "float",
+                        "example": "49.99"
+                    },
+                    "Availability": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "StartDate": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2024-08-20"
+                    },
+                    "EndDate": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2024-08-25"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-08-19 10:00:00"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-08-19 10:00:00"
+                    }
+                },
+                "type": "object"
+            },
+            "SearchingFlight": {
+                "title": "SearchingFlight",
+                "required": [
+                    "id",
+                    "flight_number"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "flight_number": {
+                        "type": "string"
+                    },
+                    "arrival": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number"
+                    }
+                },
+                "type": "object"
+            },
+            "SearchingHotel": {
+                "title": "SearchingHotel",
+                "required": [
+                    "id",
+                    "hotel_name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "hotel_name": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number"
+                    },
+                    "rating": {
+                        "type": "number",
+                        "format": "float"
+                    }
+                },
+                "type": "object"
+            },
+            "BookingCar": {
+                "title": "BookingCar",
+                "required": [
+                    "UserID",
+                    "CarModel",
+                    "SeatNumber",
+                    "Location",
+                    "PricePerDay",
+                    "Availability",
+                    "StartDate",
+                    "EndDate"
+                ],
+                "properties": {
+                    "UserID": {
+                        "type": "integer"
+                    },
+                    "CarModel": {
+                        "type": "string"
+                    },
+                    "SeatNumber": {
+                        "type": "integer"
+                    },
+                    "Location": {
+                        "type": "string"
+                    },
+                    "PricePerDay": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "Availability": {
+                        "type": "boolean"
+                    },
+                    "StartDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "EndDate": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "type": "object"
+            },
+            "BookingFlight": {
+                "title": "BookingFlight",
+                "required": [
+                    "UserID",
+                    "AirlineName",
+                    "DepartureAirport",
+                    "ArrivalAirport",
+                    "DepartureTime",
+                    "ArrivalTime",
+                    "Price",
+                    "StartDate",
+                    "EndDate"
+                ],
+                "properties": {
+                    "UserID": {
+                        "description": "The ID of the user",
+                        "type": "integer"
+                    },
+                    "AirlineName": {
+                        "description": "Name of the airline",
+                        "type": "string"
+                    },
+                    "DepartureAirport": {
+                        "description": "Departure airport",
+                        "type": "string"
+                    },
+                    "ArrivalAirport": {
+                        "description": "Arrival airport",
+                        "type": "string"
+                    },
+                    "DepartureTime": {
+                        "description": "Departure time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "ArrivalTime": {
+                        "description": "Arrival time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "Price": {
+                        "description": "Price of the flight",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "StartDate": {
+                        "description": "Booking start date",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "EndDate": {
+                        "description": "Booking end date",
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "type": "object"
+            },
+            "BookingHotel": {
+                "title": "BookingHotel",
+                "required": [
+                    "UserID",
+                    "HotelName",
+                    "Location",
+                    "RoomType",
+                    "PricePerNight",
+                    "Availability",
+                    "StartDate",
+                    "EndDate"
+                ],
+                "properties": {
+                    "UserID": {
+                        "type": "integer"
+                    },
+                    "HotelName": {
+                        "type": "string"
+                    },
+                    "Location": {
+                        "type": "string"
+                    },
+                    "RoomType": {
+                        "type": "string"
+                    },
+                    "PricePerNight": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "Availability": {
+                        "type": "boolean"
+                    },
+                    "StartDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "EndDate": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Bookings",
+            "description": "Bookings"
+        },
+        {
+            "name": "Users",
+            "description": "Users"
+        },
+        {
+            "name": "Searching Car",
+            "description": "Searching Car"
+        },
+        {
+            "name": "Searching Flight",
+            "description": "Searching Flight"
+        },
+        {
+            "name": "Searching Hotel",
+            "description": "Searching Hotel"
+        },
+        {
+            "name": "Cars",
+            "description": "Cars"
+        },
+        {
+            "name": "Flights",
+            "description": "Flights"
+        },
+        {
+            "name": "Hotel",
+            "description": "Hotel"
+        }
+    ]
+}
