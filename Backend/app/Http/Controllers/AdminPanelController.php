@@ -42,8 +42,15 @@ class AdminPanelController extends Controller
      */
     public function listAll()
     {
-        // Your logic here
+        $cars = Car::all();
+        $flights = Flight::all();
+        $hotels = Hotel::all();
+
+        $bookings = $cars->merge($flights)->merge($hotels);
+
+        return response()->json($bookings, 200);
     }
+
 
     /**
      * @OA\Get(
@@ -78,8 +85,27 @@ class AdminPanelController extends Controller
      */
     public function show($type, $id)
     {
-        // Your logic here
+        switch ($type) {
+            case 'car':
+                $booking = Car::find($id);
+                break;
+            case 'flight':
+                $booking = Flight::find($id);
+                break;
+            case 'hotel':
+                $booking = Hotel::find($id);
+                break;
+            default:
+                return response()->json(['message' => 'Invalid booking type'], 400);
+        }
+
+        if (!$booking) {
+            return response()->json(['message' => 'Booking not found'], 404);
+        }
+
+        return response()->json($booking, 200);
     }
+
 
     /**
      * @OA\Get(
@@ -99,8 +125,15 @@ class AdminPanelController extends Controller
      */
     public function listAllAvailables()
     {
-        // Your logic here
+        $cars = Car::all();
+        $flights = Flight::all();
+        $hotels = Hotel::all();
+
+        $availableItems = $cars->merge($flights)->merge($hotels);
+
+        return response()->json($availableItems, 200);
     }
+
 
     /**
      * @OA\Get(
@@ -135,7 +168,25 @@ class AdminPanelController extends Controller
      */
     public function showAvailable($type, $id)
     {
-        // Your logic here
+        switch ($type) {
+            case 'car':
+                $item = Car::find($id);
+                break;
+            case 'flight':
+                $item = Flight::find($id);
+                break;
+            case 'hotel':
+                $item = Hotel::find($id);
+                break;
+            default:
+                return response()->json(['message' => 'Invalid available item type'], 400);
+        }
+
+        if (!$item) {
+            return response()->json(['message' => 'Item not found'], 404);
+        }
+
+        return response()->json($item, 200);
     }
 
     /**
@@ -164,7 +215,21 @@ class AdminPanelController extends Controller
      */
     public function storeAvailable(Request $request, $type)
     {
-        // Your logic here
+        switch ($type) {
+            case 'car':
+                $item = Car::create($request->all());
+                break;
+            case 'flight':
+                $item = Flight::create($request->all());
+                break;
+            case 'hotel':
+                $item = Hotel::create($request->all());
+                break;
+            default:
+                return response()->json(['message' => 'Invalid available item type'], 400);
+        }
+
+        return response()->json($item, 201);
     }
 
     /**
@@ -200,7 +265,27 @@ class AdminPanelController extends Controller
      */
     public function updateAvailable(Request $request, $type, $id)
     {
-        // Your logic here
+        switch ($type) {
+            case 'car':
+                $item = Car::find($id);
+                break;
+            case 'flight':
+                $item = Flight::find($id);
+                break;
+            case 'hotel':
+                $item = Hotel::find($id);
+                break;
+            default:
+                return response()->json(['message' => 'Invalid available item type'], 400);
+        }
+
+        if (!$item) {
+            return response()->json(['message' => 'Item not found'], 404);
+        }
+
+        $item->update($request->all());
+
+        return response()->json($item, 200);
     }
 
     /**
@@ -231,6 +316,26 @@ class AdminPanelController extends Controller
      */
     public function deleteAvailable($type, $id)
     {
-        // Your logic here
+        switch ($type) {
+            case 'car':
+                $item = Car::find($id);
+                break;
+            case 'flight':
+                $item = Flight::find($id);
+                break;
+            case 'hotel':
+                $item = Hotel::find($id);
+                break;
+            default:
+                return response()->json(['message' => 'Invalid available item type'], 400);
+        }
+
+        if (!$item) {
+            return response()->json(['message' => 'Item not found'], 404);
+        }
+
+        $item->delete();
+
+        return response()->json(['message' => 'Item deleted successfully'], 204);
     }
 }
