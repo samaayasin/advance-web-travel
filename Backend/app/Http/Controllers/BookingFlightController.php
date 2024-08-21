@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 /**
  * @OA\Schema(
- *     schema="BookingFlight",
+ *     schema="SearchingFlight",
  *     type="object",
- *     title="BookingFlight",
+ *     title="SearchingFlight",
  *     required={"id", "flight_number"},
  *     properties={
  *         @OA\Property(property="id", type="integer"),
@@ -30,7 +30,7 @@ class BookingFlightController extends Controller
     /**
      * @OA\Get(
      *     path="/get/flights",
-     *     tags={"Booking Flight"},
+     *     tags={"Searching Flight"},
      *     summary="Get all flights",
      *     description="Returns list of all booked flights",
      *     @OA\Response(
@@ -38,7 +38,7 @@ class BookingFlightController extends Controller
      *         description="Successful operation",
      *         @OA\JsonContent(
      *              type="array",
-     *              @OA\Items(ref="#/components/schemas/BookingFlight")
+     *              @OA\Items(ref="#/components/schemas/SearchingFlight")
      *         )
      *     ),
      *     @OA\Response(
@@ -58,7 +58,7 @@ class BookingFlightController extends Controller
     /**
      * @OA\Get(
      *     path="/search/flights",
-     *     tags={"Booking Flight"},
+     *     tags={"Searching Flight"},
      *     summary="Search flights",
      *     description="Search flights based on criteria",
      *     @OA\Parameter(
