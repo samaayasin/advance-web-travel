@@ -20,4 +20,4 @@ Route::get('/users', [AdminPanelController::class, 'getAllUsers']);
 Route::get('/users/{id}', [AdminPanelController::class, 'showUser']);
 Route::post('/users', [AdminPanelController::class, 'createUser']);
 Route::put('/users/{id}', [AdminPanelController::class, 'updateUser']);
-Route::delete('/users/{id}', [AdminPanelController::class, 'deleteUser']);
+Route::delete('/users/{id}', [AdminPanelController::class, 'deleteUser']);*/
