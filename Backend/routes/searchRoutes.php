@@ -13,9 +13,9 @@ use App\Http\Controllers\HotelController;
 // Get All APIs
 Route::get('/get/flights', [FlightController::class, 'getFlight']);
 
-Route::get('/get/hotels',  [HotelController::class, 'getFlight']);
+Route::get('/get/hotels',  [HotelController::class, 'getHotel']);
 
-Route::get('/get/cars',  [CarController::class, 'getFlight']);
+Route::get('/get/cars',  [CarController::class, 'getCar']);
 
 // Search routes for each  type
 Route::get('/search/flights', [FlightController::class, 'search']);
