@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    
     public function up()
     {
         Schema::create('flights', function (Blueprint $table) {
@@ -17,6 +18,7 @@ return new class extends Migration
             $table->dateTime('DepartureTime');
             $table->dateTime('ArrivalTime');
             $table->decimal('Price', 10, 2);
+            $table->boolean('Availability');
             $table->string('image_url')->nullable();
             $table->timestamps();
         });
