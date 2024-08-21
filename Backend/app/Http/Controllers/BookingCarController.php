@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Log;
 
 /**
  * @OA\Schema(
- *     schema="BookingCar",
+ *     schema="SearchingCar",
  *     type="object",
- *     title="BookingCar",
+ *     title="SearchingCar",
  *     required={"UserID", "CarModel", "SeatNumber", "Location", "PricePerDay", "Availability", "StartDate", "EndDate"},
  *     @OA\Property(property="CarRentalID", type="integer", example=1),
  *     @OA\Property(property="UserID", type="integer", example=1),
@@ -34,13 +34,13 @@ class BookingCarController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/v1/booking-cars",
+     *     path="/api/get/cars",
      *     summary="Get a list of all car bookings",
-     *     tags={"Booking Car"},
+     *     tags={"Searching Car"},
      *     @OA\Response(
      *         response=200,
      *         description="A list of car bookings",
-     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/BookingCar"))
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/SearchingCar"))
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -56,17 +56,17 @@ class BookingCarController extends Controller
     }
     /**
      * @OA\Get(
-     *     path="/api/v1/booking-cars/search",
+     *     path="/api/search/cars",
      *     summary="Search for car bookings",
-     *     tags={"Booking Car"},
+     *     tags={"Searching Car"},
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/BookingCar")
+     *         @OA\JsonContent(ref="#/components/schemas/SearchingCar")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Search results",
-     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/BookingCar"))
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/SearchingCar"))
      *     ),
      *     @OA\Response(
      *         response=400,

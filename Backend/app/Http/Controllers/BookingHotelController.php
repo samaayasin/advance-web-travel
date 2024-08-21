@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 /**
  * @OA\Schema(
- *     schema="BookingHotel",
+ *     schema="SearchingHotel",
  *     type="object",
- *     title="BookingHotel",
+ *     title="SearchingHotel",
  *     required={"id", "hotel_name"},
  *     properties={
  *         @OA\Property(property="id", type="integer"),
@@ -29,7 +29,7 @@ class BookingHotelController extends Controller
  /**
      * @OA\Get(
      *     path="/get/hotels",
-     *     tags={"Booking Hotel"},
+     *     tags={"Searching Hotel"},
      *     summary="Get all hotels",
      *     description="Returns a list of all booked hotels",
      *     @OA\Response(
@@ -37,7 +37,7 @@ class BookingHotelController extends Controller
      *         description="Successful operation",
      *         @OA\JsonContent(
      *              type="array",
-     *              @OA\Items(ref="#/components/schemas/BookingHotel")
+     *              @OA\Items(ref="#/components/schemas/SearchingHotel")
      *         )
      *     ),
      *     @OA\Response(
@@ -57,7 +57,7 @@ class BookingHotelController extends Controller
     /**
      * @OA\Get(
      *     path="/search/hotels",
-     *     tags={"Booking Hotel"},
+     *     tags={"Searching Hotel"},
      *     summary="Search hotels",
      *     description="Search hotels based on criteria",
      *     @OA\Parameter(
