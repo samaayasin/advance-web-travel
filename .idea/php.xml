@@ -126,6 +126,11 @@
       <path value="$PROJECT_DIR$/Backend/vendor/nikic/php-parser" />
       <path value="$PROJECT_DIR$/Backend/vendor/doctrine/lexer" />
       <path value="$PROJECT_DIR$/Backend/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/Backend/vendor/zircote/swagger-php" />
+      <path value="$PROJECT_DIR$/Backend/vendor/swagger-api/swagger-ui" />
+      <path value="$PROJECT_DIR$/Backend/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/Backend/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/Backend/vendor/darkaonline/l5-swagger" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
