@@ -67,7 +67,6 @@ class AuthController extends Controller
             }
 
             $token = JWTAuth::fromUser($user);
-
         } catch (JWTException $e) {
             return response()->json(['error' => 'Could not create token'], 500);
         }
@@ -203,5 +202,45 @@ class AuthController extends Controller
         return $response === Password::RESET_LINK_SENT
             ? response()->json(['message' => 'Password reset link sent to your email address.'])
             : response()->json(['error' => 'Unable to send reset link.'], 500);
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/api/refresh-token",
+     *     summary="Refresh JWT token",
+     *     tags={"Auth"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Token refreshed successfully",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="access_token", type="string"),
+     *             @OA\Property(property="token_type", type="string", example="bearer"),
+     *             @OA\Property(property="expires_in", type="integer"),
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Token is expired"),
+     *         ),
+     *     )
+     * )
+     */
+    public function refreshToken(Request $request)
+    {
+        try {
+            $newToken = JWTAuth::parseToken()->refresh();
+
+            return response()->json([
+                'access_token' => $newToken,
+                'token_type' => 'bearer',
+                'expires_in' => auth('api')->factory()->getTTL() * 60
+            ], 200);
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['error' => 'Token is expired'], 401);
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['error' => 'Could not refresh token'], 500);
+        }
     }
 }
