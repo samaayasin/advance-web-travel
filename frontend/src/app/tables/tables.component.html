@@ -1,0 +1,78 @@
+<div class="container-fluid">
+    <div class="row flex-column">
+      <!-- Total Bookings Table -->
+      <div class="col-4 mb-2" id="TotalBooking">
+        <div class="card">
+          <div class="card-header bg-success text-white">Total Bookings</div>
+          <div class="card-body" id="total-card">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Service</th>
+                  <th scope="col">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let total of total">
+                  <td>{{ total.name }}</td>
+                  <td>{{ total.details }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Latest Hotel Bookings Table -->
+      <div class="col-4 mb-2" id="LatestHotelBookings">
+        <div class="card">
+          <div class="card-header bg-success text-white">Latest Hotel Bookings</div>
+          <div class="card-body">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Hotel</th>
+                  <th scope="col">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let booking of bookings">
+                  <td>
+                    <img [src]="booking.imageUrl" alt="Hotel Image" width="50">
+                    {{ booking.hotelName }}
+                  </td>
+                  <td>
+                    {{ booking.dateRange }} <br>
+                    {{ booking.customerName }} - {{ booking.daysAgo }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Services Table -->
+      <div class="col-4 mb-2" id="Services">
+        <div class="card" >
+          <div class="card-header bg-success text-white">Services</div>
+          <div class="card-body" id="Service-card">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Service</th>
+                  <th scope="col">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let service of services">
+                  <td>{{ service.name }}</td>
+                  <td>{{ service.details }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
