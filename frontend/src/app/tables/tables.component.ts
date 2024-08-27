@@ -6,16 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./tables.component.css']
 })
 export class TablesComponent {
-  services = [
-    { name: 'Flight', details: 'Details' },
-    { name: 'Car', details: 'Details' },
-    { name: 'Hotel', details: 'Details' }
-  ];
   total = [
-    { name: 'Flight', details: 'Details' },
-    { name: 'Car', details: 'Details' },
-    { name: 'Hotel', details: 'Details' },
-    { name: 'Total', details: 'Details' }
+    { name: 'Flight', details: '50%' },
+    { name: 'Car', details: '10%' },
+    { name: 'Hotel', details: '30%' },
+    { name: 'Total', details: '90%' }
 
   ];
 

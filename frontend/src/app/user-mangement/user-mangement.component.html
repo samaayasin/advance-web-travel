@@ -1,0 +1,48 @@
+<app-dashboard></app-dashboard>
+<app-dashboard></app-dashboard>
+<div class="main-content">
+    <h2>User Management</h2>
+    <button class="add-user-btn" (click)="addUser()">Add User</button>
+    <div class="responsive-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Profile Picture</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users; let i = index">
+                    <td>
+                        <input [(ngModel)]="user.name" [readonly]="!user.isEditable">
+                    </td>
+                    <td>
+                        <input [(ngModel)]="user.email" [readonly]="!user.isEditable">
+                    </td>
+                    <td>
+                        <input [(ngModel)]="user.phoneNumber" [readonly]="!user.isEditable">
+                    </td>
+                    <td>
+                        <input type="text" [(ngModel)]="user.profilePicture" [readonly]="!user.isEditable">
+                    </td>
+                    <td>
+                        <select [(ngModel)]="user.role" [disabled]="!user.isEditable">
+                            <option value="Admin">Admin</option>
+                            <option value="User">User</option>
+                            <option value="Manager">Manager</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button *ngIf="!user.isEditable" class="action-btn edit-btn" (click)="editUser(i)">Update</button>
+                        <button *ngIf="user.isEditable" class="action-btn save-btn" (click)="saveUser(i)">Save</button>
+                        <button class="action-btn delete-btn" (click)="deleteUser(i)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

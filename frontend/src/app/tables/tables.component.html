@@ -9,7 +9,7 @@
               <thead>
                 <tr>
                   <th scope="col">Service</th>
-                  <th scope="col">Details</th>
+                  <th scope="col">%</th>
                 </tr>
               </thead>
               <tbody>
@@ -61,14 +61,12 @@
               <thead>
                 <tr>
                   <th scope="col">Service</th>
-                  <th scope="col">Details</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let service of services">
-                  <td>{{ service.name }}</td>
-                  <td>{{ service.details }}</td>
-                </tr>
+                  <tr><a routerLink="/flights" class="nav-link link-dark">Flights</a></tr>
+                  <tr><a routerLink="/cars" class="nav-link link-dark">Cars</a></tr>
+                  <tr><a routerLink="/hotels" class="nav-link link-dark">Hotels</a></tr>
               </tbody>
             </table>
           </div>

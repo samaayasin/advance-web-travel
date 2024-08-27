@@ -1,0 +1,55 @@
+<app-dashboard></app-dashboard>
+<div class="main-content">
+    <h2>Manage Hotels</h2>
+    <button class="add-hotel-btn" (click)="addHotel()">Add Hotel</button>
+    <div class="responsive-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Hotel Name</th>
+                    <th>Rating</th>
+                    <th>Price Per Night</th>
+                    <th>Availability</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let hotel of hotels; let i = index">
+                    <td>
+                        <input [(ngModel)]="hotel.HotelName" [readonly]="!hotel.isEditable" style="width: 110px;">
+                    </td>
+                    <td>
+                        <input [(ngModel)]="hotel.rating" [readonly]="!hotel.isEditable" type="number" max="5" min="1" style="width: 60px;">
+                    </td>
+                    <td>
+                        <input [(ngModel)]="hotel.PricePerNight" [readonly]="!hotel.isEditable" type="number" step="0.01" style="width: 100px;">
+                    </td>
+                    <td>
+                        <input type="checkbox" [(ngModel)]="hotel.Availability" [disabled]="!hotel.isEditable">
+                    </td>
+                    <td>
+                        <input [(ngModel)]="hotel.StartDate" [readonly]="!hotel.isEditable" type="date">
+                    </td>
+                    <td>
+                        <input [(ngModel)]="hotel.EndDate" [readonly]="!hotel.isEditable" type="date">
+                    </td>
+                    <td>
+                        <input [(ngModel)]="hotel.city" [readonly]="!hotel.isEditable" style="width: 100px;">
+                    </td>
+                    <td>
+                        <input [(ngModel)]="hotel.county" [readonly]="!hotel.isEditable" style="width: 90px;">
+                    </td>
+                    <td >
+                        <button *ngIf="!hotel.isEditable" class="action-btn edit-btn" (click)="editHotel(i)">Update</button>
+                        <button *ngIf="hotel.isEditable" class="action-btn save-btn" (click)="saveHotel(i)">Save</button>
+                        <button class="action-btn delete-btn" (click)="deleteHotel(i)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
