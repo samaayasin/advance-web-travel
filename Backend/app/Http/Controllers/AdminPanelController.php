@@ -134,7 +134,28 @@ class AdminPanelController extends Controller
         return response()->json($availableItems, 200);
     }
 
+    public function listAvailableType($type)
+    {
+        switch ($type) {
+            case 'car':
+                $item = Car::all();
+                break;
+            case 'flight':
+                $item = Flight::all();
+                break;
+            case 'hotel':
+                $item = Hotel::all();
+                break;
+            default:
+                return response()->json(['message' => 'Invalid available item type'], 400);
+        }
 
+        if (!$item) {
+            return response()->json(['message' => 'Item not found'], 404);
+        }
+
+        return response()->json($item, 200);
+    }
     /**
      * @OA\Get(
      *     path="/availables/{type}/{id}",
