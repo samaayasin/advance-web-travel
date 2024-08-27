@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';  
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +17,7 @@ import { UserMangementComponent } from './user-mangement/user-mangement.componen
 import { BookingCarViewComponent } from './booking-car-view/booking-car-view.component';
 import { BookingFlightViewComponent } from './booking-flight-view/booking-flight-view.component';
 import { BookingHotelViewComponent } from './booking-hotel-view/booking-hotel-view.component';
+import { AdminCompComponent } from './admin-comp/admin-comp.component';
 
 @NgModule({
   declarations: [
@@ -29,13 +32,15 @@ import { BookingHotelViewComponent } from './booking-hotel-view/booking-hotel-vi
     UserMangementComponent,
     BookingCarViewComponent,
     BookingFlightViewComponent,
-    BookingHotelViewComponent
+    BookingHotelViewComponent,
+    AdminCompComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

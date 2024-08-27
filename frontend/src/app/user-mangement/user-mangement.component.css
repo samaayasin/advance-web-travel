@@ -69,55 +69,70 @@ h2 {
 }
 
 
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .responsive-table table thead {
         display: none;
     }
-
     .responsive-table table, 
     .responsive-table table tbody, 
     .responsive-table table tr, 
     .responsive-table table td {
         display: block;
-        width: 100%;
+        width: 210px;
     }
-
+  
     .responsive-table table tr {
-        margin-bottom: 20px;
+        margin-bottom: 5px;
         border-bottom: 1px solid #ddd;
+        
     }
-
+  
     .responsive-table table td {
-        text-align: right;
-        position: relative;
-        padding-left: 50%;
+        text-align: left;
         white-space: nowrap;
     }
-
+  
     .responsive-table table td:before {
         content: attr(data-label);
         position: absolute;
-        left: 10px;
-        width: 45%;
-        padding-right: 10px;
+        left: 1px;
+        width: 10%;
         white-space: nowrap;
         text-align: left;
         font-weight: bold;
     }
-
-    .add-flight-btn {
-        width: 100%;
+  
+    .add-user-btn {
+        width: 12%;
+        top:700px;
+        left: 830px;
     }
-}
-
-@media (max-width: 576px) {
-    .responsive-table table td {
-        padding-left: 40%;
+    h2 {
+      top:100px;
+    left: 370px;
+    text-align: center;
+    font-size: 1rem;
     }
-
+  }
+  
+  @media (max-width: 576px) {
+  
     .responsive-table table td:before {
-        width: 40%;
+      width: 30%;
     }
-}
-
+    .add-user-btn {
+      width: 12%;
+      top:700px;
+      left: 355px;
+  }
+    h2 {
+      top:100px;
+      left: 370px;
+      text-align: center;
+      font-size: 1rem;
+    }
+  }
+  
+  

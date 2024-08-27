@@ -30,6 +30,7 @@ h2 {
 }
 
 
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .responsive-table table thead {
@@ -41,7 +42,7 @@ h2 {
     .responsive-table table tr, 
     .responsive-table table td {
         display: block;
-        width: 100%;
+        width:220px;
     }
 
     .responsive-table table tr {
@@ -50,33 +51,44 @@ h2 {
     }
 
     .responsive-table table td {
-        text-align: right;
+        text-align: left;
         position: relative;
-        padding-left: 50%;
         white-space: nowrap;
     }
 
     .responsive-table table td:before {
         content: attr(data-label);
         position: absolute;
-        left: 10px;
+        left: 0px;
         width: 45%;
-        padding-right: 10px;
+        padding-right: 0px;
         white-space: nowrap;
         text-align: left;
         font-weight: bold;
     }
+    h2 {
+        top:100px;
+        left: 370px;
+        text-align: center;
+        font-size: 1rem;
+      }
 
     
 }
 
 @media (max-width: 576px) {
     .responsive-table table td {
-        padding-left: 40%;
+        padding-left: 5%;
     }
 
     .responsive-table table td:before {
-        width: 40%;
+        width: 10%;
     }
+    h2 {
+        top:100px;
+        left: 370px;
+        text-align: center;
+        font-size: 1rem;
+      }
 }
 

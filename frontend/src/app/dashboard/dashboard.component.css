@@ -93,14 +93,14 @@ hr {
 
   
   .dashboard {
-    width: 100%;
+    width: 50%;
     position: relative;
     height: auto;
-    padding: 10px;
+    padding: 5px;
   }
 
   .collapse .nav-link {
-    padding-left: 15px;
+    padding-left: 5px;
   }
 }
 

@@ -1,41 +1,78 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { AvailableService } from '../available.service'; 
 
 @Component({
   selector: 'app-flight-services',
   templateUrl: './flight-services.component.html',
   styleUrls: ['./flight-services.component.css']
 })
-export class FlightServicesComponent {
-  flights = [
-    { AirlineName: 'Delta', DepartureAirport: 'JFK', ArrivalAirport: 'LAX', DepartureTime: '2023-12-01T08:00', ArrivalTime: '2023-12-01T12:00', Price: 300.00, Availability: true, isEditable: false },
-    // Add more flights here
-  ];
+export class FlightServicesComponent implements OnInit {
+  flights: any[] = [];
+  showFlightForm: boolean = false;  // Controls form visibility
+  newFlight: any = {
+    AirlineName: '',
+    DepartureAirport: '',
+    ArrivalAirport: '',
+    DepartureTime: '',
+    ArrivalTime: '',
+    Price: 0.00,
+    Availability: true
+  };
 
-  // Add a new flight
-  addFlight() {
-    this.flights.push({ 
-      AirlineName: 'New Airline', 
-      DepartureAirport: 'New Departure Airport', 
-      ArrivalAirport: 'New Arrival Airport', 
-      DepartureTime: '2024-01-01T00:00', 
-      ArrivalTime: '2024-01-01T01:00', 
-      Price: 0.00, 
-      Availability: true, 
-      isEditable: true 
-    });
+  constructor(private availableService: AvailableService) {}
+
+  ngOnInit() {
+    this.loadFlights();
   }
 
-  // Edit flight (allows editing inputs)
+  loadFlights() {
+    this.availableService.getAllFlights().subscribe(
+      (data: any[]) => {
+        this.flights = data;
+      },
+      (error) => {
+        console.error('Error loading flights:', error);
+      }
+    );
+  }
+
+  toggleFlightForm() {
+    this.showFlightForm = !this.showFlightForm;  // Toggle form visibility
+  }
+
+  addFlight() {
+    this.availableService.addFlight(this.newFlight).subscribe(
+      (data) => {
+        this.flights.push(data);
+        this.toggleFlightForm();  // Hide the form after adding a flight
+        this.resetForm();  // Reset the form fields
+      },
+      (error) => {
+        console.error('Error adding flight:', error);
+      }
+    );
+  }
+
+  resetForm() {
+    this.newFlight = {
+      AirlineName: '',
+      DepartureAirport: '',
+      ArrivalAirport: '',
+      DepartureTime: '',
+      ArrivalTime: '',
+      Price: 0.00,
+      Availability: true
+    };
+  }
+
   editFlight(index: number) {
     this.flights[index].isEditable = true;
   }
 
-  // Save flight (disables editing and saves changes)
   saveFlight(index: number) {
     this.flights[index].isEditable = false;
   }
 
-  // Delete flight
   deleteFlight(index: number) {
     this.flights.splice(index, 1);
   }

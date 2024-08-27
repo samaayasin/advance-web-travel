@@ -1,19 +1,30 @@
-
+/* General Table Styles */
 table th, table td {
     border: 1px solid #ddd;
     padding: 5px;
     text-align: center;
     width: auto;
-
 }
+
+.responsive-table {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    margin: 0 auto;
+}
+
+thead {
+    background-color: #f2f2f2;
+    position: sticky;
+    top: 0;
+}
+
 table {
     position: absolute;
-    top: 190px;
-    left: 330px;
-    width: 50%;
+    left: 350px;
+    top:100px;
     border-collapse: collapse;
-    margin: 0 auto;
-    overflow-y: auto;
+    margin: 20px 0;
 }
 
 table th {
@@ -45,16 +56,17 @@ table th {
 
 h2 {
     position: absolute;
-    top:100px;
-    left: 680px;
+    top: 40px;
+    left: 720px;
     text-align: center;
     font-size: 2rem;
+    color: #175719;
 }
 
 .add-flight-btn {
     position: absolute;
-    top: 600px;
-    left: 350px;
+    bottom: 100px;
+    left: 300px;
     margin-bottom: 20px;
     padding: 10px 20px;
     font-size: 1rem;
@@ -63,59 +75,55 @@ h2 {
     color: #ffffff;
     border-color: #ffffff;
     border-radius: 5px;
-
 }
 
+/* Flexbox for better alignment */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    .responsive-table table thead {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    thead {
         display: none;
     }
-
-    .responsive-table table, 
-    .responsive-table table tbody, 
-    .responsive-table table tr, 
-    .responsive-table table td {
-        display: block;
-        width: 100%;
-    }
-
-    .responsive-table table tr {
-        margin-bottom: 20px;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .responsive-table table td {
-        text-align: right;
+    td {
         position: relative;
         padding-left: 50%;
-        white-space: nowrap;
     }
-
-    .responsive-table table td:before {
+    td:before {
         content: attr(data-label);
         position: absolute;
-        left: 10px;
-        width: 45%;
-        padding-right: 10px;
+        left: 0;
+        top: 0;
         white-space: nowrap;
-        text-align: left;
+        padding-right: 10px;
         font-weight: bold;
     }
-
+    
     .add-flight-btn {
-        width: 100%;
+        width: 80%;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
     }
 }
 
 @media (max-width: 576px) {
-    .responsive-table table td {
-        padding-left: 40%;
+    .add-flight-btn {
+        width: 100%;
     }
-
-    .responsive-table table td:before {
-        width: 40%;
+    h2 {
+        font-size: 1.2rem;
     }
 }
+
+
+
 

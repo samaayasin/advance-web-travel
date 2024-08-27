@@ -1,8 +1,6 @@
 <app-dashboard></app-dashboard>
-
 <div class="main-content">
     <h2>Manage Flights</h2>
-    <button class="add-flight-btn" (click)="addFlight()">Add Flight</button>
     <div class="responsive-table">
         <table>
             <thead>
@@ -29,10 +27,10 @@
                         <input [(ngModel)]="flight.ArrivalAirport" [readonly]="!flight.isEditable" style="width: 100px;">
                     </td>
                     <td>
-                        <input [(ngModel)]="flight.DepartureTime" [readonly]="!flight.isEditable" type="datetime-local">
+                        <input [(ngModel)]="flight.DepartureTime" [disabled]="!flight.isEditable" type="datetime-local">
                     </td>
                     <td>
-                        <input [(ngModel)]="flight.ArrivalTime" [readonly]="!flight.isEditable" type="datetime-local">
+                        <input [(ngModel)]="flight.ArrivalTime" [disabled]="!flight.isEditable" type="datetime-local">
                     </td>
                     <td>
                         <input [(ngModel)]="flight.Price" [readonly]="!flight.isEditable" type="number" step="0.01" style="width: 60px;">
