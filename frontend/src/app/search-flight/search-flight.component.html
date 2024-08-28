@@ -1,0 +1,55 @@
+<div class="container mt-4">
+  
+  <h2 class="mb-4 text-center">Search Flights</h2>
+
+  <form [formGroup]="flightSearchForm" (ngSubmit)="onSearch()">
+    <div class="row align-items-end">
+      <div class="col-md-4">
+        <label for="AirlineName" class="form-label">Airline Name</label>
+        <input type="text" class="form-control" id="AirlineName" formControlName="AirlineName">
+      </div>
+      <div class="col-md-4">
+        <label for="DepartureAirport" class="form-label">Departure Airport</label>
+        <input type="text" class="form-control" id="DepartureAirport" formControlName="DepartureAirport">
+      </div>
+      <div class="col-md-4">
+        <label for="ArrivalAirport" class="form-label">Arrival Airport</label>
+        <input type="text" class="form-control" id="ArrivalAirport" formControlName="ArrivalAirport">
+      </div>
+      <div class="col-md-3 mt-3">
+        <label for="DepartureTime" class="form-label">Departure Time</label>
+        <input type="datetime-local" class="form-control" id="DepartureTime" formControlName="DepartureTime">
+      </div>
+      <div class="col-md-3 mt-3">
+        <label for="ArrivalTime" class="form-label">Arrival Time</label>
+        <input type="datetime-local" class="form-control" id="ArrivalTime" formControlName="ArrivalTime">
+      </div>
+      <div class="col-md-3 mt-3">
+        <label for="Price" class="form-label">Price</label>
+        <input type="number" class="form-control" id="Price" formControlName="Price">
+      </div>
+      <div class="col-md-3 mt-3 ">
+        <button type="submit" class="btn btn-dark">Search Flights</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="row mt-5" *ngIf="flights.length > 0">
+    <div class="col-md-4" *ngFor="let flight of flights">
+      <div class="card h-100">
+        <img [src]="flight.image_url" class="card-img-top" alt="{{ flight.AirlineName }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ flight.AirlineName }}</h5>
+          <p class="card-text"><strong>From:</strong> {{ flight.DepartureAirport }}</p>
+          <p class="card-text"><strong>To:</strong> {{ flight.ArrivalAirport }}</p>
+          <p class="card-text"><strong>Departure:</strong> {{ flight.DepartureTime | date: 'short' }}</p>
+          <p class="card-text"><strong>Arrival:</strong> {{ flight.ArrivalTime | date: 'short' }}</p>
+          <p class="card-text"><strong>Price:</strong> ${{ flight.Price }}</p>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="btn btn-dark">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

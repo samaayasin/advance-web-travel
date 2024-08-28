@@ -109,7 +109,7 @@ class FlightController extends Controller
         }
 
         $flights = $query->get();
-        return response()->json($flights);
+        return response()->json($flights);//AirlineName, DepartureAirport, ArrivalAirport, DepartureTime, ArrivalTime, Price
     }
 }
 

@@ -1,0 +1,11 @@
+.card-img-top {
+    height: 200px; /* Adjust the height to fit your design */
+    object-fit: cover; /* This ensures the image covers the entire area without distortion */
+  }
+  .card {
+    height: 100%;
+  }
+  .card-body {
+    padding: 15px; /* Adjust the padding as needed */
+  }
+  
