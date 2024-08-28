@@ -1,0 +1,57 @@
+<div class="container mt-5">
+  
+      <h2 class="mb-4 text-center">Search Rental Cars</h2>
+
+      <!-- Search Form -->
+      <form [formGroup]="carSearchForm" (ngSubmit)="onSearch()">
+        <div class="row g-2 justify-content-center align-items-end">
+          <div class="col-md-3">
+            
+              <label for="model" class="form-label">Model</label>
+              <input type="text" id="model" class="form-control" formControlName="model" placeholder="Enter car model">
+            
+          </div>
+
+          <div class="col-md-3">
+            
+              <label for="year" class="form-label">Year</label>
+              <input type="number" id="year" class="form-control" formControlName="year" placeholder="Enter car year">
+            
+          </div>
+
+          <div class="col-md-3">
+            
+              <label for="price" class="form-label">Max Price Per Day</label>
+              <input type="number" id="price" class="form-control" formControlName="price" placeholder="Enter max price per day">
+            
+          </div>
+
+          <div class="col-md-2 d-grid">
+            
+              <button type="submit" class="btn btn-dark mt-3 mt-md-0">Search</button>
+            
+          </div>
+        </div>
+
+        
+      </form>
+   
+
+  <!-- Search Results -->
+  <div class="row mt-5" *ngIf="cars.length > 0">
+    <div class="col-md-4" *ngFor="let car of cars">
+      <div class="card h-100">
+        <img [src]="car.image_url" class="card-img-top" alt="{{ car.CarModel }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ car.CarModel }}</h5>
+          <p class="card-text">Year: {{ car.Year }}</p>
+          <p class="card-text">Price: ${{ car.PricePerDay }} per day</p>
+          <p class="card-text">Color: {{ car.Color }}</p>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="btn btn-dark">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+</div>
