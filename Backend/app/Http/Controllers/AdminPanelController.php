@@ -5,6 +5,10 @@ use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Flight;
 use App\Models\Hotel;
+use App\Models\BookingCar;
+use App\Models\BookingFlight;
+use App\Models\BookingHotel;
+
 
 /**
  * @OA\Schema(
@@ -42,9 +46,9 @@ class AdminPanelController extends Controller
      */
     public function listAll()
     {
-        $cars = Car::all();
-        $flights = Flight::all();
-        $hotels = Hotel::all();
+        $cars = BookingCar::all();
+        $flights = BookingFlight::all();
+        $hotels = BookingHotel::all();
 
         $bookings = $cars->merge($flights)->merge($hotels);
 
@@ -87,13 +91,13 @@ class AdminPanelController extends Controller
     {
         switch ($type) {
             case 'car':
-                $booking = Car::find($id);
+                $booking = BookingCar::find($id);
                 break;
             case 'flight':
-                $booking = Flight::find($id);
+                $booking = BookingFlight::find($id);
                 break;
             case 'hotel':
-                $booking = Hotel::find($id);
+                $booking = BookingHotel::find($id);
                 break;
             default:
                 return response()->json(['message' => 'Invalid booking type'], 400);
@@ -104,6 +108,29 @@ class AdminPanelController extends Controller
         }
 
         return response()->json($booking, 200);
+    }
+
+    public function showType ($type){
+        switch ($type) {
+            case 'car':
+                $booking = BookingCar::all();
+                break;
+            case 'flight':
+                $booking = BookingFlight::all();
+                break;
+            case 'hotel':
+                $booking = BookingHotel::all();
+                break;
+            default:
+                return response()->json(['message' => 'Invalid booking type'], 400);
+        }
+
+        if (!$booking) {
+            return response()->json(['message' => 'Booking not found'], 404);
+        }
+
+        return response()->json($booking, 200);
+
     }
 
 

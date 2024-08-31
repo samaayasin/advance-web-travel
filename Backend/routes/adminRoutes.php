@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminPanelController;
 
 Route::get('/bookings', [AdminPanelController::class, 'listAll']);
 Route::get('/bookings/{type}/{id}', [AdminPanelController::class, 'show']);
+Route::get('/bookings/{type}', [AdminPanelController::class, 'showType']);
 
 Route::get('/availables', [AdminPanelController::class, 'listAllAvailables']);
 Route::get('/availables/{type}', [AdminPanelController::class, 'listAvailableType']);
