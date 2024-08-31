@@ -1,30 +1,6 @@
 <app-dashboard></app-dashboard>
-<div class="main-content">
-    <h2>Hotel Bookings</h2>
-    <div class="responsive-table">
-        <table>
-            <thead>
-                <tr>
-                    <th>Hotel Name</th>
-                    <th>Location</th>
-                    <th>Room Type</th>
-                    <th>Price Per Night</th>
-                    <th>Availability</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let booking of bookings">
-                    <td>{{ booking.HotelName }}</td>
-                    <td>{{ booking.Location }}</td>
-                    <td>{{ booking.RoomType }}</td>
-                    <td>{{ booking.PricePerNight | currency }}</td>
-                    <td>{{ booking.Availability ? 'Available' : 'Not Available' }}</td>
-                    <td>{{ booking.StartDate }}</td>
-                    <td>{{ booking.EndDate }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+<app-booking-tables
+  [bookings]="hotelBookings"
+  [columns]="['HotelName', 'Location', 'RoomType', 'PricePerNight', 'Availability', 'StartDate', 'EndDate']"
+  tableTitle="Hotel Bookings">
+</app-booking-tables>

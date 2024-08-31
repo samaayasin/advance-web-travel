@@ -6,33 +6,31 @@ import { Observable } from 'rxjs';
 })
 export class AvailableService {
 
-  private baseUrl = 'http://localhost:8000/api/availables'; 
+  private apiUrl = 'http://localhost:8000/api/availables';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getAvailableItem(type: string, id: number): Observable<any> {
-    const url = `${this.baseUrl}/${type}/${id}`;
-    return this.http.get<any>(url);
+  getCars(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/car`);
   }
 
-  getAllFlights(): Observable<any[]> {
-    const url = `${this.baseUrl}/flight`;
-    return this.http.get<any[]>(url);
-  }
-  addFlight(flight: any): Observable<any> {
-    const url = `${this.baseUrl}/flight`;
-    return this.http.post<any>(url, flight);
+  getHotels(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/hotel`);
   }
 
-  // Update an existing flight
-  updateFlight(id: number, flight: any): Observable<any> {
-    const url = `${this.baseUrl}/flight/${id}`;
-    return this.http.put<any>(url, flight);
+  getFlights(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/flight`);
   }
 
-  // Delete a flight
-  deleteFlight(id: number): Observable<any> {
-    const url = `${this.baseUrl}/flight/${id}`;
-    return this.http.delete<any>(url);
+  updateAvailable(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/car/${id}`, data);
   }
-}
+
+  deleteAvailable(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/car/${id}`);
+  }
+  addCar(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/car`, data);
+  }
+  }
+

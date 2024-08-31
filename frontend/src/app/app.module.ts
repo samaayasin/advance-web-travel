@@ -16,8 +16,11 @@ import { HotelServicesComponent } from './hotel-services/hotel-services.componen
 import { UserMangementComponent } from './user-mangement/user-mangement.component';
 import { BookingCarViewComponent } from './booking-car-view/booking-car-view.component';
 import { BookingFlightViewComponent } from './booking-flight-view/booking-flight-view.component';
-import { BookingHotelViewComponent } from './booking-hotel-view/booking-hotel-view.component';
+import { BookingHotelComponent} from './booking-hotel-view/booking-hotel-view.component';
+
 import { AdminCompComponent } from './admin-comp/admin-comp.component';
+import { BookingTablesComponent } from './booking-tables/booking-tables.component';
+import { ManageAllServicesComponent } from './manage-all-services/manage-all-services.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +35,10 @@ import { AdminCompComponent } from './admin-comp/admin-comp.component';
     UserMangementComponent,
     BookingCarViewComponent,
     BookingFlightViewComponent,
-    BookingHotelViewComponent,
-    AdminCompComponent
+    BookingHotelComponent,
+    AdminCompComponent,
+    BookingTablesComponent,
+    ManageAllServicesComponent
     
   ],
   imports: [

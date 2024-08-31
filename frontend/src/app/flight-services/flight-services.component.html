@@ -1,50 +1,22 @@
 <app-dashboard></app-dashboard>
-<div class="main-content">
-    <h2>Manage Flights</h2>
-    <div class="responsive-table">
-        <table>
-            <thead>
-                <tr>
-                    <th>Airline Name</th>
-                    <th>Departure Airport</th>
-                    <th>Arrival Airport</th>
-                    <th>Departure Time</th>
-                    <th>Arrival Time</th>
-                    <th>Price</th>
-                    <th>Availability</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let flight of flights; let i = index">
-                    <td>
-                        <input [(ngModel)]="flight.AirlineName" [readonly]="!flight.isEditable" style="width: 100px;">
-                    </td>
-                    <td>
-                        <input [(ngModel)]="flight.DepartureAirport" [readonly]="!flight.isEditable" style="width: 100px;">
-                    </td>
-                    <td>
-                        <input [(ngModel)]="flight.ArrivalAirport" [readonly]="!flight.isEditable" style="width: 100px;">
-                    </td>
-                    <td>
-                        <input [(ngModel)]="flight.DepartureTime" [disabled]="!flight.isEditable" type="datetime-local">
-                    </td>
-                    <td>
-                        <input [(ngModel)]="flight.ArrivalTime" [disabled]="!flight.isEditable" type="datetime-local">
-                    </td>
-                    <td>
-                        <input [(ngModel)]="flight.Price" [readonly]="!flight.isEditable" type="number" step="0.01" style="width: 60px;">
-                    </td>
-                    <td>
-                        <input type="checkbox" [(ngModel)]="flight.Availability" [disabled]="!flight.isEditable">
-                    </td>
-                    <td>
-                        <button *ngIf="!flight.isEditable" class="action-btn edit-btn" (click)="editFlight(i)">Update</button>
-                        <button *ngIf="flight.isEditable" class="action-btn save-btn" (click)="saveFlight(i)">Save</button>
-                        <button class="action-btn delete-btn" (click)="deleteFlight(i)">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+<div>
+    <h3>Flights</h3>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Airline</th>
+        <th>Destination</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let flight of flights">
+        <td>{{ flight.id }}</td>
+        <td>{{ flight.airline }}</td>
+        <td>{{ flight.destination }}</td>
+        <td>
+          <button (click)="editFlight(flight)">Edit</button>
+          <button (click)="deleteFlight(flight.id)">Delete</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  

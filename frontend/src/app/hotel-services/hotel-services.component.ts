@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input,Output,EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-hotel-services',
@@ -6,36 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./hotel-services.component.css']
 })
 export class HotelServicesComponent {
-  hotels = [
-    { HotelName: 'Marriott', rating: 5, PricePerNight: 200.00, Availability: true, StartDate: '2023-01-01', EndDate: '2023-12-31', city: 'New York', county: 'USA', isEditable: false },
-    // Add more hotels here
-];
-
-addHotel() {
-    const newHotel = {
-        HotelName: '',
-        rating: 1,
-        PricePerNight: 0,
-        Availability: true,
-        StartDate: '',
-        EndDate: '',
-        city: '',
-        county: '',
-        isEditable: true
-    };
-    this.hotels.push(newHotel);
-}
-
-editHotel(index: number) {
-    this.hotels[index].isEditable = true;
-}
-
-saveHotel(index: number) {
-    this.hotels[index].isEditable = false;
-}
-
-deleteHotel(index: number) {
-    this.hotels.splice(index, 1);
-}
-
+    @Input() hotels: any[] = [];
+    @Output() updateHotels = new EventEmitter<any[]>();
+  
+    // Methods for editing/deleting hotels can be added here
+    editHotel(hotel: any) {
+      // Perform edit operation
+      this.updateHotels.emit(this.hotels);
+    }
+  
+    deleteHotel(hotelId: number) {
+      this.hotels = this.hotels.filter(hotel => hotel.id !== hotelId);
+      this.updateHotels.emit(this.hotels);
+    }
 }

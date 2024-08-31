@@ -1,0 +1,32 @@
+<div class="main-content">
+    <h2>{{ tableTitle }}</h2>
+    
+    <!-- Add Car Button -->
+    <button class="add-car-btn" (click)="addNewRow()">Add Car</button>
+  
+    <div class="responsive-table">
+      <table>
+        <thead>
+          <tr>
+            <th *ngFor="let col of columns">{{ col }}</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let available of availables; let i = index">
+            <td *ngFor="let col of columns">
+              <span *ngIf="!available.isEditable">{{ available[col] }}</span>
+              <input *ngIf="available.isEditable" [(ngModel)]="available[col]" />
+            </td>
+            <td>
+              <button *ngIf="!available.isEditable" class="update-btn" (click)="edit(i)">Edit</button>
+              <button *ngIf="available.isEditable" class="save-btn" (click)="save(i)">Save</button>
+              <button *ngIf="available.isEditable" class="cancel-btn" (click)="cancelEdit(i)">Cancel</button>
+              <button class="delete-btn" (click)="delete(available.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
