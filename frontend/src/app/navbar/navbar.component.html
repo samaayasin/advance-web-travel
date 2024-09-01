@@ -6,8 +6,8 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <div class="collapse navbar-collapse me-auto d-flex justify-content-between" id="navbarText">
+        <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
             <a routerLink="home" class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
@@ -21,9 +21,19 @@
             <a routerLink="car" class="nav-link" href="#">Cars</a>
           </li>
         </ul>
-        <span class="navbar-text">
-          Navbar text with an inline element
-        </span>
+        <div *ngIf="!isLoggedIn" class="d-flex gap-2">
+          <a routerLink="sign-in"  class="nav-link text-white">
+            Sign In
+          </a>
+          <a routerLink="sign-up" class="nav-link text-white">Sign Up</a>
+        </div>
+        <div *ngIf="isLoggedIn" class="d-flex align-items-center">
+          <a routerLink="profile" class="nav-link text-white d-flex align-items-center">
+            <mat-icon>account_circle</mat-icon>
+            <span class="ms-1 me-3">Profile</span>
+          </a>
+          <a class="nav-link text-white" routerLink="home" (click)="onLogout()">Log Out</a>
+        </div>
       </div>
     </div>
   </nav>

@@ -1,0 +1,44 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card bg-dark text-light">
+        <div class="card-header">
+          <h3>Sign Up</h3>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="name" class="form-label text-light">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter your name" [(ngModel)]="name" name="name">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label text-light">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter your email" [(ngModel)]="email" name="email">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label text-light">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Enter your password"[(ngModel)]="password" name="password">
+            </div>
+            <div class="mb-3">
+              <label for="phoneNumber" class="form-label text-light">Phone Number</label>
+              <input type="tel" class="form-control" id="phoneNumber" placeholder="Enter your phone number" [(ngModel)]="phoneNumber" name="phoneNumber">
+            </div>
+            <div class="mb-3">
+              <label for="profilePicture" class="form-label text-light">Profile Picture</label>
+              <input type="file" class="form-control" id="profilePicture">
+            </div>
+            <div class="mb-3">
+              <label for="role" class="form-label text-light">Role</label>
+              <select class="form-select" id="role" [(ngModel)]="role" name="role">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-success">Sign Up</button>
+            <p class="text-light mt-2">Already have an account? <a routerLink="/sign-in" class="text-success">Sign In</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
