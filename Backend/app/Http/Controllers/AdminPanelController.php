@@ -2,12 +2,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+
 use App\Models\Car;
 use App\Models\Flight;
 use App\Models\Hotel;
 use App\Models\BookingCar;
 use App\Models\BookingFlight;
 use App\Models\BookingHotel;
+use App\Models\User;
+
 
 
 /**
@@ -263,22 +268,68 @@ class AdminPanelController extends Controller
      */
     public function storeAvailable(Request $request, $type)
     {
+    
         switch ($type) {
             case 'car':
-                $item = Car::create($request->all());
+                $rules = [
+                    'UserID' => 'required|integer',
+                    'CarModel' => 'required|string|max:255',
+                    'Year' => 'required|integer|min:1900|max:' . date('Y'),
+                    'Color' => 'required|string|max:50',
+                    'PricePerDay' => 'required|numeric|min:0',
+                    'Availability' => 'required|boolean',
+                    'image_url' => 'nullable|url',
+                ];
+                $modelClass = Car::class;
                 break;
-            case 'flight':
-                $item = Flight::create($request->all());
-                break;
-            case 'hotel':
-                $item = Hotel::create($request->all());
-                break;
+    
+                case 'flight':
+                    $rules = [
+                        'UserID' => 'required|integer',
+                        'AirlineName' => 'required|string|max:255',
+                        'DepartureAirport' => 'required|string|max:255',
+                        'ArrivalAirport' => 'required|string|max:255',
+                        'DepartureTime' => 'required|date_format:Y-m-d H:i:s',
+                        'ArrivalTime' => 'required|date_format:Y-m-d H:i:s|after:DepartureTime',
+                        'Price' => 'required|numeric|min:0',
+                        'Availability' => 'required|boolean',
+                        'image_url' => 'nullable|url',
+                    ];
+                    $modelClass = Flight::class;
+                    break;
+    
+                    case 'hotel':
+                        $rules = [
+                            'UserID' => 'required|integer',
+                            'HotelName' => 'required|string|max:255',
+                            'rating' => 'required|integer|min:1|max:5',
+                            'PricePerNight' => 'required|numeric|min:0',
+                            'Availability' => 'required|boolean',
+                            'StartDate' => 'required|date_format:Y-m-d',
+                            'EndDate' => 'required|date_format:Y-m-d|after:StartDate',
+                            'city' => 'required|string|max:255',
+                            'county' => 'required|string|max:255',
+                            'description' => 'nullable|string',
+                            'image_url' => 'nullable|url',
+                            'number_of_guests' => 'required|integer|min:1',
+                        ];
+                        $modelClass = Hotel::class;
+                        break;
+    
             default:
                 return response()->json(['message' => 'Invalid available item type'], 400);
         }
-
+    
+        // Validate the request data
+        $validated = $request->validate($rules);
+    
+        // Create the record
+        $item = $modelClass::create($validated);
+    
+        // Return the created item as JSON
         return response()->json($item, 201);
-    }
+}
+
 
     /**
      * @OA\Put(
@@ -386,4 +437,109 @@ class AdminPanelController extends Controller
 
         return response()->json(['message' => 'Item deleted successfully'], 204);
     }
+
+
+                  //user management//
+    public function getAllUsers()
+    {
+        $users = User::all();
+        return response()->json($users);
+    }
+
+    public function createUser(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'Name' => 'required|string|max:255',
+            'Email' => 'required|string|email|max:255|unique:users',
+            'Password' => 'required|string|min:8',
+            'PhoneNumber' => 'required|string|max:15',
+            'ProfilePicture' => 'nullable|string|max:255',
+            'Role' => 'required|string|max:50',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $user = User::create([
+            'Name' => $request->Name,
+            'Email' => $request->Email,
+            'Password' => Hash::make($request->Password),
+            'PhoneNumber' => $request->PhoneNumber,
+            'ProfilePicture' => $request->ProfilePicture,
+            'Role' => $request->Role,
+        ]);
+
+        return response()->json($user, 201);
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        try {
+            // Find the user by ID
+            $user = User::find($id);
+            
+            if (!$user) {
+                return response()->json(['error' => 'User not found'], 404);
+            }
+    
+            // Validate the request
+            $validator = Validator::make($request->all(), [
+                'name' => 'sometimes|required|string|max:255',
+                'email' => 'sometimes|required|string|email|max:255|unique:users,email,'.$id.',UserID',
+                'password' => 'nullable|string|min:8',
+                'phone_number' => 'nullable|string|max:15',
+                'profile_picture' => 'nullable|string|max:255',
+                'role' => 'nullable|string|max:50',
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 400);
+            }
+    
+            // Logging the incoming data
+            \Log::info('Updating user with data: ', $request->all());
+    
+            // Update user data
+            $user->update([
+                'Name' => $request->input('name', $user->Name),
+                'Email' => $request->input('email', $user->Email),
+                'PhoneNumber' => $request->input('phone_number', $user->PhoneNumber),
+                'ProfilePicture' => $request->input('profile_picture', $user->ProfilePicture),
+                'Role' => $request->input('role', $user->Role),
+                'Password' => $request->filled('password') ? Hash::make($request->input('password')) : $user->Password,
+            ]);
+    
+            // Logging successful update
+            \Log::info('User updated successfully');
+    
+            return response()->json($user, 200);
+        } catch (\Exception $e) {
+            \Log::error('Failed to update user: ' . $e->getMessage());
+            return response()->json(['error' => 'Failed to update user'], 500);
+        }
+    }
+    
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        $user->delete();
+
+        return response()->json(['message' => 'User deleted successfully']);
+    }
+
+    public function getLatestBookings()
+    {
+        $latestBookings = BookingHotel::orderBy('created_at', 'desc')->take(2)->get();
+
+        return response()->json($latestBookings);
+    }
+
+
+
 }
