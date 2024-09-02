@@ -54,7 +54,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => 'required|string|email',
-            'password' => 'required|string',
+            'password' => 'required|string|min:8',
         ]);
 
         $credentials = $request->only('email', 'password');
@@ -86,7 +86,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
+            'expires_in' => JWTAuth::factory()->getTTL() * 60
         ]);
     }
 
@@ -142,7 +142,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:3|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8',
             'phoneNumber' => 'required|string|max:13',
             'role' => 'required|string|max:50',
         ]);
@@ -235,7 +235,7 @@ class AuthController extends Controller
             return response()->json([
                 'access_token' => $newToken,
                 'token_type' => 'bearer',
-                'expires_in' => auth('api')->factory()->getTTL() * 60
+                'expires_in' => JWTAuth::factory()->getTTL() * 60
             ], 200);
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
             return response()->json(['error' => 'Token is expired'], 401);

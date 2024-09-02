@@ -81,6 +81,28 @@ class HotelController extends Controller
      */
     public function search(Request $request)
     {
-        
+        $query = Hotel::query();
+
+        if ($request->filled('HotelName')) {
+            $query->where('HotelName', 'like', '%' . $request->HotelName . '%');
+        }
+
+        if ($request->filled('PricePerNight')) {
+            $query->where('PricePerNight', '<=', $request->PricePerNight);
+        }
+
+        if ($request->filled('StartDate') && $request->filled('EndDate')) {
+            $query->where(function($q) use ($request) {
+                $q->where('StartDate', '>=', $request->StartDate)
+                  ->where('EndDate', '<=', $request->EndDate);
+            });
+        }
+
+        if ($request->filled('city')) {
+            $query->where('city', 'like', '%' . $request->city . '%');
+        }
+
+        $hotels = $query->get();
+        return response()->json($hotels);
     }
 }

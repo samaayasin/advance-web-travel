@@ -1,0 +1,56 @@
+
+        
+
+
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Search Hotels</h2>
+    <form [formGroup]="hotelSearchForm" (ngSubmit)="onSearch()">
+      <div class="row align-items-end">
+        <div class="col-md-4">
+          <label for="HotelName" class="form-label">Hotel Name</label>
+          <input type="text" class="form-control" id="HotelName" formControlName="HotelName">
+        </div>
+        <div class="col-md-4">
+          <label for="PricePerNight" class="form-label">Max Price per Night</label>
+          <input type="number" class="form-control" id="PricePerNight" formControlName="PricePerNight">
+        </div>
+        <div class="col-md-4">
+          <label for="city" class="form-label">City</label>
+          <input type="text" class="form-control" id="city" formControlName="city">
+        </div>
+        <div class="col-md-4 mt-3">
+          <label for="StartDate" class="form-label">Start Date</label>
+          <input type="date" class="form-control" id="StartDate" formControlName="StartDate">
+        </div>
+        <div class="col-md-4 mt-3">
+          <label for="EndDate" class="form-label">End Date</label>
+          <input type="date" class="form-control" id="EndDate" formControlName="EndDate">
+        </div>
+        <div class="col-md-3 mt-3 ">
+          <button type="submit" class="btn btn-dark">Search Hotels</button>
+        </div>
+      </div>
+    </form>
+  
+    <div class="row mt-5" *ngIf="hotels.length > 0">
+      <div class="col-md-4" *ngFor="let hotel of hotels">
+        <div class="card h-100">
+          <img [src]="hotel.image_url || 'https://via.placeholder.com/150'" class="card-img-top" alt="{{ hotel.HotelName }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ hotel.HotelName }}</h5>
+            <p class="card-text"><strong>Rating:</strong> {{ hotel.rating }} Stars</p>
+            <p class="card-text"><strong>City:</strong> {{ hotel.city }}</p>
+            <p class="card-text"><strong>Price per Night:</strong> ${{ hotel.PricePerNight }}</p>
+            <p class="card-text"><strong>Available From:</strong> {{ hotel.StartDate | date: 'shortDate' }}</p>
+            <p class="card-text"><strong>Available Until:</strong> {{ hotel.EndDate | date: 'shortDate' }}</p>
+            <p class="card-text">{{ hotel.description }}</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-dark">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

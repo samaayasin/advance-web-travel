@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card bg-dark text-light">
+        <div class="card-header">
+          <h3>Sign In</h3>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="email" class="form-label text-light">Email</label>
+              <input type="text" class="form-control" id="email" placeholder="Enter your email" [(ngModel)]="email" name="email">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label text-light">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Enter your password" [(ngModel)]="password" name="password">
+            </div>
+            <button type="submit" class="btn btn-success">Sign In</button>
+            <p class="text-light mt-2">Don't have an account? <a routerLink="/sign-up" class="text-success">Sign Up</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

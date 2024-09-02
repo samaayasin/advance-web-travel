@@ -9,15 +9,14 @@ class BookingCar extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'CarRentalID';
+    protected $primaryKey = 'BookingID';
 
     protected $fillable = [
         'UserID',
+        'CarRentalID',
         'CarModel',
-        'SeatNumber',
         'Location',
-        'PricePerDay',
-        'Availability',
+        'TotalPrice',
         'StartDate',
         'EndDate',
     ];
