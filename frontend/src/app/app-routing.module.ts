@@ -15,6 +15,8 @@ import { SearchHotelComponent } from './search-hotel/search-hotel.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent  } from './sign-up/sign-up.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AdminCompComponent } from './admin-comp/admin-comp.component';
+
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'flights', component: FlightServicesComponent },
@@ -32,6 +34,8 @@ const routes: Routes = [
   {path:'sign-in', component:SignInComponent},
   {path:'sign-up', component:SignUpComponent},
   {path:'profile', component:ProfileComponent},
+  {path:'admin', component:AdminCompComponent},
+
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 
