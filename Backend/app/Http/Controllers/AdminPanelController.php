@@ -16,21 +16,53 @@ use App\Models\User;
 
 
 /**
- * @OA\Schema(
- *     schema="Booking",
- *     type="object",
- *     @OA\Property(property="id", type="integer", example=1),
- *     @OA\Property(property="user_id", type="integer", example=2),
- *     @OA\Property(property="booking_date", type="string", format="date-time", example="2024-08-21T00:00:00Z")
- * )
+ * @OA\Component(
+ *     schemas={
+ *         @OA\Schema(
+ *             schema="User",
+ *             type="object",
+ *             title="User",
+ *             description="User schema",
+ *             @OA\Property(property="id", type="integer", example=1, description="The user ID"),
+ *             @OA\Property(property="name", type="string", example="John Doe", description="The user's name"),
+ *             @OA\Property(property="email", type="string", example="john.doe@example.com", description="The user's email address"),
+ *             @OA\Property(property="phone_number", type="string", example="+1234567890", description="The user's phone number"),
+ *             @OA\Property(property="profile_picture", type="string", nullable=true, example="http://example.com/profile.jpg", description="URL of the user's profile picture"),
+ *             @OA\Property(property="role", type="string", example="admin", description="The user's role"),
+ *         ),
+ *         @OA\Schema(
+ *             schema="Booking",
+ *             type="object",
+ *             title="Booking",
+ *             description="Booking schema",
+ *             @OA\Property(property="id", type="integer", example=1, description="The booking ID"),
+ *             @OA\Property(property="user_id", type="integer", example=1, description="The ID of the user who made the booking"),
+ *             @OA\Property(property="service_type", type="string", example="car", description="Type of the service booked (e.g., car, flight, hotel)"),
+ *             @OA\Property(property="booking_date", type="string", format="date", example="2024-09-10", description="Date of the booking"),
+ *             @OA\Property(property="start_date", type="string", format="date", example="2024-09-15", description="Start date of the service"),
+ *             @OA\Property(property="end_date", type="string", format="date", example="2024-09-20", description="End date of the service"),
+ *             @OA\Property(property="total_price", type="number", format="float", example=500.00, description="Total price for the booking"),
  * 
- * @OA\Schema(
- *     schema="AvailableItem",
- *     type="object",
- *     @OA\Property(property="id", type="integer", example=1),
- *     @OA\Property(property="name", type="string", example="Sample Item")
+ *         ),
+ * 
+ *         @OA\Schema(
+ *             schema="AvailableItem",
+ *             type="object",
+ *             title="Available Item",
+ *             description="Schema for an available item",
+ *             @OA\Property(property="id", type="integer", example=1, description="The ID of the item"),
+ *             @OA\Property(property="name", type="string", example="Service Name", description="Name of the service item"),
+ *             @OA\Property(property="description", type="string", example="Detailed description of the item", description="Description of the service item"),
+ *             @OA\Property(property="price", type="number", format="float", example=100.00, description="Price of the item"),
+ *             @OA\Property(property="type", type="string", example="car", description="Type of the service item (e.g., car, flight, hotel)"),
+ *             @OA\Property(property="available_from", type="string", format="date-time", example="2024-09-01T00:00:00Z", description="Date and time from when the item is available"),
+ *             @OA\Property(property="available_to", type="string", format="date-time", example="2024-09-30T00:00:00Z", description="Date and time until when the item is available")
+ *         )
+ *     
+ *     }
  * )
  */
+
 class AdminPanelController extends Controller
 {
     /**
@@ -114,7 +146,33 @@ class AdminPanelController extends Controller
 
         return response()->json($booking, 200);
     }
-
+/**
+ * @OA\Get(
+ *     path="/bookings/{type}",
+ *     summary="List all bookings by type",
+ *     operationId="showBookingsByType",
+ *     tags={"Bookings"},
+ *     @OA\Parameter(
+ *         name="type",
+ *         in="path",
+ *         required=true,
+ *         description="Type of the booking (car, flight, hotel)",
+ *         @OA\Schema(type="string")
+ *     ),
+ *     @OA\Response(
+ *         response="200",
+ *         description="A list of bookings of the specified type",
+ *         @OA\JsonContent(
+ *             type="array",
+ *             @OA\Items(ref="#/components/schemas/Booking")
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response="404",
+ *         description="Bookings not found"
+ *     )
+ * )
+ */
     public function showType ($type){
         switch ($type) {
             case 'car':
@@ -165,7 +223,33 @@ class AdminPanelController extends Controller
 
         return response()->json($availableItems, 200);
     }
-
+/**
+ * @OA\Get(
+ *     path="/availables/{type}",
+ *     summary="List all available items by type",
+ *     operationId="listAvailableItemsByType",
+ *     tags={"Availables"},
+ *     @OA\Parameter(
+ *         name="type",
+ *         in="path",
+ *         required=true,
+ *         description="Type of the available item (car, flight, hotel)",
+ *         @OA\Schema(type="string")
+ *     ),
+ *     @OA\Response(
+ *         response="200",
+ *         description="A list of available items of the specified type",
+ *         @OA\JsonContent(
+ *             type="array",
+ *             @OA\Items(ref="#/components/schemas/AvailableItem")
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response="404",
+ *         description="Available items not found"
+ *     )
+ * )
+ */
     public function listAvailableType($type)
     {
         switch ($type) {
@@ -440,11 +524,53 @@ class AdminPanelController extends Controller
 
 
                   //user management//
+
+
+
+
+/**
+ * @OA\Get(
+ *     path="/users",
+ *     summary="List all users",
+ *     operationId="getAllUsers",
+ *     tags={"Users"},
+ *     @OA\Response(
+ *         response="200",
+ *         description="A list of all users",
+ *         @OA\JsonContent(
+ *             type="array",
+ *             @OA\Items(ref="#/components/schemas/User")
+ *         )
+ *     )
+ * )
+ */
     public function getAllUsers()
     {
         $users = User::all();
         return response()->json($users);
     }
+
+    /**
+ * @OA\Post(
+ *     path="/users",
+ *     summary="Create a new user",
+ *     operationId="createUser",
+ *     tags={"Users"},
+ *     @OA\RequestBody(
+ *         required=true,
+ *         @OA\JsonContent(ref="#/components/schemas/User")
+ *     ),
+ *     @OA\Response(
+ *         response="201",
+ *         description="User created successfully",
+ *         @OA\JsonContent(ref="#/components/schemas/User")
+ *     ),
+ *     @OA\Response(
+ *         response="400",
+ *         description="Validation error"
+ *     )
+ * )
+ */
 
     public function createUser(Request $request)
     {
@@ -472,7 +598,38 @@ class AdminPanelController extends Controller
 
         return response()->json($user, 201);
     }
-
+/**
+ * @OA\Put(
+ *     path="/users/{id}",
+ *     summary="Update a user",
+ *     operationId="updateUser",
+ *     tags={"Users"},
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         required=true,
+ *         description="ID of the user",
+ *         @OA\Schema(type="integer")
+ *     ),
+ *     @OA\RequestBody(
+ *         required=true,
+ *         @OA\JsonContent(ref="#/components/schemas/User")
+ *     ),
+ *     @OA\Response(
+ *         response="200",
+ *         description="User updated successfully",
+ *         @OA\JsonContent(ref="#/components/schemas/User")
+ *     ),
+ *     @OA\Response(
+ *         response="404",
+ *         description="User not found"
+ *     ),
+ *     @OA\Response(
+ *         response="400",
+ *         description="Validation error"
+ *     )
+ * )
+ */
     public function updateUser(Request $request, $id)
     {
         try {
@@ -519,6 +676,30 @@ class AdminPanelController extends Controller
             return response()->json(['error' => 'Failed to update user'], 500);
         }
     }
+
+    /**
+ * @OA\Delete(
+ *     path="/users/{id}",
+ *     summary="Delete a user",
+ *     operationId="deleteUser",
+ *     tags={"Users"},
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         required=true,
+ *         description="ID of the user",
+ *         @OA\Schema(type="integer")
+ *     ),
+ *     @OA\Response(
+ *         response="200",
+ *         description="User deleted successfully"
+ *     ),
+ *     @OA\Response(
+ *         response="404",
+ *         description="User not found"
+ *     )
+ * )
+ */
     
     public function deleteUser($id)
     {
@@ -532,7 +713,22 @@ class AdminPanelController extends Controller
 
         return response()->json(['message' => 'User deleted successfully']);
     }
-
+/**
+ * @OA\Get(
+ *     path="/bookings/latest",
+ *     summary="Get latest bookings",
+ *     operationId="getLatestBookings",
+ *     tags={"Bookings"},
+ *     @OA\Response(
+ *         response="200",
+ *         description="Latest bookings",
+ *         @OA\JsonContent(
+ *             type="array",
+ *             @OA\Items(ref="#/components/schemas/Booking")
+ *         )
+ *     )
+ * )
+ */
     public function getLatestBookings()
     {
         $latestBookings = BookingHotel::orderBy('created_at', 'desc')->take(2)->get();
