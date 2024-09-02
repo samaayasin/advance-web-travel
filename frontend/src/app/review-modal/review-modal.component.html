@@ -1,0 +1,35 @@
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': showModal}" [ngStyle]="{display: showModal ? 'block' : 'none'}" style="background-color: rgba(0, 0, 0, 0.5);">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Rate Your Flight Experience</h5>
+        <button type="button" class="close btn-close" (click)="closeModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="submitRating()">
+          <div class="form-group mb-4">
+            <label class="form-label">Rating</label>
+            <div class="star-rating">
+              <span (click)="setRating(1)" [ngClass]="{'star-filled': rating >= 1}">&#9733;</span>
+              <span (click)="setRating(2)" [ngClass]="{'star-filled': rating >= 2}">&#9733;</span>
+              <span (click)="setRating(3)" [ngClass]="{'star-filled': rating >= 3}">&#9733;</span>
+              <span (click)="setRating(4)" [ngClass]="{'star-filled': rating >= 4}">&#9733;</span>
+              <span (click)="setRating(5)" [ngClass]="{'star-filled': rating >= 5}">&#9733;</span>
+            </div>
+          </div>
+
+          <div class="form-group mb-4">
+            <label for="reviewText" class="form-label">Your Review</label>
+            <textarea id="reviewText" [(ngModel)]="reviewText" name="reviewText" class="form-control" rows="4" placeholder="Share your experience..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Submit Your Review</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showModal" class="modal-backdrop fade show"></div>

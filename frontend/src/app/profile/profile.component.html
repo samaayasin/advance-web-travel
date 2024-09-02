@@ -22,21 +22,27 @@
   </div>
 </div>
 
-<div class="ms-2 row mt-5" *ngIf="flights.length > 0">
-  <div class="col-md-4" *ngFor="let flight of flights">
+<div class="ms-2 row" *ngIf="flights.length > 0">
+  <div class="col-md-4" *ngFor="let bookingFlight of flights">
     <div class="card h-100">
-      <img [src]="flight.image_url" class="card-img-top" alt="{{ flight.AirlineName }}">
+      <img [src]="bookingFlight.image_url" class="card-img-top" alt="{{ bookingFlight.AirlineName }}">
       <div class="card-body">
-        <h5 class="card-title">{{ flight.AirlineName }}</h5>
-        <p class="card-text"><strong>From:</strong> {{ flight.DepartureAirport }}</p>
-        <p class="card-text"><strong>To:</strong> {{ flight.ArrivalAirport }}</p>
-        <p class="card-text"><strong>Departure:</strong> {{ flight.DepartureTime | date: 'short' }}</p>
-        <p class="card-text"><strong>Arrival:</strong> {{ flight.ArrivalTime | date: 'short' }}</p>
-        <p class="card-text"><strong>Price:</strong> ${{ flight.Price }}</p>
+        <h5 class="card-title">{{ bookingFlight.AirlineName }}</h5>
+        <p class="card-text"><strong>From:</strong> {{ bookingFlight.DepartureAirport }}</p>
+        <p class="card-text"><strong>To:</strong> {{ bookingFlight.ArrivalAirport }}</p>
+        <p class="card-text"><strong>Departure:</strong> {{ bookingFlight.DepartureTime | date: 'short' }}</p>
+        <p class="card-text"><strong>Arrival:</strong> {{ bookingFlight.ArrivalTime | date: 'short' }}</p>
+        <p class="card-text"><strong>Total Price:</strong> ${{ bookingFlight.TotalPrice}}</p>
       </div>
       <div class="card-footer">
-        <a href="#" class="btn btn-dark">Rate</a>
+        <button (click)="openRateModal(bookingFlight.FlightID,'flight')" class="btn btn-dark">Rate</button>
       </div>
     </div>
   </div>
 </div>
+
+<app-rate-modal 
+  [showModal]="showRateModal" 
+  [bookingId]="selectedBookingId" 
+  (close)="handleRateClose($event)">
+</app-rate-modal>

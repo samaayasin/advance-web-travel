@@ -39,10 +39,10 @@ export class SignUpComponent {
           if(error.status == 422) {
             alert("All fields are required")
           }
-          if(error.error.errors.email) {
+          if(error?.error?.errors?.email) {
             alert(error.error.errors.email);
           }
-          if(error.error.errors.password) {
+          if(error.error?.errors?.password) {
             alert(error.error.errors.password);
           }
           console.log(error.status);
