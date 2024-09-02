@@ -9,13 +9,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('booking_cars', function (Blueprint $table) {
-            $table->id('CarRentalID');
-            $table->unsignedBigInteger('UserID');
+            $table->id('BookingID');
+            $table->unsignedBigInteger('CarRentalID');
+            $table->unsignedBigInteger('UserID'); 
             $table->string('CarModel');
-            $table->integer('SeatNumber');
             $table->string('Location');
-            $table->decimal('PricePerDay', 8, 2);
-            $table->boolean('Availability');
+            $table->decimal('TotalPrice', 8, 2);
             $table->date('StartDate');
             $table->date('EndDate');
             $table->timestamps();

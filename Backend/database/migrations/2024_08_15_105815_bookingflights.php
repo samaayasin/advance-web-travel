@@ -9,18 +9,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('booking_flights', function (Blueprint $table) {
-            $table->id('FlightID');
+            $table->id('BookingID');
+            $table->unsignedBigInteger('FlightID');
             $table->unsignedBigInteger('UserID');
-            $table->string('AirlineName');
-            $table->string('DepartureAirport');
-            $table->string('ArrivalAirport');
-            $table->dateTime('DepartureTime');
-            $table->dateTime('ArrivalTime');
-            $table->decimal('Price', 8, 2);
-            $table->boolean('Availability');
-            $table->date('StartDate');
-            $table->date('EndDate');
+            $table->string('ArrivalTime');
+            $table->integer('Numberofpassengers');
+            $table->decimal('TotalPrice', 8, 2);
             $table->timestamps();
+
         });
     }
 
