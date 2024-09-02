@@ -6,7 +6,7 @@ html, body {
 }
 
 .nav-link.active {
-  background-color: #14833b;
+  background-color: #444444;
   color: white;
 }
 

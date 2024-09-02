@@ -1,48 +1,61 @@
 <app-dashboard></app-dashboard>
-<app-dashboard></app-dashboard>
 <div class="main-content">
-    <h2>User Management</h2>
-    <button class="add-user-btn" (click)="addUser()">Add User</button>
-    <div class="responsive-table">
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>Profile Picture</th>
-                    <th>Role</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let user of users; let i = index">
-                    <td>
-                        <input [(ngModel)]="user.name" [readonly]="!user.isEditable">
-                    </td>
-                    <td>
-                        <input [(ngModel)]="user.email" [readonly]="!user.isEditable">
-                    </td>
-                    <td>
-                        <input [(ngModel)]="user.phoneNumber" [readonly]="!user.isEditable">
-                    </td>
-                    <td>
-                        <input type="text" [(ngModel)]="user.profilePicture" [readonly]="!user.isEditable">
-                    </td>
-                    <td>
-                        <select [(ngModel)]="user.role" [disabled]="!user.isEditable">
-                            <option value="Admin">Admin</option>
-                            <option value="User">User</option>
-                            <option value="Manager">Manager</option>
-                        </select>
-                    </td>
-                    <td>
-                        <button *ngIf="!user.isEditable" class="action-btn edit-btn" (click)="editUser(i)">Update</button>
-                        <button *ngIf="user.isEditable" class="action-btn save-btn" (click)="saveUser(i)">Save</button>
-                        <button class="action-btn delete-btn" (click)="deleteUser(i)">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <h2>User Management</h2>
+  <button class="add-user-btn" (click)="addUser()">Add User</button>
+
+  <div *ngIf="!users.length && !isLoading && !errorMessage" class="no-data">No users found.</div>
+  <div *ngIf="isLoading" class="loading">Loading users...</div>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+  <div *ngIf="users.length && !isLoading" class="responsive-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Phone Number</th>
+          <th>Profile Picture</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i = index">
+          <td>
+            <span *ngIf="!user.isEditable">{{ user.Name }}</span>
+            <input *ngIf="user.isEditable" [(ngModel)]="user.Name">
+        </td>
+          <td>
+            <span *ngIf="!user.isEditable">{{ user.Email }}</span>
+            <input *ngIf="user.isEditable" [(ngModel)]="user.Email">
+          </td>
+          <td> 
+            <input *ngIf="user.isEditable" type="password" [(ngModel)]="user.Password" placeholder="Enter password">
+          </td>
+          <td>
+            <span *ngIf="!user.isEditable">{{ user.PhoneNumber }}</span>
+            <input *ngIf="user.isEditable" [(ngModel)]="user.PhoneNumber">
+          </td>
+          <td>
+            <span *ngIf="!user.isEditable">{{ user.ProfilePicture }}</span>
+            <input *ngIf="user.isEditable" [(ngModel)]="user.ProfilePicture">
+          </td>
+          <td>
+            <span *ngIf="!user.isEditable">{{ user.Role }}</span>
+            <select *ngIf="user.isEditable" [(ngModel)]="user.Role">
+              <option value="Admin">Admin</option>
+              <option value="User">User</option>
+              <option value="Manager">Manager</option>
+            </select>
+          </td>
+          <td>
+            <button *ngIf="!user.isEditable" class="action-btn edit-btn" (click)="editUser(i)">Edit</button>
+            <button *ngIf="user.isEditable" class="action-btn save-btn" (click)="saveUser(i)">Save</button>
+            <button class="action-btn delete-btn" (click)="confirmDeleteUser(i)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

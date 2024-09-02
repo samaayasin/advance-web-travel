@@ -1,22 +1,20 @@
-import { Component,Input,Output,EventEmitter } from '@angular/core';
+import { Component,OnInit} from '@angular/core';
+import { AvailableService } from '../available.service'; 
 
 @Component({
   selector: 'app-hotel-services',
   templateUrl: './hotel-services.component.html',
   styleUrls: ['./hotel-services.component.css']
 })
-export class HotelServicesComponent {
-    @Input() hotels: any[] = [];
-    @Output() updateHotels = new EventEmitter<any[]>();
-  
-    // Methods for editing/deleting hotels can be added here
-    editHotel(hotel: any) {
-      // Perform edit operation
-      this.updateHotels.emit(this.hotels);
-    }
-  
-    deleteHotel(hotelId: number) {
-      this.hotels = this.hotels.filter(hotel => hotel.id !== hotelId);
-      this.updateHotels.emit(this.hotels);
-    }
+export class HotelServicesComponent implements OnInit {
+  hotel: any[] = []; 
+
+  constructor(private AvailableService: AvailableService) {}
+
+  ngOnInit() {
+    this.AvailableService.getItems('hotel').subscribe(
+      data => this.hotel = data,
+      error => console.error('Error fetching car data', error)
+    );
+  }
 }

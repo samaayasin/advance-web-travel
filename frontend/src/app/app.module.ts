@@ -21,6 +21,10 @@ import { BookingHotelComponent} from './booking-hotel-view/booking-hotel-view.co
 import { AdminCompComponent } from './admin-comp/admin-comp.component';
 import { BookingTablesComponent } from './booking-tables/booking-tables.component';
 import { ManageAllServicesComponent } from './manage-all-services/manage-all-services.component';
+import { TotalBookingsComponent } from './total-bookings/total-bookings.component';
+import { LatestHotelBookingsComponent } from './latest-hotel-bookings/latest-hotel-bookings.component';
+import { SummaryServiceComponent } from './summary-service/summary-service.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -38,14 +42,18 @@ import { ManageAllServicesComponent } from './manage-all-services/manage-all-ser
     BookingHotelComponent,
     AdminCompComponent,
     BookingTablesComponent,
-    ManageAllServicesComponent
+    ManageAllServicesComponent,
+    TotalBookingsComponent,
+    LatestHotelBookingsComponent,
+    SummaryServiceComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

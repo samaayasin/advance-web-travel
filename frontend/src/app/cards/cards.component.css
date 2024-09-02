@@ -6,7 +6,7 @@ html {
 
 .card {
   position: relative;
-  top:-250px;
+  top:-350px;
   left: 250px;
   width: 100%;
   max-width: 400px;
@@ -24,14 +24,14 @@ html {
 
 .user-card {
   position: relative;
-  top:-500px;
+  top:-600px;
   left: 550px;
   margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 15px;
-  border: 2px solid #28a745;
+  padding: 10px;
+  border: 2px solid #444444;
   border-radius: 8px;
   background-color: #f8f9fa;
   width: 300px;
@@ -39,19 +39,19 @@ html {
 }
 
 .user-button {
-  background-color: #28a745;
+  background-color: #444444;
   border: none;
   color: #fff;
   font-size: 1.2rem;
   padding: 10px 20px;
   border-radius: 5px;
-  margin: 10px;
+  margin-right: 50px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .user-button:hover {
-  background-color: #218838; /* Slightly darker green on hover */
+  background-color: #444444; /* Slightly darker green on hover */
 }
 
 .user-avatar {
@@ -87,10 +87,9 @@ html {
 
 .review-container {
   position: absolute;
-  top: 280px;
+  top: 170px;
   left: 1160px;
-  background-color: white;
-  padding: 5px;
+  padding: 0px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -98,7 +97,7 @@ html {
 }
 
 h2 {
-  color: #448218ac;
+  color: #ffffff;
   margin-bottom: 5px;
 }
 

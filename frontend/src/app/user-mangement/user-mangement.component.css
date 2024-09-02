@@ -1,138 +1,184 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  
+  .main-content {
+    max-width: 1000px;
+    margin: 10px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    align-items: center;
+    margin-right: 210px;
+    margin-top: 50px;
 
-table th, table td {
-    border: 1px solid #ddd;
-    padding: 5px;
+    font-weight: bold;
+  }
+  
+  .main-content h2 {
     text-align: center;
-    width: auto;
-
-}
-table {
-    position: absolute;
-    top: 190px;
-    left: 350px;
-    width: 62%;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .responsive-table {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
     border-collapse: collapse;
-    margin: 0 auto;
+    border-spacing: 0;
+  }
+  
+  thead {
+    background-color: #444444;
+    color: white;
+  }
+  
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  tbody td {
+    color: #555;
+    font-size: 14px;
+  }
+  
+  tbody tr:hover td {
+    background-color: #e0f7fa;
+    transition: background-color 0.3s ease;
+  }
+  
+  @media (max-width: 768px) {
+    table {
+      font-size: 14px;
+    }
     
+    th, td {
+      padding: 8px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    table {
+      font-size: 12px;
+    }
+    
+    th, td {
+      padding: 6px;
+    }
+  }
+  
+  /* Button Base Styles */
+button {
+  margin: 0 5px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover Effect */
+button:hover {
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Active/Pressed Effect */
+button:active {
+  transform: translateY(0); /* Reset lift effect */
+}
+
+/* Save Button */
+button.save-btn {
+  background-color: #99bd82; /* Green for Save */
+}
+
+button.save-btn:hover {
+  background-color: #0c3b05;
+}
+
+button.save-btn:active {
+  background-color: #0c3b05;
+}
+
+button.edit-btn {
+  background-color: #66656cb5; 
+  width: 73px;
 
 }
 
-
-table th {
-    background-color: #4caf50;
-    color: white;
+button.edit-btn:hover {
+  background-color: #9996a35a;
 }
 
-.action-btn {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 2px;
+button.edit-btn:active {
+  background-color: #9996a38f;
 }
 
-.edit-btn {
-    background-color: #ffeb3b;
+button.delete-btn {
+  background-color: #c9999e; 
 }
 
-.save-btn {
-    background-color: #4caf50;
-    color: white;
+button.delete-btn:hover {
+  background-color: #c9999e;
 }
 
-.delete-btn {
-    background-color: #f44336;
-    color: white;
-}
-
-h2 {
-    position: absolute;
-    top:100px;
-    left: 680px;
-    text-align: center;
-    font-size: 2rem;
+button.delete-btn:active {
+  background-color: #c9999e;
 }
 
 .add-user-btn {
-    position: absolute;
-    top: 600px;
-    left: 350px;
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: #4caf50;
-    color: #ffffff;
-    border-color: #ffffff;
-    border-radius: 5px;
-
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  background-color: #494e52;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
+.add-user-form {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+}
 
+.add-user-form h3 {
+  margin-bottom: 15px;
+}
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .responsive-table table thead {
-        display: none;
-    }
-    .responsive-table table, 
-    .responsive-table table tbody, 
-    .responsive-table table tr, 
-    .responsive-table table td {
-        display: block;
-        width: 210px;
-    }
-  
-    .responsive-table table tr {
-        margin-bottom: 5px;
-        border-bottom: 1px solid #ddd;
-        
-    }
-  
-    .responsive-table table td {
-        text-align: left;
-        white-space: nowrap;
-    }
-  
-    .responsive-table table td:before {
-        content: attr(data-label);
-        position: absolute;
-        left: 1px;
-        width: 10%;
-        white-space: nowrap;
-        text-align: left;
-        font-weight: bold;
-    }
-  
-    .add-user-btn {
-        width: 12%;
-        top:700px;
-        left: 830px;
-    }
-    h2 {
-      top:100px;
-    left: 370px;
-    text-align: center;
-    font-size: 1rem;
-    }
-  }
-  
-  @media (max-width: 576px) {
-  
-    .responsive-table table td:before {
-      width: 30%;
-    }
-    .add-user-btn {
-      width: 12%;
-      top:700px;
-      left: 355px;
-  }
-    h2 {
-      top:100px;
-      left: 370px;
-      text-align: center;
-      font-size: 1rem;
-    }
-  }
-  
-  
+.add-user-form input {
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+

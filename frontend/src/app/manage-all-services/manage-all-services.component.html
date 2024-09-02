@@ -1,32 +1,33 @@
 <div class="main-content">
-    <h2>{{ tableTitle }}</h2>
-    
-    <!-- Add Car Button -->
-    <button class="add-car-btn" (click)="addNewRow()">Add Car</button>
+  <h2>{{ tableTitle }}</h2>
   
-    <div class="responsive-table">
-      <table>
-        <thead>
-          <tr>
-            <th *ngFor="let col of columns">{{ col }}</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let available of availables; let i = index">
-            <td *ngFor="let col of columns">
+  <button class="add-btn" (click)="addNewRow()">Add</button>
+
+  <div class="responsive-table">
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let col of columns">{{ col }}</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let available of availables; let i = index">
+          <td *ngFor="let col of columns">
               <span *ngIf="!available.isEditable">{{ available[col] }}</span>
-              <input *ngIf="available.isEditable" [(ngModel)]="available[col]" />
-            </td>
-            <td>
+              <input *ngIf="available.isEditable" [(ngModel)]="available[col]" required />
+          </td>
+          <td>
               <button *ngIf="!available.isEditable" class="update-btn" (click)="edit(i)">Edit</button>
               <button *ngIf="available.isEditable" class="save-btn" (click)="save(i)">Save</button>
               <button *ngIf="available.isEditable" class="cancel-btn" (click)="cancelEdit(i)">Cancel</button>
-              <button class="delete-btn" (click)="delete(available.id)">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+              <button *ngIf="itemType === 'car' && available.CarRentalID" class="delete-btn" (click)="delete(available.CarRentalID)">Delete</button>
+              <button *ngIf="itemType === 'flight' && available.FlightID" class="delete-btn" (click)="delete(available.FlightID)">Delete</button>
+              <button *ngIf="itemType === 'hotel' && available.HotelID" class="delete-btn" (click)="delete(available.HotelID)">Delete</button>
+          </td>
+      </tr>
+      
+      </tbody>
+    </table>
   </div>
-  
+</div>

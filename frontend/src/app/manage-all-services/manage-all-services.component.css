@@ -15,6 +15,8 @@ body {
     border-radius: 8px;
     align-items: center;
     margin-right: 210px;
+    margin-top: 50px;
+
     font-weight: bold;
   }
   
@@ -37,7 +39,7 @@ body {
   }
   
   thead {
-    background-color: #3a7e31;
+    background-color: #444444;
     color: white;
   }
   
@@ -90,75 +92,72 @@ body {
     }
   }
   
-  /* Button Base Styles */
 button {
   margin: 0 5px;
   padding: 8px 16px;
   font-size: 14px;
   font-weight: bold;
   color: white;
-  background-color: #007bff; /* Primary color */
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Hover Effect */
 button:hover {
-  background-color: #0056b3; /* Darker shade for hover */
-  transform: translateY(-2px); /* Slight lift effect */
+  transform: translateY(-2px); 
 }
 
-/* Active/Pressed Effect */
 button:active {
-  background-color: #004494; /* Even darker shade for active state */
-  transform: translateY(0); /* Reset lift effect */
+  transform: translateY(0);
 }
 
-/* Save Button */
+
+
 button.save-btn {
-  background-color: #28a745; /* Green for Save */
+  background-color: #99bd82; 
+  width: 73px;
+
 }
 
 button.save-btn:hover {
-  background-color: #218838;
+  background-color: #0c3b05;
 }
 
 button.save-btn:active {
-  background-color: #1e7e34;
+  background-color: #0c3b05;
 }
 
-/* Update Button */
 button.update-btn {
-  background-color: #ffc107; /* Yellow for Update */
-  color: #212529; /* Dark text for better contrast */
+  background-color: #9996a3; 
+  width: 73px;
 }
 
 button.update-btn:hover {
-  background-color: #e0a800;
+  background-color: #9996a38f;
 }
+
 
 button.update-btn:active {
-  background-color: #c69500;
+  background-color: #9996a38f;
+
 }
 
-/* Delete Button */
+
 button.delete-btn {
-  background-color: #dc3545; /* Red for Delete */
+  background-color: #c9999e; 
 }
 
 button.delete-btn:hover {
-  background-color: #c82333;
+  background-color: #c9999e;
 }
 
 button.delete-btn:active {
-  background-color: #bd2130;
+  background-color: #c9999e;
 }
 
-/* Cancel Button */
 button.cancel-btn {
-  background-color: #6c757d; /* Gray for Cancel */
+  background-color: #949ca3; 
 }
 
 button.cancel-btn:hover {
@@ -169,28 +168,28 @@ button.cancel-btn:active {
   background-color: #494e52;
 }
 
-.add-car-btn {
+.add-btn {
   margin-bottom: 20px;
   padding: 10px 15px;
-  background-color: #236429;
+  background-color: #494e52;
   color: white;
   border: none;
   cursor: pointer;
   border-radius: 5px;
 }
 
-.add-car-form {
+.add-form {
   margin-top: 20px;
   padding: 15px;
   border: 1px solid #ddd;
   background-color: #f9f9f9;
 }
 
-.add-car-form h3 {
+.add-form h3 {
   margin-bottom: 15px;
 }
 
-.add-car-form input {
+.add-form input {
   margin-bottom: 10px;
   width: 100%;
   padding: 8px;

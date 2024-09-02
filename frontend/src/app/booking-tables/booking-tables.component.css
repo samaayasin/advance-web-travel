@@ -1,9 +1,9 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
+    background-color: #ffffff;
     margin: 0;
     padding: 0;
-    color: #333;
+    color: #444444;
   }
   
   .main-content {
@@ -34,17 +34,20 @@ body {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
+
   }
   
   thead {
-    background-color: #3a7e31;
+    background-color: #444444;
     color: white;
+
   }
   
   th, td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+
   }
   
   th {

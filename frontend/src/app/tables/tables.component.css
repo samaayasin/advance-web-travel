@@ -1,97 +1,80 @@
+.container-fluid {
+  position: relative;
+  top: 300px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-right: 0; 
+  max-width: 100%;
+  height: calc(100vh - 360px);
+}
 
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  flex: 1;
+  display: flex;
+  flex-direction: column; 
+  min-height: 300px; 
+  margin-right: 0; 
+
+}
+
+.card-body {
+  flex: 1; 
+  overflow: auto;
+}
+
+.card-header {
+  background-color: black;
+}
+
+#Service-card, #total-card {
+  padding-bottom: 30px; 
+}
+
+#Services, #LatestHotelBookings, #TotalBooking {
+  width: 100%;
+  max-width: 400px;
+}
+
+.table-bordered {
+  border: 1px solid #dee2e6;
+}
+
+.table thead th {
+  background-color: #e9ecef;
+  color: #444444;
+  text-align: center;
+}
+
+.table tbody tr {
+  text-align: center;
+}
+
+.table tbody tr td {
+  vertical-align: middle;
+  padding: 10px;
+}
+
+.table tbody tr td img {
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
   .container-fluid {
-    position: relative;
-    top: 420px;
-    display: flex;
-    flex-direction: row; 
-    gap: 20px; 
-    padding: 20px;
-    margin-top: 20px; 
-    margin-right: 370px; 
-    max-width: 900px; 
-    height: calc(100vh - 360px); 
-  }
-  
-  .card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%; 
-    max-width: 400px; 
-    flex: 1; 
-    overflow: auto;
-  }
-  .card #Service-card{
-    padding-bottom: 65px;
-  }
-  .card #total-card{
-    padding-bottom: 30px;
-
-  }
-  #Services {
-    position: relative;
-    bottom: 0px; 
-    left: 20px; 
-    width: 100%;
-    max-width: 400px;
-    padding-bottom: 50px;
- 
-  }
-  #LatestHotelBookings {
-    position: relative;
-    bottom: 0px; 
-    left: 20px; 
-    width: 100%; 
-    max-width: 400px;
-  }
-  #TotalBooking {
-    position: relative;
-    bottom: 0px; 
-    left: 20px; 
-    width: 100%; 
-    max-width: 400px; 
-  }
-  
-  /* Table styling */
-  .table {
-    margin: 0;
-  }
-  
-  .table-bordered {
-    border: 1px solid #dee2e6;
-  }
-  
-  .table thead th {
-    background-color: #e9ecef;
-    color: #343a40;
-    text-align: center;
-  }
-  
-  .table tbody tr {
-    text-align: center;
-  }
-  
-  .table tbody tr td {
-    vertical-align: middle;
+    flex-direction: column;
+    align-items: center;
     padding: 10px;
+    margin-left: 0;
   }
-  
-  .table tbody tr td img {
-    border-radius: 5px;
-    margin-right: 10px;
-  }
-  
-  @media (max-width: 768px) {
-    
-    .card {
-      max-width: 100%;
-    }
-  
-    .container-fluid {
-      flex-direction: column;
-      align-items: center; 
 
-      padding: 10px;
-      margin-left: 0; 
-    }
-    
+  .card {
+    max-width: 100%;
+    height: auto; 
   }
-  
+}

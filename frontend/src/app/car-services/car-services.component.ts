@@ -1,4 +1,4 @@
-import { Component,Input,Output,EventEmitter,OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { AvailableService } from '../available.service';
 @Component({
   selector: 'app-car-services',
@@ -11,7 +11,7 @@ export class CarServicesComponent implements OnInit{
   constructor(private AvailableService: AvailableService) {}
 
   ngOnInit() {
-    this.AvailableService.getCars().subscribe(
+    this.AvailableService.getItems('car').subscribe(
       data => this.car = data,
       error => console.error('Error fetching car data', error)
     );

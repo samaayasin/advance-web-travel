@@ -1,22 +1,8 @@
 <app-dashboard></app-dashboard>
-<div>
-    <h3>Flights</h3>
-    <table>
-      <tr>
-        <th>ID</th>
-        <th>Airline</th>
-        <th>Destination</th>
-        <th>Actions</th>
-      </tr>
-      <tr *ngFor="let flight of flights">
-        <td>{{ flight.id }}</td>
-        <td>{{ flight.airline }}</td>
-        <td>{{ flight.destination }}</td>
-        <td>
-          <button (click)="editFlight(flight)">Edit</button>
-          <button (click)="deleteFlight(flight.id)">Delete</button>
-        </td>
-      </tr>
-    </table>
-  </div>
-  
+<app-manage-all-services
+[availables]="flight"
+[columns]="['AirlineName', 'DepartureAirport', 'ArrivalAirport', 'DepartureTime','ArrivalTime', 'Price','Availability', 'image_url']"
+tableTitle="Avialable Flight Management"
+[itemType]="'flight'"
+
+></app-manage-all-services>

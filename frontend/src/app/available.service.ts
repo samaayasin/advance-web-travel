@@ -10,27 +10,21 @@ export class AvailableService {
 
   constructor(private http: HttpClient) {}
 
-  getCars(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/car`);
+  getItems(type: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${type}`);
   }
 
-  getHotels(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/hotel`);
+  updateItem(type: string, id: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${type}/${id}`, data);
   }
 
-  getFlights(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/flight`);
+  deleteItem(type: string, id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${type}/${id}`);
   }
 
-  updateAvailable(id: number, data: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/car/${id}`, data);
+  addItem(type: string, data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${type}`, data);
   }
 
-  deleteAvailable(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/car/${id}`);
-  }
-  addCar(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/car`, data);
-  }
   }
 

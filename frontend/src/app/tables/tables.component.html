@@ -1,76 +1,13 @@
 <div class="container-fluid">
-    <div class="row flex-column">
-      <!-- Total Bookings Table -->
-      <div class="col-4 mb-2" id="TotalBooking">
-        <div class="card">
-          <div class="card-header bg-success text-white">Total Bookings</div>
-          <div class="card-body" id="total-card">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">Service</th>
-                  <th scope="col">%</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let total of total">
-                  <td>{{ total.name }}</td>
-                  <td>{{ total.details }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Latest Hotel Bookings Table -->
-      <div class="col-4 mb-2" id="LatestHotelBookings">
-        <div class="card">
-          <div class="card-header bg-success text-white">Latest Hotel Bookings</div>
-          <div class="card-body">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">Hotel</th>
-                  <th scope="col">Details</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let booking of bookings">
-                  <td>
-                    <img [src]="booking.imageUrl" alt="Hotel Image" width="50">
-                    {{ booking.hotelName }}
-                  </td>
-                  <td>
-                    {{ booking.dateRange }} <br>
-                    {{ booking.customerName }} - {{ booking.daysAgo }}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Services Table -->
-      <div class="col-4 mb-2" id="Services">
-        <div class="card" >
-          <div class="card-header bg-success text-white">Services</div>
-          <div class="card-body" id="Service-card">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">Service</th>
-                </tr>
-              </thead>
-              <tbody>
-                  <tr><a routerLink="/flights" class="nav-link link-dark">Flights</a></tr>
-                  <tr><a routerLink="/cars" class="nav-link link-dark">Cars</a></tr>
-                  <tr><a routerLink="/hotels" class="nav-link link-dark">Hotels</a></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+  <div class="row flex-column">
+    <div class="col-4">
+      <app-total-bookings></app-total-bookings>
+    </div>
+    <div class="col-4">
+      <app-latest-hotel-bookings></app-latest-hotel-bookings>
+    </div>
+    <div class="col-4">
+      <app-summary-service></app-summary-service>
     </div>
   </div>
+</div>

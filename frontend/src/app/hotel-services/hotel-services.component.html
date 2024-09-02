@@ -1,23 +1,7 @@
 <app-dashboard></app-dashboard>
-
-<div>
-    <h3>Hotels</h3>
-    <table>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Actions</th>
-      </tr>
-      <tr *ngFor="let hotel of hotels">
-        <td>{{ hotel.id }}</td>
-        <td>{{ hotel.name }}</td>
-        <td>{{ hotel.location }}</td>
-        <td>
-          <button (click)="editHotel(hotel)">Edit</button>
-          <button (click)="deleteHotel(hotel.id)">Delete</button>
-        </td>
-      </tr>
-    </table>
-  </div>
-  
+<app-manage-all-services
+[availables]="hotel"
+[columns]="['HotelName', 'rating', 'PricePerNight', 'Availability', 'StartDate','EndDate', 'city','county','description','number_of_guests','image_url']"
+tableTitle="Avialable Hotel Management"
+[itemType]="'hotel'"
+></app-manage-all-services>

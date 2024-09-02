@@ -20,4 +20,8 @@ export class BookingServiceService {
 
   getHotelBookings(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/hotel`);
-  }}
+  }
+  getLatestBookings(): Observable<any> {
+    return this.http.get<any>("http://localhost:8000/api/latest-bookings");
+  }
+}
