@@ -15,7 +15,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { SearchFlightComponent } from './search-flight/search-flight.component';
-import { SearchHotelComponent } from './search-hotel/search-hotel.component';  // Import the AppRoutingModule
+import { SearchHotelComponent } from './search-hotel/search-hotel.component';
+import { HomeComponent } from './home/home.component';  // Import the AppRoutingModule
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { SearchHotelComponent } from './search-hotel/search-hotel.component';  /
     NavbarComponent,
     SearchFlightComponent,
     SearchHotelComponent,
+    HomeComponent,
     
   ],
   imports: [
