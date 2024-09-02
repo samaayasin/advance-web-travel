@@ -21,3 +21,22 @@
     <span>{{ user?.Role || 'Not Available' }}</span>
   </div>
 </div>
+
+<div class="ms-2 row mt-5" *ngIf="flights.length > 0">
+  <div class="col-md-4" *ngFor="let flight of flights">
+    <div class="card h-100">
+      <img [src]="flight.image_url" class="card-img-top" alt="{{ flight.AirlineName }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ flight.AirlineName }}</h5>
+        <p class="card-text"><strong>From:</strong> {{ flight.DepartureAirport }}</p>
+        <p class="card-text"><strong>To:</strong> {{ flight.ArrivalAirport }}</p>
+        <p class="card-text"><strong>Departure:</strong> {{ flight.DepartureTime | date: 'short' }}</p>
+        <p class="card-text"><strong>Arrival:</strong> {{ flight.ArrivalTime | date: 'short' }}</p>
+        <p class="card-text"><strong>Price:</strong> ${{ flight.Price }}</p>
+      </div>
+      <div class="card-footer">
+        <a href="#" class="btn btn-dark">Rate</a>
+      </div>
+    </div>
+  </div>
+</div>
