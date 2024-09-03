@@ -29,10 +29,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SearchFlightComponent } from './search-flight/search-flight.component';
 import { SearchHotelComponent } from './search-hotel/search-hotel.component';
+
+import { HomeComponent } from './home/home.component';  // Import the AppRoutingModule
+
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReviewModalComponent } from './review-modal/review-modal.component';
+
 
 
 @NgModule({
@@ -59,10 +63,17 @@ import { ReviewModalComponent } from './review-modal/review-modal.component';
     NavbarComponent,
     SearchFlightComponent,
     SearchHotelComponent,
+    HomeComponent,
+
     SignInComponent,
     SignUpComponent,
     ProfileComponent,
+
+    
+
+
     ReviewModalComponent,
+
     
   ],
   imports: [
