@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,7 +13,7 @@ export class SignInComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private profileService: ProfileService) {}
 
   onSubmit() {
     if (this.email && this.password) {
@@ -20,12 +21,20 @@ export class SignInComponent {
         (response) => {
           console.log('Login successful', response);
           alert('Login successful');
-          
           this.authService.saveTokens({
             access_token: response.access_token,
             refresh_token: response.refresh_token
           });
-          this.router.navigate(['/home']);
+          this.profileService.getUser()?.subscribe({
+            next: (response) =>{
+              if(response.Role == "admin") {
+                this.router.navigate(['/admin']);
+              }
+              else {
+                this.router.navigate(['/home']);
+              }
+            }
+          })
         },
         (error: HttpErrorResponse) => {
           if(error.status == 401) {
