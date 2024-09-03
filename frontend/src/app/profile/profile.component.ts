@@ -27,9 +27,6 @@ export class ProfileComponent implements OnInit {
       userObservable.subscribe({
         next: (response) => {
           if (response) {            
-            if(response.Role == "admin") {
-              this.router.navigate(['/admin']);
-            }
             this.user = response;
           } else {
             alert("Failed to retrieve user data. Please try again.");

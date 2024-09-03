@@ -49,7 +49,7 @@
           <p class="card-text">Color: {{ car.Color }}</p>
         </div>
         <div class="card-footer">
-          <a href="#" class="btn btn-dark">Book Now</a>
+          <a (click)="onBookNow(car.CarRentalID)" class="btn btn-dark">Book Now</a>
         </div>
       </div>
     </div>

@@ -11,11 +11,15 @@ export class CarSearchService {
 
   constructor(private http: HttpClient) { }
 
-  searchCars(model: string, year: string, price: string): Observable<any[]> {
+  searchCars(filters: any): Observable<any[]> {
     let params = new HttpParams();
-    if (model) params = params.append('CarModel', model);
-    if (year) params = params.append('Year', year);
-    if (price) params = params.append('PricePerDay', price);
+    if (filters.model) {params = params.append('CarModel', filters.model);}
+    if (filters.year) {params = params.append('Year', filters.model);}
+    if (filters.price) {params = params.append('PricePerDay', filters.model);}
+    
+    // if (model) params = params.append('CarModel', model);
+    // if (year) params = params.append('Year', year);
+    // if (price) params = params.append('PricePerDay', price);
 
     return this.http.get<any[]>(this.apiUrl, { params });
   }

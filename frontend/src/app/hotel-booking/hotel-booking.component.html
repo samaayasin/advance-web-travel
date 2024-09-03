@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- hotel-booking.component.html -->
+<div class="container">
+  <h2>Hotel Reservation</h2>
+  <div class="hotel-details">
+    <h3>{{ hotelName }}</h3>
+    <p>Rating: {{ rating }}</p>
+    <p>City: {{ city }}</p>
+  </div>
+  <form (ngSubmit)="onBookHotel()">
+    <div class="mb-3">
+      <label for="startDate" class="form-label">Start Date</label>
+      <input type="date" id="startDate" [(ngModel)]="startDate" name="startDate" class="form-control" (change)="calculateTotalPrice()">
+    </div>
+    <div class="mb-3">
+      <label for="endDate" class="form-label">End Date</label>
+      <input type="date" id="endDate" [(ngModel)]="endDate" name="endDate" class="form-control" (change)="calculateTotalPrice()">
+    </div>
+    <button type="submit" class="btn btn-dark" [disabled]="!startDate || !endDate">
+      Book Now for ${{ totalPrice ? totalPrice : '...' }}
+    </button>
+  </form>
+</div>
+
+</body>
+</html>

@@ -36,6 +36,9 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReviewModalComponent } from './review-modal/review-modal.component';
+import { CarBookingComponent } from './car-booking/car-booking.component';
+import { FlightBookingComponent } from './flight-booking/flight-booking.component';
+import { HotelBookingComponent } from './hotel-booking/hotel-booking.component';
 
 
 
@@ -70,6 +73,9 @@ import { ReviewModalComponent } from './review-modal/review-modal.component';
     ProfileComponent,
 
     ReviewModalComponent,
+      CarBookingComponent,
+      FlightBookingComponent,
+      HotelBookingComponent,
   ],
   
   imports: [

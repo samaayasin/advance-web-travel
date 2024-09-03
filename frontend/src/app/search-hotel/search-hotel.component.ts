@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HotelService } from '../services/hotel.service';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-hotel',
@@ -11,7 +13,7 @@ export class SearchHotelComponent implements OnInit {
   hotelSearchForm: FormGroup;
   hotels: any[] = [];
 
-  constructor(private fb: FormBuilder, private hotelService: HotelService) {
+  constructor(private authService:AuthService,private router: Router,private fb: FormBuilder, private hotelService: HotelService) {
     this.hotelSearchForm = this.fb.group({
       HotelName: [''],
       PricePerNight: [''],
@@ -29,4 +31,16 @@ export class SearchHotelComponent implements OnInit {
       this.hotels = data;
     });
   }
+
+  onBookNow(hotelId: string) {
+    
+    this.authService.getIsLoggedIn().subscribe(isLoggedIn => {
+      if (isLoggedIn) {
+        this.router.navigate(['/hotelbooking'], { queryParams: { hotelId: hotelId } });
+      } else {
+        this.router.navigate(['/sign-in']);
+      }
+    });
+  }
+  
 }
