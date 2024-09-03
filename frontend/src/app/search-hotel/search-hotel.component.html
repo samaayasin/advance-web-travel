@@ -47,7 +47,7 @@
             <p class="card-text">{{ hotel.description }}</p>
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-dark">Book Now</a>
+            <a (click)="onBookNow(hotel.HotelID)" class="btn btn-dark">Book Now</a>
           </div>
         </div>
       </div>

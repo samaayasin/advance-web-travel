@@ -24,6 +24,9 @@ import { ProfileComponent } from './profile/profile.component';
 
 
 import { AdminCompComponent } from './admin-comp/admin-comp.component';
+import { FlightBookingComponent } from './flight-booking/flight-booking.component';
+import { CarBookingComponent } from './car-booking/car-booking.component';
+import { HotelBookingComponent } from './hotel-booking/hotel-booking.component';
 
 
 const routes: Routes = [
@@ -53,6 +56,9 @@ const routes: Routes = [
 
 
   {path:'admin', component:AdminCompComponent},
+  {path:'flightbooking', component:FlightBookingComponent},
+  {path:'carbooking', component:CarBookingComponent},
+  {path:'hotelbooking', component:HotelBookingComponent},
 
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 

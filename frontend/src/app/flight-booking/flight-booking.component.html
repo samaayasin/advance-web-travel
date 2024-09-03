@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+</head>
+<body>
+    <!-- flight-booking.component.html -->
+    <div class="container">
+        <h2>Flight Booking</h2>
+
+        <div *ngIf="FlightId">
+            <div class="flight-details">
+                <h3>{{ AirlineName }}</h3>
+                <p>Departure Airport: {{ DepartureAirport }}</p>
+                <p>Arrival Airport: {{ ArrivalAirport }}</p>
+                <p>Departure Time: {{ DepartureTime }}</p>
+                <p>Arrival Time: {{ ArrivalTime }}</p>
+                <p>Price per Passenger: ${{ Price }}</p>
+            </div>
+
+            <form>
+                <div class="mb-3">
+                    <label for="numberOfPassengers" class="form-label">Number of Passengers</label>
+                    <input
+                        type="number"
+                        id="numberOfPassengers"
+                        [(ngModel)]="Numberofpassengers"
+                        name="numberOfPassengers"
+                        class="form-control"
+                        (change)="calculateTotalPrice()"
+                        min="1"
+                        step="1"
+                    />
+                </div>
+                <button (click)="onBookFlight()" type="button" class="btn btn-dark" [disabled]="!Numberofpassengers">
+                    Book Now for ${{ totalPrice ? totalPrice : '...' }}
+                  </button>
+                </form>
+        </div>
+
+        <div *ngIf="!FlightId">
+            <p>Please select a flight to book.</p>
+        </div>
+    </div>
+</body>
+</html>

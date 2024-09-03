@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Booking</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Car Booking</h2>
+
+        <div *ngIf="carlId">
+            <div class="car-details">
+                <h3>{{ CarModel }}</h3>
+                <p>Year: {{ Year }}</p>
+                <p>Color: {{ Color }}</p>
+                <p>Price per Day: ${{ PricePerDay }}</p>
+            </div>
+
+            <form>
+                <div class="mb-3">
+                    <label for="startDate" class="form-label">Start Date</label>
+                    <input
+                        type="date"
+                        id="startDate"
+                        [(ngModel)]="startDate"
+                        name="startDate"
+                        class="form-control"
+                        (change)="calculateTotalPrice()"
+                    />
+                </div>
+                <div class="mb-3">
+                    <label for="endDate" class="form-label">End Date</label>
+                    <input
+                        type="date"
+                        id="endDate"
+                        [(ngModel)]="endDate"
+                        name="endDate"
+                        class="form-control"
+                        (change)="calculateTotalPrice()"
+                    />
+                </div>
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input
+                        type="text"
+                        id="location"
+                        [(ngModel)]="Location"
+                        name="location"
+                        class="form-control"
+                    />
+                </div>
+                <button (click)="onBookCar()" type="button" class="btn btn-dark" [disabled]="!startDate || !endDate">
+                    Book Now for ${{ totalPrice ? totalPrice : '...' }}
+                </button>
+            </form>
+        </div>
+
+        <div *ngIf="!carlId">
+            <p>Please select a car to book.</p>
+        </div>
+    </div>
+</body>
+</html>

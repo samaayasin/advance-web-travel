@@ -47,7 +47,7 @@
           <p class="card-text"><strong>Price:</strong> ${{ flight.Price }}</p>
         </div>
         <div class="card-footer">
-          <a href="#" class="btn btn-dark">Book Now</a>
+          <button (click)="onBookNow(flight.FlightID )" class="btn btn-dark">Book Now</button>
         </div>
       </div>
     </div>
