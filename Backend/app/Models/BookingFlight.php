@@ -10,19 +10,14 @@ class BookingFlight extends Model
     use HasFactory;
 
 
-    protected $primaryKey = 'FlightID';
+    protected $primaryKey = 'BookingID';
 
     protected $fillable = [
         'UserID',
-        'AirlineName',
-        'DepartureAirport',
-        'ArrivalAirport',
-        'DepartureTime',
+        'FlightID',
+        'Numberofpassengers',
         'ArrivalTime',
-        'Price',
-        'Availability',
-        'StartDate',
-        'EndDate',
+        'TotalPrice',
     ];
 
     public function user()

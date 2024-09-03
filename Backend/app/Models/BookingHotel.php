@@ -10,15 +10,12 @@ class BookingHotel extends Model
     use HasFactory;
 
 
-    protected $primaryKey = 'HotelID';
+    protected $primaryKey = 'BookingID';
 
     protected $fillable = [
         'UserID',
-        'HotelName',
-        'Location',
-        'RoomType',
-        'PricePerNight',
-        'Availability',
+        'HotelID',
+        'TotalPrice',
         'StartDate',
         'EndDate',
     ];

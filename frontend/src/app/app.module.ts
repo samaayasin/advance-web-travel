@@ -16,7 +16,13 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { SearchFlightComponent } from './search-flight/search-flight.component';
 import { SearchHotelComponent } from './search-hotel/search-hotel.component';
+
 import { HomeComponent } from './home/home.component';  // Import the AppRoutingModule
+
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { ProfileComponent } from './profile/profile.component';  // Import the AppRoutingModule
+
 
 
 @NgModule({
@@ -27,6 +33,12 @@ import { HomeComponent } from './home/home.component';  // Import the AppRouting
     SearchFlightComponent,
     SearchHotelComponent,
     HomeComponent,
+
+    SignInComponent,
+    SignUpComponent,
+    ProfileComponent,
+    
+
     
   ],
   imports: [
