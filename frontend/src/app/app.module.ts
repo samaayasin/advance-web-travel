@@ -31,7 +31,8 @@ import { SearchFlightComponent } from './search-flight/search-flight.component';
 import { SearchHotelComponent } from './search-hotel/search-hotel.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { ProfileComponent } from './profile/profile.component';  // Import the AppRoutingModule
+import { ProfileComponent } from './profile/profile.component';
+import { ReviewModalComponent } from './review-modal/review-modal.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { ProfileComponent } from './profile/profile.component';  // Import the A
     SignInComponent,
     SignUpComponent,
     ProfileComponent,
+    ReviewModalComponent,
     
   ],
   imports: [
