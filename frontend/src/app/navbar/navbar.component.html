@@ -20,6 +20,25 @@
           <li class="nav-item">
             <a routerLink="car" class="nav-link" href="#">Cars</a>
           </li>
+
+          <li class="nav-item">
+            <a routerLink="admin"  class="nav-link text-white">Admin</a>
+          </li>
+        </ul>
+        <div *ngIf="!isLoggedIn" class="d-flex gap-2">
+          <a routerLink="sign-in"  class="nav-link text-white">
+            Sign In
+          </a>          
+          <a routerLink="sign-up" class="nav-link text-white">Sign Up</a>
+        </div>
+        <div *ngIf="isLoggedIn" class="d-flex align-items-center">
+          <a routerLink="profile" class="nav-link text-white d-flex align-items-center">
+            <mat-icon>account_circle</mat-icon>
+            <span class="ms-1 me-3">Profile</span>
+          </a>
+          <a class="nav-link text-white" routerLink="home" (click)="onLogout()">Log Out</a>
+        </div>
+
           
           <li class="ms-auto d-flex">
             <ng-container *ngIf="!isLoggedIn">
@@ -35,6 +54,7 @@
             </ng-container>
           </li>
         </ul>
+
       </div>
     </div>
   </nav>

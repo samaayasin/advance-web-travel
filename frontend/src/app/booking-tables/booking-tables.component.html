@@ -1,0 +1,18 @@
+<div class="main-content">
+    <h2>{{ tableTitle }}</h2>
+    <div class="responsive-table">
+      <table>
+        <thead>
+          <tr>
+            <th *ngFor="let col of columns">{{ col }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let booking of bookings">
+            <td *ngFor="let col of columns">{{ booking[col] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
