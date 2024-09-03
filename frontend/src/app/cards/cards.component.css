@@ -6,7 +6,7 @@ html {
 
 .card {
   position: relative;
-  bottom: 350px;
+  bottom: 300px;
   left: 210px;
   margin: 10px auto;
   width: 100%;
@@ -24,7 +24,7 @@ html {
 
 .user-card {
   position: relative;
-  bottom: 635px;
+  bottom: 570px;
   left: 500px;
   margin: 20px auto;
   display: flex;
@@ -71,7 +71,7 @@ html {
 
 .review-container {
   position: relative;
-  bottom: 620px;
+  bottom: 580px;
   left: 500px;
   margin: 20px auto;
   padding: 5px;

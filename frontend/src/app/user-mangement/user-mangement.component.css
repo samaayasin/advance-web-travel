@@ -1,98 +1,78 @@
+/* Base Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-    color: #333;
-  }
-  
-  .main-content {
-    max-width: 1000px;
-    margin: 10px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    align-items: center;
-    margin-right: 210px;
-    margin-top: 50px;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
 
-    font-weight: bold;
-  }
-  
-  .main-content h2 {
-    text-align: center;
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .responsive-table {
-    width: 100%;
-    overflow-x: auto;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-  }
-  
-  thead {
-    background-color: #444444;
-    color: white;
-  }
-  
-  th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  th {
-    font-size: 16px;
-    text-transform: uppercase;
-  }
-  
-  tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  tbody td {
-    color: #555;
-    font-size: 14px;
-  }
-  
-  tbody tr:hover td {
-    background-color: #e0f7fa;
-    transition: background-color 0.3s ease;
-  }
-  
-  @media (max-width: 768px) {
-    table {
-      font-size: 14px;
-    }
-    
-    th, td {
-      padding: 8px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    table {
-      font-size: 12px;
-    }
-    
-    th, td {
-      padding: 6px;
-    }
-  }
-  
-  /* Button Base Styles */
+.main-content {
+  max-width: 1000px;
+  margin: 10px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  align-items: center;
+  margin-right: 210px;
+  margin-top: 50px;
+  font-weight: bold;
+}
+
+.main-content h2 {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.responsive-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+thead {
+  background-color: #444444;
+  color: white;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+tbody td {
+  color: #555;
+  font-size: 14px;
+}
+
+tbody tr:hover td {
+  background-color: #e0f7fa;
+  transition: background-color 0.3s ease;
+}
+
+/* Button Base Styles */
 button {
   margin: 0 5px;
   padding: 8px 16px;
@@ -105,19 +85,16 @@ button {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Hover Effect */
 button:hover {
-  transform: translateY(-2px); /* Slight lift effect */
+  transform: translateY(-2px); 
 }
 
-/* Active/Pressed Effect */
 button:active {
-  transform: translateY(0); /* Reset lift effect */
+  transform: translateY(0); 
 }
 
-/* Save Button */
 button.save-btn {
-  background-color: #99bd82; /* Green for Save */
+  background-color: #99bd82;
 }
 
 button.save-btn:hover {
@@ -131,7 +108,6 @@ button.save-btn:active {
 button.edit-btn {
   background-color: #66656cb5; 
   width: 73px;
-
 }
 
 button.edit-btn:hover {
@@ -182,3 +158,94 @@ button.delete-btn:active {
   box-sizing: border-box;
 }
 
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .main-content {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 20px;
+  }
+
+  .responsive-table {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+
+  button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .add-user-btn {
+    padding: 8px 12px;
+  }
+
+  .add-user-form input {
+    padding: 6px;
+  }
+
+  .add-user-form {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 20px;
+  }
+
+  table {
+    font-size: 10px;
+  }
+
+  th, td {
+    padding: 6px;
+  }
+
+  button {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  .add-user-btn {
+    padding: 6
+    px 10px;
+  }
+
+  .add-user-form input {
+    padding: 4px;
+  }
+
+  .add-user-form {
+    padding: 8px;
+  }
+}
+
+.card {
+  padding: 20px;
+  margin: 15px;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 15px;
+    margin: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 10px;
+    margin: 5px;
+  }
+}
