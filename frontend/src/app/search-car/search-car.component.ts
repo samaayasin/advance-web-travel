@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CarSearchService } from '../car-search.service';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-car',
@@ -12,6 +14,8 @@ export class SearchCarComponent implements OnInit {
   cars: any[] = [];
 
   constructor(
+    private authService:AuthService,
+    private router: Router,
     private fb: FormBuilder,
     private carSearchService: CarSearchService
   ) { }
@@ -26,8 +30,9 @@ export class SearchCarComponent implements OnInit {
 
   onSearch(): void {
     const { model, year, price } = this.carSearchForm.value;
+    const filters = this.carSearchForm.value;
 
-    this.carSearchService.searchCars(model, year, price).subscribe(
+    this.carSearchService.searchCars(filters).subscribe(
       (response) => {
         this.cars = response; // Assuming the API response is an array of cars
       },
@@ -36,4 +41,15 @@ export class SearchCarComponent implements OnInit {
       }
     );
   }
+
+  onBookNow(carId: string) {
+    this.authService.getIsLoggedIn().subscribe(isLoggedIn => {
+      if (isLoggedIn) {
+        this.router.navigate(['/carbooking'], { queryParams: { carId: carId } });
+      } else {
+        this.router.navigate(['/sign-in']);
+      }
+    });
+  }
+
 }

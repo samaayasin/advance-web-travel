@@ -1,0 +1,35 @@
+/* flight-booking.component.css */
+
+.flight-booking-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .flight-detail, .passenger-info, .total-price {
+    margin-bottom: 20px;
+  }
+  
+  .flight-detail p, .passenger-info label, .total-price p {
+    margin: 5px 0;
+  }
+  
+  button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
