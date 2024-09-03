@@ -69,13 +69,9 @@ import { ReviewModalComponent } from './review-modal/review-modal.component';
     SignUpComponent,
     ProfileComponent,
 
-    
-
-
     ReviewModalComponent,
-
-    
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,

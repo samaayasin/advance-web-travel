@@ -45,7 +45,7 @@ const routes: Routes = [
   { path: 'search-car', component: SearchCarComponent },
   { path: 'search-hotel', component: SearchHotelComponent },
 
-  {path:'home', component:SearchCarComponent},
+  
   {path:'sign-in', component:SignInComponent},
   {path:'sign-up', component:SignUpComponent},
   {path:'profile', component:ProfileComponent},
@@ -54,7 +54,7 @@ const routes: Routes = [
 
   {path:'admin', component:AdminCompComponent},
 
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+  { path: '', redirectTo: '/home', pathMatch: 'full' }
 
 ];
 
