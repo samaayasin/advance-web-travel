@@ -1,0 +1,6 @@
+<app-dashboard></app-dashboard>
+<app-booking-tables
+  [bookings]="flightBookings"
+  [columns]="['BookingID','FlightID','UserID','ArrivalTime', 'Numberofpassengers', 'TotalPrice']"
+  tableTitle="Flight Bookings">
+</app-booking-tables>

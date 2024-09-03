@@ -1,0 +1,117 @@
+html {
+  overflow: hidden;
+  height: 100%;
+  font-size: 0.875rem;
+}
+
+.card {
+  position: relative;
+  top:-350px;
+  left: 250px;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 10px;
+}
+
+.card-title {
+  font-size: 24px;
+  margin-top: 5px;
+}
+
+.card-text {
+  font-size: 14px;
+}
+
+.user-card {
+  position: relative;
+  top:-600px;
+  left: 550px;
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 2px solid #444444;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  width: 300px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-button {
+  background-color: #444444;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-right: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.user-button:hover {
+  background-color: #444444; /* Slightly darker green on hover */
+}
+
+.user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgb(201, 199, 199);
+}
+
+.user-avatar i {
+  font-size: 5rem; /* Adjust icon size */
+  color: #fff; /* White icon color */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .user-card {
+    width: 50%;
+    top: 600px;
+    left: 50px;
+  }
+  .card{
+    width: 50%;
+    top:1250px;
+    left: 50px;
+  }
+}
+
+
+
+.review-container {
+  position: absolute;
+  top: 220px;
+  left: 1160px;
+  padding: 0px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 300px;
+}
+
+h2 {
+  color: #ffffff;
+  margin-bottom: 5px;
+}
+
+.stars {
+  margin-bottom: 5px;
+}
+
+.star {
+  font-size: 30px;
+  color: #f1c40f;
+  margin: 0 2px;
+}
+
+.star.half {
+  background: linear-gradient(90deg, #f1c40f 50%, #ddd 50%);
+  color: transparent;
+}

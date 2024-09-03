@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="card-header" style="background-color: black; color: #ffffff;">Latest Hotel Bookings</div>
+  <div class="card-body">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Hotel</th>
+          <th scope="col">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of bookings">
+          <td>
+            <img [src]="booking.imageUrl" alt="Hotel Image" width="50">
+            {{ booking.hotelName }}
+          </td>
+          <td>
+            {{ booking.dateRange }} <br>
+            {{ booking.customerName }} - {{ booking.daysAgo }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
