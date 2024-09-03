@@ -1,3 +1,4 @@
+/* General Styles */
 html, body {
   overflow: hidden; 
   height: 100%;
@@ -55,51 +56,36 @@ hr {
   height: 100vh;
   background-color: #f8f9fa;
   z-index: 1000;
-  overflow-y: auto; 
+  overflow-y: auto;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Logo section */
-.logo-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+/* Sidebar collapsed state for mobile */
+.sidebar-collapsed {
+  transform: translateX(-100%);
 }
 
-.logo-image {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
+/* Sidebar expanded state */
+.sidebar-expanded {
+  transform: translateX(0);
 }
 
-.logo-text {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: #333;
+/* Mobile button for sidebar */
+.sidebar-toggle {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1050;
+  display: none;
 }
 
-.logo-link:hover .logo-text {
-  color: #007bff;
-}
-
-
-
-
+/* Mobile-specific styles */
 @media (max-width: 768px) {
-  .row {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  
   .dashboard {
-    width: 50%;
-    position: relative;
-    height: auto;
-    padding: 5px;
+    width: 220px;
   }
 
-  .collapse .nav-link {
-    padding-left: 5px;
+  .sidebar-toggle {
+    display: block;
   }
 }
-

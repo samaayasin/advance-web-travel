@@ -12,10 +12,19 @@ import { BookingHotelComponent } from './booking-hotel-view/booking-hotel-view.c
 import { SearchCarComponent } from './search-car/search-car.component';
 import { SearchFlightComponent } from './search-flight/search-flight.component';
 import { SearchHotelComponent } from './search-hotel/search-hotel.component';
+
+import { HomeComponent } from './home/home.component';
+
+
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent  } from './sign-up/sign-up.component';
 import { ProfileComponent } from './profile/profile.component';
+
+
+
+
 import { AdminCompComponent } from './admin-comp/admin-comp.component';
+
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -30,13 +39,21 @@ const routes: Routes = [
   {path:'car', component:SearchCarComponent},
   {path:'hotel', component:SearchFlightComponent},
   {path:'flight', component:SearchHotelComponent},
-  {path:'home', component:SearchCarComponent},
+
+  {path:'home', component:HomeComponent},
+  { path: 'search-flight', component: SearchFlightComponent },
+  { path: 'search-car', component: SearchCarComponent },
+  { path: 'search-hotel', component: SearchHotelComponent },
+
+  
   {path:'sign-in', component:SignInComponent},
   {path:'sign-up', component:SignUpComponent},
   {path:'profile', component:ProfileComponent},
+
   {path:'admin', component:AdminCompComponent},
 
   { path: '', redirectTo: '/home', pathMatch: 'full' }
+
 ];
 
 @NgModule({

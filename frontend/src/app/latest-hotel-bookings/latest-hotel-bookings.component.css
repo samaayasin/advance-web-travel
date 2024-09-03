@@ -1,18 +1,23 @@
 
 .card {
-    position: relative;
-    left: 270px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    flex: 1;
-    display: flex;
-    flex-direction: column; 
-    min-height: 300px; 
-    margin-right: 0; 
-  width: 425px;
-  height: 300px;
-  text-align: center;
-
+    width: 350px;
+    height: 300px;
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    .container-fluid {
+      flex-direction: column;
+      align-items: flex-start; /* Align content to the left on mobile */
+      padding: 10px;
+    }
+  
+    .card {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px; /* Add spacing between cards */
+      width: 100%; /* Ensure all cards are the same size */
+    }
   }
   
   

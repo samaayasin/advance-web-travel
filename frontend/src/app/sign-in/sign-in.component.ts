@@ -25,6 +25,7 @@ export class SignInComponent {
             access_token: response.access_token,
             refresh_token: response.refresh_token
           });
+          
           this.router.navigate(['/home']);
         },
         (error: HttpErrorResponse) => {

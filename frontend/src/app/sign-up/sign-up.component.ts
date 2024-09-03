@@ -27,6 +27,11 @@ export class SignUpComponent {
                 access_token: response.access_token,
                 refresh_token: response.refresh_token
               });
+              if(this.role.toLowerCase() === 'admin'){
+                this.router.navigate(['/admin']);
+
+              }
+              else
               this.router.navigate(['/home']);
             },
             error: (error) => {
