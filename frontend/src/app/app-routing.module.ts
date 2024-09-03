@@ -36,7 +36,7 @@ const routes: Routes = [
   {path:'profile', component:ProfileComponent},
   {path:'admin', component:AdminCompComponent},
 
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+  { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({
