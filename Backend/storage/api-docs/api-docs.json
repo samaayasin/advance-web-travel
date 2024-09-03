@@ -572,11 +572,11 @@
                 "tags": [
                     "Cars"
                 ],
-                "summary": "Get all cars",
-                "operationId": "8c2b586b65304726cfc8b054ba645e9c",
+                "summary": "Get all car bookings by the authenticated user",
+                "operationId": "50ccaaa2fd471368ab11823fe8c08124",
                 "responses": {
                     "200": {
-                        "description": "List of all cars",
+                        "description": "List of all car bookings by the user",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -587,15 +587,26 @@
                                 }
                             }
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "No car bookings found"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Cars"
                 ],
-                "summary": "Add a new car booking",
-                "operationId": "3a4743a0fc9d18b087ba965b2394c059",
+                "summary": "Create a new car booking",
+                "operationId": "bceea31cd3dd33f65c80d4aaeca2eb4d",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -608,7 +619,7 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Car booking added",
+                        "description": "Car booking created successfully",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -617,10 +628,21 @@
                             }
                         }
                     },
+                    "404": {
+                        "description": "Car not found"
+                    },
                     "422": {
-                        "description": "Validation errors"
+                        "description": "Validation error"
+                    },
+                    "500": {
+                        "description": "Booking creation failed"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/api/booking/cars/{id}": {
@@ -628,12 +650,13 @@
                 "tags": [
                     "Cars"
                 ],
-                "summary": "Update a car booking",
-                "operationId": "2d0f65499d8d2a1039b60494fd60e0f1",
+                "summary": "Update an existing car booking",
+                "operationId": "848e30c21d7b843170a5b533d92784f1",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
+                        "description": "ID of the booking to update",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -652,7 +675,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Car booking updated",
+                        "description": "Car booking updated successfully",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -662,20 +685,32 @@
                         }
                     },
                     "404": {
-                        "description": "Car booking not found"
+                        "description": "Car not available or booking not found"
+                    },
+                    "403": {
+                        "description": "No booking found for this user"
+                    },
+                    "500": {
+                        "description": "Booking update failed"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
                     "Cars"
                 ],
                 "summary": "Cancel a car booking",
-                "operationId": "d1c13234b535033089f270645547d9ef",
+                "operationId": "97cb12a0df4b1aa410d1cef57294b8d8",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
+                        "description": "ID of the booking to cancel",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -684,7 +719,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Car booking canceled",
+                        "description": "Car booking canceled successfully",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -694,9 +729,17 @@
                         }
                     },
                     "404": {
-                        "description": "Car booking not found"
+                        "description": "Booking not found"
+                    },
+                    "403": {
+                        "description": "No booking found for this user"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/api/booking/flights": {
@@ -704,12 +747,11 @@
                 "tags": [
                     "Flights"
                 ],
-                "summary": "Get list of all flights",
-                "description": "Returns a list of all flights",
-                "operationId": "getAllFlights",
+                "summary": "Get all flights booked by the authenticated user",
+                "operationId": "febb504558ce976313aed443b5120364",
                 "responses": {
                     "200": {
-                        "description": "Successful operation",
+                        "description": "List of all flights booked by the user",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -720,16 +762,26 @@
                                 }
                             }
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not found"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Flights"
                 ],
-                "summary": "Add a new flight booking",
-                "description": "Creates a new flight booking",
-                "operationId": "createFlightBooking",
+                "summary": "Add a new flight booking for the authenticated user",
+                "operationId": "f7282a9b14066f4f7666cdf008cc71d6",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -742,7 +794,7 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Booking created successfully",
+                        "description": "Flight booking added",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -751,20 +803,33 @@
                             }
                         }
                     },
+                    "404": {
+                        "description": "Flight Not Found"
+                    },
+                    "409": {
+                        "description": "You have already booked this flight"
+                    },
                     "422": {
                         "description": "Validation errors"
+                    },
+                    "500": {
+                        "description": "Booking failed"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/api/booking/flights/{id}": {
-            "get": {
+            "put": {
                 "tags": [
                     "Flights"
                 ],
-                "summary": "Get a flight by ID",
-                "description": "Returns a specific flight by its ID",
-                "operationId": "getFlightById",
+                "summary": "Update a flight booking for the authenticated user",
+                "operationId": "80c247ac2835c4b38ee0cfcc3a3da1d2",
                 "parameters": [
                     {
                         "name": "id",
@@ -775,9 +840,19 @@
                         }
                     }
                 ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BookingFlight"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
-                        "description": "Successful operation",
+                        "description": "Flight booking updated",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -786,18 +861,28 @@
                             }
                         }
                     },
+                    "403": {
+                        "description": "No booking"
+                    },
                     "404": {
-                        "description": "Flight not found"
+                        "description": "Flight Not Found"
+                    },
+                    "500": {
+                        "description": "Booking update failed"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
                     "Flights"
                 ],
-                "summary": "Cancel a flight booking",
-                "description": "Cancels a flight booking by ID",
-                "operationId": "cancelFlightBooking",
+                "summary": "Cancel a flight booking for the authenticated user",
+                "operationId": "5e84fdf69c8f0de1b285586cab43a16b",
                 "parameters": [
                     {
                         "name": "id",
@@ -810,7 +895,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Booking canceled successfully",
+                        "description": "Flight booking canceled",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -819,10 +904,18 @@
                             }
                         }
                     },
+                    "403": {
+                        "description": "No booking"
+                    },
                     "404": {
-                        "description": "Flight not found"
+                        "description": "Booking not found"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/api/booking/hotels": {
@@ -830,11 +923,11 @@
                 "tags": [
                     "Hotel"
                 ],
-                "summary": "Get all hotels",
-                "operationId": "a999951c7ae55f5d6e23ca7dfeefb51d",
+                "summary": "Get all hotel bookings by the authenticated user",
+                "operationId": "b7720d0995e6cd068911694eadb433e5",
                 "responses": {
                     "200": {
-                        "description": "List of all hotels",
+                        "description": "List of all hotel bookings by the user",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -845,15 +938,26 @@
                                 }
                             }
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "No bookings found for the user"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Hotel"
                 ],
-                "summary": "Add a new hotel booking",
-                "operationId": "d5f83e56af3f2194c034c983a674a766",
+                "summary": "Add a new hotel booking for the authenticated user",
+                "operationId": "84af4f4887ee50a531c469d55ff6da87",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -866,7 +970,7 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Hotel booking added",
+                        "description": "Hotel booking successfully added",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -875,10 +979,21 @@
                             }
                         }
                     },
+                    "404": {
+                        "description": "Hotel not found or not available for the selected dates"
+                    },
                     "422": {
                         "description": "Validation errors"
+                    },
+                    "500": {
+                        "description": "Booking failed due to a server error"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/api/booking/hotels/{id}": {
@@ -886,12 +1001,13 @@
                 "tags": [
                     "Hotel"
                 ],
-                "summary": "Update a hotel booking",
-                "operationId": "968c2d65f72e1872bca8d6b8b8a39cdb",
+                "summary": "Update a hotel booking for the authenticated user",
+                "operationId": "3ebc044c709c71cf2584961b610991f5",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
+                        "description": "ID of the booking to update",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -910,7 +1026,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Hotel booking updated",
+                        "description": "Hotel booking successfully updated",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -920,16 +1036,27 @@
                         }
                     },
                     "404": {
-                        "description": "Hotel booking not found"
+                        "description": "Hotel not available for the selected dates or booking not found"
+                    },
+                    "403": {
+                        "description": "No booking found for the provided ID and authenticated user"
+                    },
+                    "500": {
+                        "description": "Booking update failed due to a server error"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
                     "Hotel"
                 ],
-                "summary": "Cancel a hotel booking",
-                "operationId": "a960dfec154bba94536b8bc208a25468",
+                "summary": "Cancel a hotel booking for the authenticated user",
+                "operationId": "432f572ff87a1addbd7a0aadc54a1cef",
                 "parameters": [
                     {
                         "name": "id",
@@ -952,9 +1079,17 @@
                         }
                     },
                     "404": {
-                        "description": "Hotel booking not found"
+                        "description": "Booking not found"
+                    },
+                    "403": {
+                        "description": "No booking"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/api/get/cars": {
@@ -1757,39 +1892,41 @@
                 "title": "BookingCar",
                 "required": [
                     "UserID",
-                    "CarModel",
-                    "SeatNumber",
+                    "CarRentalID",
                     "Location",
-                    "PricePerDay",
-                    "Availability",
+                    "TotalPrice",
                     "StartDate",
                     "EndDate"
                 ],
                 "properties": {
                     "UserID": {
+                        "description": "ID of the user who made the booking",
+                        "type": "integer"
+                    },
+                    "CarRentalID": {
+                        "description": "ID of the car rental being booked",
                         "type": "integer"
                     },
                     "CarModel": {
+                        "description": "Model of the car being booked",
                         "type": "string"
-                    },
-                    "SeatNumber": {
-                        "type": "integer"
                     },
                     "Location": {
+                        "description": "Location where the car will be picked up",
                         "type": "string"
                     },
-                    "PricePerDay": {
+                    "TotalPrice": {
+                        "description": "Total price for the booking",
                         "type": "number",
                         "format": "float"
                     },
-                    "Availability": {
-                        "type": "boolean"
-                    },
                     "StartDate": {
+                        "description": "Start date of the booking",
                         "type": "string",
                         "format": "date"
                     },
                     "EndDate": {
+                        "description": "End date of the booking",
                         "type": "string",
                         "format": "date"
                     }
@@ -1800,56 +1937,28 @@
                 "title": "BookingFlight",
                 "required": [
                     "UserID",
-                    "AirlineName",
-                    "DepartureAirport",
-                    "ArrivalAirport",
-                    "DepartureTime",
-                    "ArrivalTime",
-                    "Price",
-                    "StartDate",
-                    "EndDate"
+                    "FlightID",
+                    "Numberofpassengers",
+                    "TotalPrice",
+                    "ArrivalTime"
                 ],
                 "properties": {
                     "UserID": {
-                        "description": "The ID of the user",
                         "type": "integer"
                     },
-                    "AirlineName": {
-                        "description": "Name of the airline",
-                        "type": "string"
+                    "FlightID": {
+                        "type": "integer"
                     },
-                    "DepartureAirport": {
-                        "description": "Departure airport",
-                        "type": "string"
+                    "Numberofpassengers": {
+                        "type": "integer"
                     },
-                    "ArrivalAirport": {
-                        "description": "Arrival airport",
-                        "type": "string"
-                    },
-                    "DepartureTime": {
-                        "description": "Departure time",
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "ArrivalTime": {
-                        "description": "Arrival time",
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "Price": {
-                        "description": "Price of the flight",
+                    "TotalPrice": {
                         "type": "number",
                         "format": "float"
                     },
-                    "StartDate": {
-                        "description": "Booking start date",
+                    "ArrivalTime": {
                         "type": "string",
-                        "format": "date"
-                    },
-                    "EndDate": {
-                        "description": "Booking end date",
-                        "type": "string",
-                        "format": "date"
+                        "format": "date-time"
                     }
                 },
                 "type": "object"
@@ -1858,39 +1967,32 @@
                 "title": "BookingHotel",
                 "required": [
                     "UserID",
-                    "HotelName",
-                    "Location",
-                    "RoomType",
-                    "PricePerNight",
-                    "Availability",
+                    "HotelID",
+                    "TotalPrice",
                     "StartDate",
                     "EndDate"
                 ],
                 "properties": {
                     "UserID": {
+                        "description": "ID of the user who made the booking",
                         "type": "integer"
                     },
-                    "HotelName": {
-                        "type": "string"
+                    "HotelID": {
+                        "description": "ID of the booked hotel",
+                        "type": "integer"
                     },
-                    "Location": {
-                        "type": "string"
-                    },
-                    "RoomType": {
-                        "type": "string"
-                    },
-                    "PricePerNight": {
+                    "TotalPrice": {
+                        "description": "Total price of the booking",
                         "type": "number",
                         "format": "float"
                     },
-                    "Availability": {
-                        "type": "boolean"
-                    },
                     "StartDate": {
+                        "description": "Start date of the booking",
                         "type": "string",
                         "format": "date"
                     },
                     "EndDate": {
+                        "description": "End date of the booking",
                         "type": "string",
                         "format": "date"
                     }
