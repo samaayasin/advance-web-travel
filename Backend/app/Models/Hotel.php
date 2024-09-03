@@ -21,7 +21,7 @@ class Hotel extends Model
         'StartDate',
         'EndDate',
         'city',
-        'country',
+        'county',
         'description',
         'image_url',
         'number_of_guests'
