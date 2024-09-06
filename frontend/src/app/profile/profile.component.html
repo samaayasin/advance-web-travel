@@ -1,48 +1,58 @@
-<div class="profile-container">
-  <h2>User Profile</h2>
-
-  <div class="profile-item">
-    <label>Email:</label>
-    <span>{{ user?.Email || 'Not Available' }}</span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body class="bg-dark">
+  <div class="profile-container">
+    <h2>User Profile</h2>
+  
+    <div class="profile-item">
+      <label>Email:</label>
+      <span>{{ user?.Email || 'Not Available' }}</span>
+    </div>
+  
+    <div class="profile-item">
+      <label>Name:</label>
+      <span>{{ user?.Name || 'Not Available' }}</span>
+    </div>
+  
+    <div class="profile-item">
+      <label>Phone Number:</label>
+      <span>{{ user?.PhoneNumber || 'Not Available' }}</span>
+    </div>
+  
+    <div class="profile-item">
+      <label>Role:</label>
+      <span>{{ user?.Role || 'Not Available' }}</span>
+    </div>
   </div>
-
-  <div class="profile-item">
-    <label>Name:</label>
-    <span>{{ user?.Name || 'Not Available' }}</span>
-  </div>
-
-  <div class="profile-item">
-    <label>Phone Number:</label>
-    <span>{{ user?.PhoneNumber || 'Not Available' }}</span>
-  </div>
-
-  <div class="profile-item">
-    <label>Role:</label>
-    <span>{{ user?.Role || 'Not Available' }}</span>
-  </div>
-</div>
-
-<div class="ms-2 row" *ngIf="flights.length > 0">
-  <div class="col-md-4" *ngFor="let bookingFlight of flights">
-    <div class="card h-100">
-      <img [src]="bookingFlight.image_url" class="card-img-top" alt="{{ bookingFlight.AirlineName }}">
-      <div class="card-body">
-        <h5 class="card-title">{{ bookingFlight.AirlineName }}</h5>
-        <p class="card-text"><strong>From:</strong> {{ bookingFlight.DepartureAirport }}</p>
-        <p class="card-text"><strong>To:</strong> {{ bookingFlight.ArrivalAirport }}</p>
-        <p class="card-text"><strong>Departure:</strong> {{ bookingFlight.DepartureTime | date: 'short' }}</p>
-        <p class="card-text"><strong>Arrival:</strong> {{ bookingFlight.ArrivalTime | date: 'short' }}</p>
-        <p class="card-text"><strong>Total Price:</strong> ${{ bookingFlight.TotalPrice}}</p>
-      </div>
-      <div class="card-footer">
-        <button (click)="openRateModal(bookingFlight.FlightID,'flight')" class="btn btn-dark">Rate</button>
+  
+  <div class="ms-2 row" *ngIf="flights.length > 0">
+    <div class="col-md-4" *ngFor="let bookingFlight of flights">
+      <div class="card h-100">
+        <img [src]="bookingFlight.image_url" class="card-img-top" alt="{{ bookingFlight.AirlineName }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ bookingFlight.AirlineName }}</h5>
+          <p class="card-text"><strong>From:</strong> {{ bookingFlight.DepartureAirport }}</p>
+          <p class="card-text"><strong>To:</strong> {{ bookingFlight.ArrivalAirport }}</p>
+          <p class="card-text"><strong>Departure:</strong> {{ bookingFlight.DepartureTime | date: 'short' }}</p>
+          <p class="card-text"><strong>Arrival:</strong> {{ bookingFlight.ArrivalTime | date: 'short' }}</p>
+          <p class="card-text"><strong>Total Price:</strong> ${{ bookingFlight.TotalPrice}}</p>
+        </div>
+        <div class="card-footer">
+          <button (click)="openRateModal(bookingFlight.FlightID,'flight')" class="btn btn-dark">Rate</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<app-rate-modal 
-  [showModal]="showRateModal" 
-  [bookingId]="selectedBookingId" 
-  (close)="handleRateClose($event)">
-</app-rate-modal>
+  
+  <app-rate-modal 
+    [showModal]="showRateModal" 
+    [bookingId]="selectedBookingId" 
+    (close)="handleRateClose($event)">
+  </app-rate-modal>
+</body>
+</html>

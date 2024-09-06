@@ -43,7 +43,8 @@ export class CarBookingComponent {
     this.carService.searchCars(filters).subscribe({
       next: (cars) => {
         if (cars.length > 0) {
-          const car = cars[0]; 
+          const carIdNumber = Number(this.carlId) - 1;
+          const car = cars[carIdNumber]; 
           this.CarModel = car.CarModel;
           this.Year = car.Year;
           this.Color = car.Color;

@@ -13,7 +13,7 @@ import { HotelService } from '../services/hotel.service';
 })
 export class HotelBookingComponent {
 
-  hotelId: string | null = null;
+  hotelId: string ='';
   startDate: string = '';
   endDate: string = '';
   hotelName: string = '';
@@ -21,6 +21,7 @@ export class HotelBookingComponent {
   city: string = '';
   pricePerNight: number = 0;
   totalPrice: number = 0;
+  img: any = 0;
 
   constructor(
     private hotelBookingService: HotelBookingService,
@@ -44,11 +45,13 @@ export class HotelBookingComponent {
     this.hotelService.searchHotels(filters).subscribe({
       next: (hotels) => {
         if (hotels.length > 0) {
-          const hotel = hotels[0]; 
+          const hotelIdNumber = Number(this.hotelId) - 1;
+          const hotel = hotels[hotelIdNumber]; 
           this.hotelName = hotel.HotelName;
           this.rating = hotel.rating;
           this.city = hotel.city;
           this.pricePerNight = hotel.PricePerNight;
+          this.img=hotel.image_url;
         }
       },
       error: (error) => {

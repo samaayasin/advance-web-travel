@@ -73,6 +73,44 @@
                 }
             }
         },
+        "/bookings/{type}": {
+            "get": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "List all bookings by type",
+                "operationId": "showBookingsByType",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "Type of the booking (car, flight, hotel)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of bookings of the specified type",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Booking"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Bookings not found"
+                    }
+                }
+            }
+        },
         "/availables": {
             "get": {
                 "tags": [
@@ -90,6 +128,84 @@
                                     "items": {
                                         "$ref": "#/components/schemas/AvailableItem"
                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/availables/{type}": {
+            "get": {
+                "tags": [
+                    "Availables"
+                ],
+                "summary": "List all available items by type",
+                "operationId": "listAvailableItemsByType",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "Type of the available item (car, flight, hotel)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of available items of the specified type",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AvailableItem"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Available items not found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Availables"
+                ],
+                "summary": "Create a new available item",
+                "operationId": "storeAvailable",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "Type of the available item",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AvailableItem"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Item Created Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AvailableItem"
                                 }
                             }
                         }
@@ -222,21 +338,77 @@
                 }
             }
         },
-        "/availables/{type}": {
+        "/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "List all users",
+                "operationId": "getAllUsers",
+                "responses": {
+                    "200": {
+                        "description": "A list of all users",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "post": {
                 "tags": [
-                    "Availables"
+                    "Users"
                 ],
-                "summary": "Create a new available item",
-                "operationId": "storeAvailable",
+                "summary": "Create a new user",
+                "operationId": "createUser",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update a user",
+                "operationId": "updateUser",
                 "parameters": [
                     {
-                        "name": "type",
+                        "name": "id",
                         "in": "path",
-                        "description": "Type of the available item",
+                        "description": "ID of the user",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         }
                     }
                 ],
@@ -245,18 +417,74 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/AvailableItem"
+                                "$ref": "#/components/schemas/User"
                             }
                         }
                     }
                 },
                 "responses": {
-                    "201": {
-                        "description": "Item Created Successfully",
+                    "200": {
+                        "description": "User updated successfully",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/AvailableItem"
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "400": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete a user",
+                "operationId": "deleteUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User deleted successfully"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            }
+        },
+        "/bookings/latest": {
+            "get": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Get latest bookings",
+                "operationId": "getLatestBookings",
+                "responses": {
+                    "200": {
+                        "description": "Latest bookings",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Booking"
+                                    }
                                 }
                             }
                         }
@@ -1857,33 +2085,131 @@
     },
     "components": {
         "schemas": {
-            "Booking": {
+            "User": {
+                "title": "User",
+                "description": "User schema",
                 "properties": {
                     "id": {
+                        "description": "The user ID",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "description": "The user's name",
+                        "type": "string",
+                        "example": "John Doe"
+                    },
+                    "email": {
+                        "description": "The user's email address",
+                        "type": "string",
+                        "example": "john.doe@example.com"
+                    },
+                    "phone_number": {
+                        "description": "The user's phone number",
+                        "type": "string",
+                        "example": "+1234567890"
+                    },
+                    "profile_picture": {
+                        "description": "URL of the user's profile picture",
+                        "type": "string",
+                        "example": "http://example.com/profile.jpg",
+                        "nullable": true
+                    },
+                    "role": {
+                        "description": "The user's role",
+                        "type": "string",
+                        "example": "admin"
+                    }
+                },
+                "type": "object"
+            },
+            "Booking": {
+                "title": "Booking",
+                "description": "Booking schema",
+                "properties": {
+                    "id": {
+                        "description": "The booking ID",
                         "type": "integer",
                         "example": 1
                     },
                     "user_id": {
+                        "description": "The ID of the user who made the booking",
                         "type": "integer",
-                        "example": 2
+                        "example": 1
+                    },
+                    "service_type": {
+                        "description": "Type of the service booked (e.g., car, flight, hotel)",
+                        "type": "string",
+                        "example": "car"
                     },
                     "booking_date": {
+                        "description": "Date of the booking",
                         "type": "string",
-                        "format": "date-time",
-                        "example": "2024-08-21T00:00:00Z"
+                        "format": "date",
+                        "example": "2024-09-10"
+                    },
+                    "start_date": {
+                        "description": "Start date of the service",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2024-09-15"
+                    },
+                    "end_date": {
+                        "description": "End date of the service",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2024-09-20"
+                    },
+                    "total_price": {
+                        "description": "Total price for the booking",
+                        "type": "number",
+                        "format": "float",
+                        "example": 500
                     }
                 },
                 "type": "object"
             },
             "AvailableItem": {
+                "title": "Available Item",
+                "description": "Schema for an available item",
                 "properties": {
                     "id": {
+                        "description": "The ID of the item",
                         "type": "integer",
                         "example": 1
                     },
                     "name": {
+                        "description": "Name of the service item",
                         "type": "string",
-                        "example": "Sample Item"
+                        "example": "Service Name"
+                    },
+                    "description": {
+                        "description": "Description of the service item",
+                        "type": "string",
+                        "example": "Detailed description of the item"
+                    },
+                    "price": {
+                        "description": "Price of the item",
+                        "type": "number",
+                        "format": "float",
+                        "example": 100
+                    },
+                    "type": {
+                        "description": "Type of the service item (e.g., car, flight, hotel)",
+                        "type": "string",
+                        "example": "car"
+                    },
+                    "available_from": {
+                        "description": "Date and time from when the item is available",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-09-01T00:00:00Z"
+                    },
+                    "available_to": {
+                        "description": "Date and time until when the item is available",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-09-30T00:00:00Z"
                     }
                 },
                 "type": "object"
@@ -2134,6 +2460,10 @@
         {
             "name": "Availables",
             "description": "Availables"
+        },
+        {
+            "name": "Users",
+            "description": "Users"
         },
         {
             "name": "Cars",

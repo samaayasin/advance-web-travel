@@ -45,7 +45,8 @@ export class FlightBookingComponent {
     this.flightService.searchFlights(filters).subscribe({
       next: (flight) => {
         if (flight.length > 0) {
-          const flights = flight[0]; 
+          const flightIdNumber = Number(this.FlightId) - 1;
+          const flights = flight[flightIdNumber]; 
           this.AirlineName = flights.AirlineName;
           this.DepartureAirport = flights.DepartureAirport;
           this.ArrivalAirport = flights.ArrivalAirport;

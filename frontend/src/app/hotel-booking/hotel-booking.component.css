@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+}
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.hotel-header {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.hotel-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+.user-info img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+}
+.user-info div {
+    flex-grow: 1;
+    margin-left: 15px;
+}
+.user-info p {
+    margin: 5px 0;
+}
+.user-info p:first-child {
+    font-size: 16px;
+    font-weight: bold;
+}
+.user-info p:last-child {
+    color: gold;
+    font-weight: bold;
+    font-size: 16px;
+}
+/* .user-info p span {
+    color: #333;
+} */
+.hotel-rate p span{
+    font-size: 18px;
+    display: inline;
+    color: #ffbf00;
+    font-weight: bold;
+}
+.form-container {
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+input[type="date"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+button {
+    background-color: #444;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+button:disabled {
+    background-color: #999;
+}

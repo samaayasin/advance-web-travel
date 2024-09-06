@@ -3,31 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hotel Reservation</title>
 </head>
 <body>
-    <!-- hotel-booking.component.html -->
 <div class="container">
-  <h2>Hotel Reservation</h2>
-  <div class="hotel-details">
-    <h3>{{ hotelName }}</h3>
-    <p>Rating: {{ rating }}</p>
-    <p>City: {{ city }}</p>
-  </div>
-  <form (ngSubmit)="onBookHotel()">
-    <div class="mb-3">
-      <label for="startDate" class="form-label">Start Date</label>
-      <input type="date" id="startDate" [(ngModel)]="startDate" name="startDate" class="form-control" (change)="calculateTotalPrice()">
+    <div class="user-info">
+      <img [src]="img || 'https://via.placeholder.com/150'" class="card-img-top" alt="{{hotelName}}">
+      <div>
+            <p>Hotel Name: <span>{{hotelName}}</span></p>
+            <p>City: <span>{{ city }}</span></p>
+            <p class="hotel-rate">Hotel Rate:
+              <span *ngFor="let star of [].constructor(rating)">★</span>
+            </p>
+            <p>Price per Night: <span>${{totalPrice}}</span></p>
+        </div>
     </div>
-    <div class="mb-3">
-      <label for="endDate" class="form-label">End Date</label>
-      <input type="date" id="endDate" [(ngModel)]="endDate" name="endDate" class="form-control" (change)="calculateTotalPrice()">
+    <div class="form-container">
+        <form (ngSubmit)="onBookHotel()">
+            <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" [(ngModel)]="startDate" name="startDate" class="form-control" (change)="calculateTotalPrice()">
+            </div>
+            <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input type="date" id="endDate" [(ngModel)]="endDate" name="endDate" class="form-control" (change)="calculateTotalPrice()">
+            </div>
+            <button type="submit" [disabled]="!startDate || !endDate">
+                Book Now for ${{ totalPrice ? totalPrice : '...' }}
+            </button>
+        </form>
     </div>
-    <button type="submit" class="btn btn-dark" [disabled]="!startDate || !endDate">
-      Book Now for ${{ totalPrice ? totalPrice : '...' }}
-    </button>
-  </form>
 </div>
-
 </body>
 </html>
